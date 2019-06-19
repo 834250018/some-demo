@@ -7,6 +7,7 @@ package com.ywy.demo;
 public class User implements Cloneable {
     private int age;
     private String name;
+    private UserTypeEnum type;
 
     public void setAge(int age) {
         this.age = age;
@@ -22,6 +23,14 @@ public class User implements Cloneable {
 
     public String getName() {
         return name;
+    }
+
+    public void setType(UserTypeEnum type) {
+        this.type = type;
+    }
+
+    public UserTypeEnum getType() {
+        return type;
     }
 
     public UserBuilder UserBuilder() {

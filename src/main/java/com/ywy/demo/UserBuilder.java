@@ -19,6 +19,12 @@ public class UserBuilder {
     }
 
     User getUser() {
+        if (user.getAge() == 0) {
+            throw new RuntimeException("没有年龄");
+        }
+        if (user.getName() == null || user.getName() == "") {
+            throw new RuntimeException("没有姓名");
+        }
         return user;
     }
 }
