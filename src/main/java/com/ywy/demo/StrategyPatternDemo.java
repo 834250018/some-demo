@@ -17,9 +17,8 @@ public class StrategyPatternDemo {
         student.setAge(18);
         student.setName("小明");
         student.setType(UserTypeEnum.STUDENT);
-        List<User> users = Arrays.asList(teacher, student);
         // 策略模式,根据不同用户类型,执行不同的业务代码
-        users.forEach(user -> user.getType().exec(user));
+        Arrays.asList(teacher, student).forEach(user -> user.getType().exec(user));
 
         // 工厂模式
         Animal cat = PetStore.getAnimal("cat");
