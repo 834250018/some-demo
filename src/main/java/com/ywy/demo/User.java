@@ -1,0 +1,44 @@
+package com.ywy.demo;
+
+/**
+ * @author ve
+ * @date 2019/6/19 15:59
+ */
+public class User implements Cloneable {
+    private int age;
+    private String name;
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public UserBuilder UserBuilder() {
+        return new UserBuilder();
+    }
+
+    /**
+     * 重写clone方法,用于原型模式
+     *
+     * @return
+     * @throws CloneNotSupportedException
+     */
+    @Override
+    public User clone() {
+        User user = new User();
+        user.setAge(getAge());
+        user.setName(getName());
+        return user;
+    }
+}
