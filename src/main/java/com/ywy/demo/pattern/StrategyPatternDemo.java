@@ -1,7 +1,6 @@
-package com.ywy.demo;
+package com.ywy.demo.pattern;
 
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author ve

@@ -1,4 +1,4 @@
-package com.ywy.demo;
+package com.ywy.demo.pattern;
 
 /**
  * @author ve

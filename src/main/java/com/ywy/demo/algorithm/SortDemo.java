@@ -1,4 +1,4 @@
-package com.ywy.demo;
+package com.ywy.demo.algorithm;
 
 import java.util.Arrays;
 import java.util.Collection;

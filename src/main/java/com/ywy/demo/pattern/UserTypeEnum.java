@@ -1,4 +1,4 @@
-package com.ywy.demo;
+package com.ywy.demo.pattern;
 
 /**
  * 建造者模式BuilderPattern
