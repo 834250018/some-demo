@@ -13,10 +13,15 @@ public class ThreadTest {
         int maximumPoolSize = 4;
         long keepAliveTime = 10L;
         TimeUnit unit = TimeUnit.SECONDS;
-        BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue<>(2);
+        // 有界队列,达到最大线程数后,队列有资源则等待,无则拒绝
+        BlockingQueue<Runnable> arrayBlockingQueue = new ArrayBlockingQueue<>(5);
+        // 同步队列,有资源则执行,无资源则拒绝
+        BlockingQueue<Runnable> synchronousQueue = new SynchronousQueue<>();
+        // 无参构造无界/有参有界队列,只执行核心线程,其他所有线程进入队列等待
+        BlockingQueue<Runnable> linkedBlockingDeque = new LinkedBlockingDeque<>();
         ThreadFactory threadFactory = new MyThreadFactory();
         RejectedExecutionHandler handler = new MyIgnorePolicy();
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory, handler);
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, arrayBlockingQueue, threadFactory, handler);
 
         executor.prestartAllCoreThreads();
         for (int i = 0; i < 10; i++) {
@@ -25,7 +30,7 @@ public class ThreadTest {
                 public void run() {
                     System.out.println("122222");
                     try {
-                        Thread.sleep(50000);
+                        Thread.sleep(10000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
