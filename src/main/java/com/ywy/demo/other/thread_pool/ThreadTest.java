@@ -1,4 +1,4 @@
-package com.ywy.demo.other;
+package com.ywy.demo.other.thread_pool;
 
 import java.io.IOException;
 import java.util.concurrent.*;
