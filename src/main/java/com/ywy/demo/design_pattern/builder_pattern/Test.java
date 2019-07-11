@@ -1,4 +1,7 @@
-package com.ywy.demo.pattern;
+package com.ywy.demo.design_pattern.builder_pattern;
+
+import com.ywy.demo.design_pattern.builder_pattern.User;
+import com.ywy.demo.design_pattern.builder_pattern.UserBuilder;
 
 /**
  * 建造者模式BuilderPattern
@@ -6,7 +9,7 @@ package com.ywy.demo.pattern;
  * @author ve
  * @date 2019/6/19 15:34
  */
-public class BuilderPatternDemo {
+public class Test {
 
     public static void main(String[] args) {
         // 建造者模式

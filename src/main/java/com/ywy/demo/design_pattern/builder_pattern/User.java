@@ -1,4 +1,6 @@
-package com.ywy.demo.pattern;
+package com.ywy.demo.design_pattern.builder_pattern;
+
+import com.ywy.demo.design_pattern.UserTypeEnum;
 
 /**
  * @author ve

@@ -1,4 +1,6 @@
-package com.ywy.demo.pattern;
+package com.ywy.demo.design_pattern;
+
+import com.ywy.demo.design_pattern.builder_pattern.User;
 
 /**
  * 建造者模式BuilderPattern

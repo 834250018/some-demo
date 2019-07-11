@@ -1,4 +1,4 @@
-package com.ywy.demo.pattern;
+package com.ywy.demo.design_pattern.factory_pattern;
 
 /**
  * @author ve

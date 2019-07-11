@@ -1,6 +1,6 @@
 package com.ywy.demo.equals;
 
-import com.ywy.demo.pattern.User;
+import com.ywy.demo.design_pattern.builder_pattern.User;
 
 /**
  * @author ve
