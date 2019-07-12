@@ -10,7 +10,7 @@ import com.ywy.demo.design_pattern.builder_pattern.User;
  * @author ve
  * @date 2019/7/11 14:57
  */
-public class Test1 {
+public class Shortcut {
 
     private String name;
 
@@ -23,7 +23,7 @@ public class Test1 {
         // user.getAge().var + tab键快速生成变量
         int age = user.getAge();
         // 选中代码 ctrl + alt + t 快速生成if/try-catch/runnable/synchronized等代码
-        synchronized (Test1.class) {
+        synchronized (Shortcut.class) {
             System.out.println();
         }
         // ctrl + j 自动代码

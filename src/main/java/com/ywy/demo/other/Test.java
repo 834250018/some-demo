@@ -8,8 +8,11 @@ import java.util.List;
  * @date 2019/7/3 16:24
  */
 public class Test {
+
+    volatile int i = 2;
+
     public static void main(String[] args) {
-        String str = "fff    aaaaa";
+        String str = "fff    AAAAA";
         System.out.println(str.split(" ").length); // 5 // n个连续空格,保留n-1个长度,再加上其他字符串,即5=4-1+2
         System.out.println(str.split(" +").length); // 2
 
@@ -28,6 +31,7 @@ public class Test {
         // Map 的方法 keySet()/values()/entrySet()返回集合对象时，不可以对其进行添 加元素操作
         // Collections 类返回的对象，如：emptyList()/singletonList()等都是immutable list，不可对其进行添加或者删除元素的操作
         // Arrays.asList()同上
+
 
     }
 }

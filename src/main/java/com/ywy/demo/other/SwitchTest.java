@@ -6,7 +6,7 @@ import java.util.Calendar;
  * @author ve
  * @date 2019/7/3 22:17
  */
-public class switchTest {
+public class SwitchTest {
     public static void main(String[] args) {
         method(null); // NPE
     }
