@@ -5,7 +5,7 @@ package com.ywy.demo.design_pattern.template_pattern;
  * @author ve
  * @date 2019/9/19 10:53
  */
-public class KeepPetEutrophication extends KeepPet {
+public class AbstractKeepPetEutrophication extends AbstractKeepPet {
     @Override
     public void selectPet() {
         System.out.println("我这么高大威武英俊帅气,肯定要养只陨石边牧啦!");

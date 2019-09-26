@@ -5,7 +5,7 @@ package com.ywy.demo.design_pattern.template_pattern;
  * @author ve
  * @date 2019/9/19 10:53
  */
-public class KeepPetCheaply extends KeepPet {
+public class AbstractKeepPetCheaply extends AbstractKeepPet {
     @Override
     public void selectPet() {
         System.out.println("我这么懒,养只猫吧");

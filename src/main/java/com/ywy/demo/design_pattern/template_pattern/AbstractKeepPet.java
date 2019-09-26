@@ -9,7 +9,7 @@ package com.ywy.demo.design_pattern.template_pattern;
  * @author ve
  * @date 2019/9/19 10:46
  */
-public abstract class KeepPet {
+public abstract class AbstractKeepPet {
 
     /**
      * 选择宠物种类

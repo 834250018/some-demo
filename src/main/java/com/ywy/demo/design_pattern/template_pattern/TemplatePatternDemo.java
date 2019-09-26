@@ -8,10 +8,10 @@ public class TemplatePatternDemo {
     public static void main(String[] args) {
 
         System.out.println("---------穷养------------");
-        new KeepPetCheaply().keepPet();
+        new AbstractKeepPetCheaply().keepPet();
         System.out.println();
         System.out.println("---------富养------------");
-        new KeepPetEutrophication().keepPet();
+        new AbstractKeepPetEutrophication().keepPet();
 
     }
 }
