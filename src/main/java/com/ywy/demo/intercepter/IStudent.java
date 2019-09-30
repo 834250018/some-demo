@@ -6,4 +6,6 @@ package com.ywy.demo.intercepter;
  */
 public interface IStudent {
     void study();
+    String getName();
+    void tourFeePay(int money);
 }
