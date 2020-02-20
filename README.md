@@ -18,7 +18,7 @@
 2. 自定义一个线程池
 ### jdk8流操作
 1. sort
-### CA(基于已有的java.security实现)
+### PKI 公钥基础设施
 1. 摘要算法
 2. 公钥加密算法
 3. 签名验签
@@ -32,6 +32,11 @@
     .JKS，二进制格式，同时包含证书和私钥，一般有密码保护。
     ```
 6. 证书颁发
+7. CRL颁发(jdk自带的没有找到,需要bouncyCastle依赖)
+    ```
+    compile group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: '1.64'
+    ```
+    
 ### 其他内容
 1. 注解及注解上属性值的获取
 2. String类型在方法中的传地址问题
