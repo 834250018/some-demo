@@ -13,10 +13,12 @@ import java.util.Arrays;
  */
 public class SignatureDemo {
 
+    // todo Ed25519, Ed448
+
     public static void main(String[] args) throws Exception {
         String str = "hello world!";
 
-        KeyPair keyPair = PublicKeyDemo.generateKeyPair();
+        KeyPair keyPair = AsymetricEncryptionDemo.generateKeyPair();
         PublicKey publicKey = keyPair.getPublic();
         PrivateKey privateKey = keyPair.getPrivate();
         byte[] signature = sign(str.getBytes(), privateKey);
@@ -35,9 +37,9 @@ public class SignatureDemo {
      */
     public static byte[] sign(byte[] bytes, PrivateKey privateKey) throws Exception {
         // 签名1:摘要
-        byte[] digestBytes = MessageDigestDemo.sha256MessageDigest.digest(bytes);
+        byte[] digestBytes = MessageDigestDemo.sha(256, bytes);
         // 签名2:私钥签名
-        return PublicKeyDemo.encrypt(digestBytes, privateKey);
+        return AsymetricEncryptionDemo.encrypt(digestBytes, privateKey);
     }
 
     /**
@@ -51,9 +53,9 @@ public class SignatureDemo {
      */
     public static boolean checkSign(byte[] bytes, byte[] signature, PublicKey publicKey) throws Exception {
         // 验签1:摘要1,对待签名数据进行摘要,直接拿digestBytes
-        byte[] digestBytes = MessageDigestDemo.sha256MessageDigest.digest(bytes);
+        byte[] digestBytes = MessageDigestDemo.sha(256, bytes);
         // 验名2:摘要2,对电子签名进行公钥解密
-        byte[] digestBytes2 = PublicKeyDemo.decrypt(signature, publicKey);
+        byte[] digestBytes2 = AsymetricEncryptionDemo.decrypt(signature, publicKey);
 
         // 验名3:对比两个摘要
         return Arrays.equals(digestBytes2, digestBytes);

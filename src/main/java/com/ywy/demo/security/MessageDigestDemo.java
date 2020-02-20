@@ -1,82 +1,72 @@
 package com.ywy.demo.security;
 
+import org.bouncycastle.crypto.Digest;
+import org.bouncycastle.crypto.digests.SHA3Digest;
+import org.bouncycastle.crypto.digests.SM3Digest;
+import org.bouncycastle.util.encoders.Hex;
+
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * 消息摘要
+ *
  * @author ve
  * @date 2020/2/17 13:56
  */
 public class MessageDigestDemo {
 
-    // todo SHA*: where * is 1, 224, 256, 384 and 512
-    private static MessageDigest md5MessageDigest;
-    private static MessageDigest sha1MessageDigest;
-    public static MessageDigest sha256MessageDigest;
-    private static MessageDigest sha512MessageDigest;
-    // todo SHA3-*: where * is 224, 256, 384 and 512
-    // todo SM3
-    private static MessageDigest sm3MessageDigest;
-    // todo Ed25519, Ed448
-
-    static {
-        try {
-            md5MessageDigest = MessageDigest.getInstance("md5");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        try {
-            sha1MessageDigest = MessageDigest.getInstance("sha1");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        try {
-            sha256MessageDigest = MessageDigest.getInstance("sha-256");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        try {
-            sha512MessageDigest = MessageDigest.getInstance("sha-512");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
+    /**
+     * sha3
+     *
+     * @param digestLenth 摘要长度,可为224, 256, 384 and 512
+     * @param bytes
+     * @return
+     */
+    public static byte[] sha3(int digestLenth, byte[] bytes) {
+        Digest digest = new SHA3Digest(digestLenth);
+        digest.update(bytes, 0, bytes.length);
+        byte[] rsData = new byte[digest.getDigestSize()];
+        digest.doFinal(rsData, 0);
+        return rsData;
     }
 
-    public static byte[] getMD5(byte[] data) {
-        return md5MessageDigest.digest(data);
+    /**
+     * sha
+     *
+     * @param digestLenth 摘要长度,可为1, 224, 256, 384 and 512
+     * @param bytes
+     * @return
+     */
+    public static byte[] sha(int digestLenth, byte[] bytes) throws Exception {
+        MessageDigest messageDigest = MessageDigest.getInstance("sha-" + digestLenth);
+        return messageDigest.digest(bytes);
     }
 
-    public static byte[] getSHA1(byte[] data) {
-        return sha1MessageDigest.digest(data);
+    public static byte[] sm3(byte[] bytes) {
+        Digest digest = new SM3Digest();
+        digest.update(bytes, 0, bytes.length);
+        byte[] rsData = new byte[digest.getDigestSize()];
+        digest.doFinal(rsData, 0);
+        return rsData;
     }
 
-    public static byte[] getSHA256(byte[] data) {
-        return sha256MessageDigest.digest(data);
-    }
+    public static void main(String[] args) throws Exception {
 
-    public static byte[] getSHA512(byte[] data) {
-        return sha512MessageDigest.digest(data);
-    }
+        MessageDigest md5 = MessageDigest.getInstance("md5");
 
-    public static String byte2hex(byte[] b) {
-        String hs = "";
-        String stmp = "";
-        for (int n = 0; n < b.length; n++) {
-            stmp = Integer.toHexString(b[n] & 0xFF);
-            if (stmp.length() == 1)
-                hs = hs + "0" + stmp;
-            else
-                hs = hs + stmp;
-        }
-        return hs.toUpperCase();
-    }
+        String str = "hello world!";
+        System.out.println("md5已被破解: " + Hex.toHexString(md5.digest(str.getBytes())));
+        System.out.println("sha1已被破解: " + Hex.toHexString(sha(1, str.getBytes())));
+        System.out.println("sha224: " + Hex.toHexString(sha(224, str.getBytes())));
+        System.out.println("sha256: " + Hex.toHexString(sha(256, str.getBytes())));
+        System.out.println("sha384: " + Hex.toHexString(sha(384, str.getBytes())));
+        System.out.println("sha512: " + Hex.toHexString(sha(512, str.getBytes())));
 
-    public static void main(String[] args) {
-        String str = "hello";
-        System.out.println(byte2hex(getMD5(str.getBytes())));
-        System.out.println(byte2hex(getSHA1(str.getBytes())));
-        System.out.println(byte2hex(getSHA256(str.getBytes())));
-        System.out.println(byte2hex(getSHA512(str.getBytes())));
+        System.out.println("sha3-224: " + Hex.toHexString(sha3(224, str.getBytes())));
+        System.out.println("sha3-256: " + Hex.toHexString(sha3(256, str.getBytes())));
+        System.out.println("sha3-384: " + Hex.toHexString(sha3(384, str.getBytes())));
+        System.out.println("sha3-512: " + Hex.toHexString(sha3(512, str.getBytes())));
+
+        System.out.println("sm3: " + Hex.toHexString(sm3(str.getBytes())));
     }
 }

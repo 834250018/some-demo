@@ -5,10 +5,11 @@ import java.security.*;
 
 /**
  * RSA非对称加解密
+ *
  * @author ve
  * @date 2020/2/17 14:44
  */
-public class PublicKeyDemo {
+public class AsymetricEncryptionDemo {
     /** todo
      * RSA
      * EC

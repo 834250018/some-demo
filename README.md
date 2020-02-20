@@ -20,10 +20,17 @@
 1. sort
 ### PKI 公钥基础设施
 1. 摘要算法
-2. 公钥加密算法
-3. 签名验签
-4. csr生成
-5. 自签名证书生成
+    ```
+    md5
+    sha1
+    sha*: where * is 224,256,384 and 512
+    sha3-*: where * is 256,384 and 512
+    ```
+2. 对称加密算法(不属于pki)
+3. 非对称加密算法
+4. 签名验签
+5. csr生成
+6. 自签名证书生成
     ```
     .DER .CER，文件是二进制格式，只保存证书，不保存私钥。
     .PEM，一般是文本格式，可保存证书，可保存私钥。
@@ -31,10 +38,14 @@
     .PFX .P12，二进制格式，同时包含证书和私钥，一般有密码保护。
     .JKS，二进制格式，同时包含证书和私钥，一般有密码保护。
     ```
-6. 证书颁发
-7. CRL颁发(jdk自带的没有找到,需要bouncyCastle依赖)
+7. 证书颁发
+    ```
+    X.509 Certificate v3
+    ```
+8. CRL颁发(jdk自带的没有找到,需要bouncyCastle依赖)
     ```
     compile group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: '1.64'
+    X.509 CRL v2
     ```
     
 ### 其他内容

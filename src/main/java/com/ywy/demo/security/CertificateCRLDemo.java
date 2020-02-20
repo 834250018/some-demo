@@ -32,7 +32,7 @@ public class CertificateCRLDemo {
                 new BigInteger[]{new BigInteger("1994359749")},
                 new Date[]{new Date()},
                 new int[]{CRLReason.affiliationChanged},
-                dirName, PublicKeyDemo.generateKeyPair().getPrivate(),
+                dirName, AsymetricEncryptionDemo.generateKeyPair().getPrivate(),
                 "d://result.crl");
     }
 

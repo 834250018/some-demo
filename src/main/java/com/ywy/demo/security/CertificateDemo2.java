@@ -20,7 +20,7 @@ public class CertificateDemo2 {
 
     public static void main(String[] args) throws Exception {
         // 生成用户自己的非对称密钥对
-        KeyPair keyPair = PublicKeyDemo.generateKeyPair();
+        KeyPair keyPair = AsymetricEncryptionDemo.generateKeyPair();
         // 生成csr
         PKCS10 pkcs10 = CertificateDemo1.generatePKCS10("ve", "ve", "ve", "ve", "ve", "ve", keyPair.getPublic(), keyPair.getPrivate());
         // 获取ca的私钥跟证书(即demo1中生成的自签名证书)

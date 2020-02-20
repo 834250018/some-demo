@@ -93,7 +93,7 @@ public class CertificateDemo1 {
      */
     private static void genSelfSignedCertificate() throws Exception {
         // 自签名证书:1.生成密钥对
-        KeyPair keyPair = PublicKeyDemo.generateKeyPair();
+        KeyPair keyPair = AsymetricEncryptionDemo.generateKeyPair();
         // 自签名证书:2.生成证书请求文件
         byte[] csr = generatePKCS10Bytes("aa", "bb", "cc", "dd", "ee", "ff", keyPair.getPublic(), keyPair.getPrivate());
         System.out.println("csr:  " + new String(csr));
