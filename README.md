@@ -27,6 +27,9 @@
     sha3-*: where * is 256,384 and 512
     ```
 2. 对称加密算法(不属于pki)
+    ```
+    AES(ECB,CBC,CTR,OCF,CFB)
+    ```
 3. 非对称加密算法
 4. 签名验签
 5. csr生成
