@@ -22,5 +22,12 @@ dependencies {
     // https://mvnrepository.com/artifact/org.bouncycastle/bcpkix-jdk15on
     compile group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: '1.64'
 
+// https://mvnrepository.com/artifact/joda-time/joda-time
+    compile group: 'joda-time', name: 'joda-time', version: '2.10.5'
+
+    // https://mvnrepository.com/artifact/com.google.guava/failureaccess
+    compile group: 'com.google.guava', name: 'failureaccess', version: '1.0.1'
+// https://mvnrepository.com/artifact/com.google.guava/guava
+    compile group: 'com.google.guava', name: 'guava', version: '28.2-jre'
 
 }
