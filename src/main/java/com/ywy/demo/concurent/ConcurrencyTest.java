@@ -1,42 +1,49 @@
 package com.ywy.demo.concurent;
 
-import lombok.extern.slf4j.Slf4j;
+import com.ywy.demo.concurent.annotations.ThreadNotSafe;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author ve
- * @date 2020/3/2 0:20
+ * @date 2020/3/12 19:19
  */
-public class Demo1 {
+@ThreadNotSafe
+public class ConcurrencyTest {
 
-    private static int threadTotal = 50;
-    private static int clientTotal = 5000;
-    private static long count = 0;
+    // 请求总数
+    public static int clientTotal = 5000;
 
-    public static void main(String[] args) throws InterruptedException {
+    // 同时并发请求数
+    public static int threadTotal = 200;
+
+    public static int count = 0;
+
+    public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newCachedThreadPool();
         final Semaphore semaphore = new Semaphore(threadTotal);
+        final CountDownLatch countDownLatch = new CountDownLatch(clientTotal);
         for (int i = 0; i < clientTotal; i++) {
             executorService.execute(() -> {
                 try {
                     semaphore.acquire();
                     add();
                     semaphore.release();
-                } catch (InterruptedException e) {
-                    System.out.println(e.getMessage());
+                } catch (Exception e) {
+                    System.out.println("e: " + e.getMessage());
                 }
+                countDownLatch.countDown();
             });
         }
-        executorService.awaitTermination(2, TimeUnit.SECONDS);
+        countDownLatch.await();
         executorService.shutdown();
         System.out.println("count:{}" + count);
     }
 
-    public static void add() {
+    private static void add() {
         count++;
     }
 }
