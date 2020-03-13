@@ -14,6 +14,7 @@ public class RequestHolder {
     public static Long getId() {
         return requestHolder.get();
     }
+
     public static void remove() {
         requestHolder.remove();
     }

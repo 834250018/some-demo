@@ -1,5 +1,7 @@
 package com.ywy.demo.concurent.example.sync;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -9,12 +11,13 @@ import java.util.concurrent.Executors;
  * @author ve
  * @date 2020/3/12 20:29
  */
+@Slf4j
 public class SynchronizedExample2 {
     public static void test1(int j) {
         // 修饰一个类
         synchronized (SynchronizedExample2.class) {
             for (int i = 0; i < 100; i++) {
-                System.out.println("test1 {}" + j + "-" + i);
+                log.info("test1 {}" + j + "-" + i);
             }
         }
     }
@@ -22,7 +25,7 @@ public class SynchronizedExample2 {
     // 修饰静态方法
     public static synchronized void test2(int j) {
         for (int i = 0; i < 100; i++) {
-            System.out.println("test2 {}" + j + "-" + i);
+            log.info("test2 {}" + j + "-" + i);
         }
     }
 

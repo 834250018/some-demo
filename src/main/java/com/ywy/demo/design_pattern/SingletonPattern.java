@@ -8,19 +8,18 @@ package com.ywy.demo.design_pattern;
  */
 public class SingletonPattern {
 
+    // 饿汉模式
+    SingletonPattern singletonDemo = new SingletonPattern();
+    // 懒汉模式
+    SingletonPattern singletonDemo1;
+
     // 必须私有的构造方法
     private SingletonPattern() {
     }
 
-    // 饿汉模式
-    SingletonPattern singletonDemo = new SingletonPattern();
-
     public SingletonPattern getInstance() {
         return singletonDemo;
     }
-
-    // 懒汉模式
-    SingletonPattern singletonDemo1;
 
     public SingletonPattern getInstance1() {
         if (singletonDemo1 == null) {
@@ -30,7 +29,7 @@ public class SingletonPattern {
     }
 
     // 单例枚举
-    enum singletonEnum{
+    enum singletonEnum {
         INSTANCE
     }
 

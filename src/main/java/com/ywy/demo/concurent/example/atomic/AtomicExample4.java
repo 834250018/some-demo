@@ -1,6 +1,7 @@
 package com.ywy.demo.concurent.example.atomic;
 
 import com.ywy.demo.concurent.annotations.ThreadSafe;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -9,6 +10,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * @date 2020/3/12 20:04
  */
 @ThreadSafe
+@Slf4j
 public class AtomicExample4 {
 
     private static AtomicReference<Integer> count = new AtomicReference<>(0);
@@ -19,6 +21,6 @@ public class AtomicExample4 {
         count.compareAndSet(1, 3); // no
         count.compareAndSet(2, 4); // 4
         count.compareAndSet(3, 5); // no
-        System.out.println("count:{}" + count.get());// 4
+        log.info("count:{}" + count.get());// 4
     }
 }

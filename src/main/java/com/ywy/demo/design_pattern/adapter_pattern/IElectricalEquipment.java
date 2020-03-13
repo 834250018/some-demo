@@ -6,5 +6,6 @@ package com.ywy.demo.design_pattern.adapter_pattern;
  */
 public interface IElectricalEquipment {
     int get额定功率();
+
     String get电器名称();
 }

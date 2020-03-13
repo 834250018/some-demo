@@ -1,7 +1,6 @@
 package com.ywy.demo.design_pattern.builder_pattern;
 
-import com.ywy.demo.design_pattern.builder_pattern.User;
-import com.ywy.demo.design_pattern.builder_pattern.UserBuilder;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 建造者模式BuilderPattern
@@ -9,6 +8,7 @@ import com.ywy.demo.design_pattern.builder_pattern.UserBuilder;
  * @author ve
  * @date 2019/6/19 15:34
  */
+@Slf4j
 public class Test {
 
     public static void main(String[] args) {
@@ -19,7 +19,7 @@ public class Test {
 
         // 原型模式(不允许对旧数据进行操作,则创建一个副本)
         User wangwu1 = wangwu.clone();
-        System.out.println();
+        log.info("");
     }
 
 }

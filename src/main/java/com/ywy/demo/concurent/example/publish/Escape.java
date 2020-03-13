@@ -1,8 +1,8 @@
 package com.ywy.demo.concurent.example.publish;
 
 import com.ywy.demo.concurent.annotations.NotRecommend;
-import com.ywy.demo.concurent.annotations.NotRecommend;
 import com.ywy.demo.concurent.annotations.ThreadNotSafe;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author ve
@@ -10,18 +10,21 @@ import com.ywy.demo.concurent.annotations.ThreadNotSafe;
  */
 @ThreadNotSafe
 @NotRecommend
+@Slf4j
 public class Escape {
-    private int thisCanBeEscape = 0 ;
+    private int thisCanBeEscape = 0;
+
     public Escape() {
         new InnerClass();
-    }
-    private class InnerClass {
-        public InnerClass() {
-            System.out.println(Escape.this.thisCanBeEscape);
-        }
     }
 
     public static void main(String[] args) {
         new Escape();
+    }
+
+    private class InnerClass {
+        public InnerClass() {
+            log.info("" + Escape.this.thisCanBeEscape);
+        }
     }
 }

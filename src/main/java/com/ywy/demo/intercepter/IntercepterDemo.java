@@ -1,5 +1,6 @@
 package com.ywy.demo.intercepter;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import sun.misc.ProxyGenerator;
 
@@ -14,11 +15,12 @@ import java.lang.reflect.Proxy;
  * @author ve
  * @date 2019/9/29 18:02
  */
+@Slf4j
 public class IntercepterDemo {
 
     @Test
     public void test() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        System.out.println("使用代理,实现拦截器功能:");
+        log.info("使用代理,实现拦截器功能:");
         IStudent student = (IStudent) Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(),
                 new Class[]{IStudent.class},
                 new InvProxy1(new Student()));
@@ -29,20 +31,20 @@ public class IntercepterDemo {
         Constructor cons = proxyClzz.getConstructor(InvocationHandler.class);
         IStudent s2 = (IStudent) cons.newInstance(new InvProxy1(new Student()));
         s2.study();
-        System.out.println();
+        log.info("");
     }
 
     @Test
     public void test1() throws IOException {
-        System.out.println("输出字节码,反编译");
+        log.info("输出字节码,反编译");
         FileOutputStream fos = new FileOutputStream("d://StudentProxy.class");
         fos.write(ProxyGenerator.generateProxyClass("$Proxy0", new Class[]{IStudent.class}));
-        System.out.println();
+        log.info("");
     }
 
     @Test
     public void test2() {
-        System.out.println("多层嵌套代理:");
+        log.info("多层嵌套代理:");
         IStudent student1 = (IStudent) Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(),
                 new Class[]{IStudent.class},
                 new InvProxy2(new Student()));
@@ -62,11 +64,11 @@ public class IntercepterDemo {
         student.setName("小白");
         // 申请成为团员
         IStudent 小白团费代理_团支书 = (IStudent) Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(),
-                new Class[] {IStudent.class},
+                new Class[]{IStudent.class},
                 new 团支书(student));
         // 封装代理第二层
         IStudent 全团团费代理_团长 = (IStudent) Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(),
-                new Class[] {IStudent.class},
+                new Class[]{IStudent.class},
                 new 团组织(小白团费代理_团支书));
         // 小白缴纳团费
         全团团费代理_团长.tourFeePay(500);

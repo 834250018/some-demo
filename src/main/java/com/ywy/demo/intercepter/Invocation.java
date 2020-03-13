@@ -15,7 +15,7 @@ public class Invocation {
     private Invocation nextInvocation;
 
     public void invoke() {
-        if(nextInvocation != null) {
+        if (nextInvocation != null) {
             nextInvocation.invoke();
         } else {
             try {

@@ -1,5 +1,7 @@
 package com.ywy.demo.other;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,6 +11,7 @@ import java.util.stream.Stream;
  * @author ve
  * @date 2019/9/23 11:30
  */
+@Slf4j
 public class StreamTest {
     public static void main(String[] args) {
         // 原数组(可以扩展为对象数组中的所有对象的某个字段)
@@ -20,6 +23,6 @@ public class StreamTest {
                 // 即.sorted((o1, o2) -> sortList.indexOf(o1) - sortList.indexOf(o2))
                 .sorted(Comparator.comparingInt(sortList::indexOf))
                 .collect(Collectors.toList());
-        System.out.println(result.toString());
+        log.info(result.toString());
     }
 }

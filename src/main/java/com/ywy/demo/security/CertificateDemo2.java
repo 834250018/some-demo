@@ -1,5 +1,6 @@
 package com.ywy.demo.security;
 
+import lombok.extern.slf4j.Slf4j;
 import sun.security.pkcs10.PKCS10;
 import sun.security.x509.*;
 
@@ -16,6 +17,7 @@ import java.util.Random;
  * @author ve
  * @date 2020/2/18 11:56
  */
+@Slf4j
 public class CertificateDemo2 {
 
     public static void main(String[] args) throws Exception {
@@ -55,7 +57,7 @@ public class CertificateDemo2 {
 
         // todo 颁发完证书之后要把证书链存起来
         Certificate[] certChain = {x509Cert, caCert};
-        System.out.println(certChain);
+        log.info("{}", certChain);
     }
 
 }

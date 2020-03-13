@@ -1,5 +1,6 @@
 package com.ywy.demo.security;
 
+import lombok.extern.slf4j.Slf4j;
 import sun.misc.BASE64Encoder;
 import sun.security.pkcs10.PKCS10;
 import sun.security.tools.keytool.CertAndKeyGen;
@@ -24,6 +25,7 @@ import java.util.Random;
  * @author ve
  * @date 2020/2/17 16:04
  */
+@Slf4j
 public class CertificateDemo1 {
 
     public static final String BEGIN_CERT = "-----BEGIN CERTIFICATE-----";
@@ -96,7 +98,7 @@ public class CertificateDemo1 {
         KeyPair keyPair = AsymetricEncryptionDemo.generateKeyPair();
         // 自签名证书:2.生成证书请求文件
         byte[] csr = generatePKCS10Bytes("aa", "bb", "cc", "dd", "ee", "ff", keyPair.getPublic(), keyPair.getPrivate());
-        System.out.println("csr:  " + new String(csr));
+        log.info("csr:  " + new String(csr));
 
         X500Name x500Name = new X500Name("aa", "bb", "cc", "dd", "ee", "ff");
         // 自签名证书:3.颁发证书

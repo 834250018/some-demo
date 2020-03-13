@@ -1,6 +1,7 @@
 package com.ywy.demo.concurent.example.count;
 
 import com.ywy.demo.concurent.annotations.ThreadSafe;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -13,6 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @date 2020/3/12 19:19
  */
 @ThreadSafe
+@Slf4j
 public class CountExample2 {
 
     // 请求总数
@@ -34,14 +36,14 @@ public class CountExample2 {
                     add();
                     semaphore.release();
                 } catch (Exception e) {
-                    System.out.println("e: " + e.getMessage());
+                    log.info("e: " + e.getMessage());
                 }
                 countDownLatch.countDown();
             });
         }
         countDownLatch.await();
         executorService.shutdown();
-        System.out.println("count:{}" + count.get());
+        log.info("count:{}" + count.get());
     }
 
     private static void add() {

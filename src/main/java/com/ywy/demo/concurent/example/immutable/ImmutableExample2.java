@@ -1,11 +1,10 @@
 package com.ywy.demo.concurent.example.immutable;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.ywy.demo.concurent.annotations.ThreadSafe;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
@@ -15,6 +14,7 @@ import java.util.Map;
  * @date 2020/3/12 22:28
  */
 @ThreadSafe
+@Slf4j
 public class ImmutableExample2 {
 
     private static Map<Integer, Integer> map;
@@ -34,7 +34,7 @@ public class ImmutableExample2 {
         Collections.unmodifiableCollection(new HashSet<>());
         // guava
         ImmutableList immutableMap = new ImmutableList.Builder<String>().add("ff").build();
-        System.out.println(immutableMap);
+        log.info("{}", immutableMap);
     }
 
 }

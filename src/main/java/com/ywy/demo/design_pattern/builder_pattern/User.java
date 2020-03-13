@@ -11,28 +11,28 @@ public class User implements Cloneable {
     private String name;
     private UserTypeEnum type;
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public int getAge() {
         return age;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setType(UserTypeEnum type) {
-        this.type = type;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public UserTypeEnum getType() {
         return type;
+    }
+
+    public void setType(UserTypeEnum type) {
+        this.type = type;
     }
 
     public UserBuilder UserBuilder() {

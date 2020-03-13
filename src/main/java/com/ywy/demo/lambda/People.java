@@ -5,7 +5,7 @@ package com.ywy.demo.lambda;
  * @date 2020/3/11 11:51
  */
 public class People {
-    public void peopleTest(){
+    public void peopleTest() {
 
     }
 }

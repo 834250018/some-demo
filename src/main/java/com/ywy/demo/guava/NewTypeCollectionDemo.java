@@ -1,6 +1,7 @@
 package com.ywy.demo.guava;
 
-import com.google.common.collect.*;
+import com.google.common.collect.LinkedHashMultiset;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +10,7 @@ import java.util.Map;
  * @author ve
  * @date 2020/3/2 21:33
  */
+@Slf4j
 public class NewTypeCollectionDemo {
     public static void main(String[] args) {
         // 传统map计数
@@ -26,8 +28,8 @@ public class NewTypeCollectionDemo {
         linkedHashMultiset.add("bb");
         linkedHashMultiset.add("dd");
         linkedHashMultiset.add("bb");
-        System.out.println(linkedHashMultiset.size());
-        System.out.println(linkedHashMultiset.count("bb"));
+        log.info("{}", linkedHashMultiset.size());
+        log.info("{}", linkedHashMultiset.count("bb"));
         // *Multiset
     }
 }

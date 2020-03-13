@@ -11,9 +11,7 @@ import com.ywy.demo.concurent.annotations.ThreadNotSafe;
  */
 @ThreadNotSafe
 public class SingletonExample4 {
-    private SingletonExample4() {
-
-    }
+    private static SingletonExample4 instance = null;
 
     /*
     1.memory = allocate() 分配对象的内存空间
@@ -28,7 +26,9 @@ public class SingletonExample4 {
     2.ctorInstance()初始化对象
      */
 
-    private static SingletonExample4 instance = null;
+    private SingletonExample4() {
+
+    }
 
     public static SingletonExample4 getInstance() {
         if (instance == null) { // 线程B 发现已经指针已经指向了某个地址,直接返回了

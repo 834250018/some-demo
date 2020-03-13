@@ -1,5 +1,7 @@
 package com.ywy.demo.security;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.crypto.Cipher;
 import java.security.*;
 
@@ -9,6 +11,7 @@ import java.security.*;
  * @author ve
  * @date 2020/2/17 14:44
  */
+@Slf4j
 public class AsymetricEncryptionDemo {
     /** todo
      * RSA
@@ -50,12 +53,12 @@ public class AsymetricEncryptionDemo {
         KeyPair keyPair = generateKeyPair();
         PublicKey publicKey = keyPair.getPublic();
         PrivateKey privateKey = keyPair.getPrivate();
-        System.out.println();
+        log.info("");
         String str = "hello world!";
         String result = new String(decrypt(encrypt(str.getBytes(), privateKey), publicKey));
-        System.out.println(result);
+        log.info(result);
         String str2 = "test public key encrypt";
         String result1 = new String(decrypt(encrypt(str.getBytes(), publicKey), privateKey));
-        System.out.println(result1);
+        log.info(result1);
     }
 }

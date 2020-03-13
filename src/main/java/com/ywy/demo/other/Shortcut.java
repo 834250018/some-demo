@@ -3,6 +3,7 @@ package com.ywy.demo.other;
 // 优化导入的类跟包 ctrl + alt + o
 
 import com.ywy.demo.design_pattern.builder_pattern.User;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * intelliJ IDEA快捷键
@@ -10,12 +11,12 @@ import com.ywy.demo.design_pattern.builder_pattern.User;
  * @author ve
  * @date 2019/7/11 14:57
  */
+@Slf4j
 public class Shortcut {
-
-    private String name;
 
     // ctrl + shift + u 选中并切换大小写
     public static final String ABCDEFG = "abcdefg";
+    private String name;
 
     public static void main(String[] args) {
         User user = new User();
@@ -24,7 +25,7 @@ public class Shortcut {
         int age = user.getAge();
         // 选中代码 ctrl + alt + t 快速生成if/try-catch/runnable/synchronized等代码
         synchronized (Shortcut.class) {
-            System.out.println();
+            log.info("");
         }
         // ctrl + j 自动代码
         // sout

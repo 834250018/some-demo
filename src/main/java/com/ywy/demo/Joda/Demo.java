@@ -1,5 +1,6 @@
 package com.ywy.demo.Joda;
 
+import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.joda.time.format.ISODateTimeFormat;
 
@@ -7,32 +8,33 @@ import org.joda.time.format.ISODateTimeFormat;
  * @author ve
  * @date 2020/3/2 0:56
  */
+@Slf4j
 public class Demo {
     public static void main(String[] args) {
         // 创建某个特定日期的时间2020/3/2 01:02
         DateTime dateTime = new DateTime(2020, 3, 2, 1, 2);
-        System.out.println(dateTime.getMillis());
-//        System.out.println(System.currentTimeMillis());
-        System.out.println(dateTime);
+        log.info("{}", dateTime.getMillis());
+//        log.info(System.currentTimeMillis());
+        log.info("{}", dateTime);
         // 当前时间的毫秒值
-        System.out.println("当前时间的毫秒值: " + new DateTime().getMillis());
+        log.info("当前时间的毫秒值: " + new DateTime().getMillis());
         // 明天
-        System.out.println("明天: " + new DateTime().plusDays(1));
+        log.info("明天: " + new DateTime().plusDays(1));
         // 十分钟之后
-        System.out.println("十分钟之后: " + new DateTime().plusMinutes(10));
+        log.info("十分钟之后: " + new DateTime().plusMinutes(10));
         // 这周的最后一天
-        System.out.println("这周最后一天" + new DateTime().dayOfWeek().withMaximumValue());
+        log.info("这周最后一天" + new DateTime().dayOfWeek().withMaximumValue());
         // 这个月的最后一天
-        System.out.println("这个月最后一天" + new DateTime().dayOfMonth().withMaximumValue());
+        log.info("这个月最后一天" + new DateTime().dayOfMonth().withMaximumValue());
         // 今年的最后一天
-        System.out.println("今年最后一天" + new DateTime().dayOfYear().withMaximumValue());
+        log.info("今年最后一天" + new DateTime().dayOfYear().withMaximumValue());
         // 二月的最后一天
-        System.out.println("二月最后一天" + new DateTime().withMonthOfYear(2).dayOfMonth().withMaximumValue());
+        log.info("二月最后一天" + new DateTime().withMonthOfYear(2).dayOfMonth().withMaximumValue());
         DateTime d = new DateTime();
         // false
-        System.out.println("==比较: " + (d.plusDays(1).minusDays(1) == d));
+        log.info("==比较: " + (d.plusDays(1).minusDays(1) == d));
         // true
-        System.out.println("equal比较: " + (d.plusDays(1).minusDays(1).equals(d)));
+        log.info("equal比较: " + (d.plusDays(1).minusDays(1).equals(d)));
 
         // 不可变性,每次修改都返回一个新对象,类似于String
         // 瞬间性,指时间线上面的某个唯一的点,精确到毫秒.类似于Date epoch 为1970-01-01 00:00:00 UTC
@@ -51,16 +53,16 @@ public class Demo {
         // 时区DateTimeZone
 
         // 格式化时间
-        System.out.println("格式化: ");
-        System.out.println(dateTime.toString(ISODateTimeFormat.basicDateTime()));
-        System.out.println(dateTime.toString(ISODateTimeFormat.basicDateTimeNoMillis()));
-        System.out.println(dateTime.toString(ISODateTimeFormat.basicOrdinalDateTime()));
-        System.out.println(dateTime.toString(ISODateTimeFormat.basicWeekDateTime()));
-        System.out.println(dateTime.toString("MM/dd/yyyy hh:mm:ss.SSSa"));
-        System.out.println(dateTime.toString("dd-MM-yyyy HH:mm:ss"));
-        System.out.println(dateTime.toString("MM/dd/yyyy HH:mm ZZZZ"));
-        System.out.println(dateTime.toString("EEEE dd MMMM, yyyy HH:mm:ssa"));
-        System.out.println(dateTime.toString("MM/dd/yyyy HH:mm Z"));
+        log.info("格式化: ");
+        log.info(dateTime.toString(ISODateTimeFormat.basicDateTime()));
+        log.info(dateTime.toString(ISODateTimeFormat.basicDateTimeNoMillis()));
+        log.info(dateTime.toString(ISODateTimeFormat.basicOrdinalDateTime()));
+        log.info(dateTime.toString(ISODateTimeFormat.basicWeekDateTime()));
+        log.info(dateTime.toString("MM/dd/yyyy hh:mm:ss.SSSa"));
+        log.info(dateTime.toString("dd-MM-yyyy HH:mm:ss"));
+        log.info(dateTime.toString("MM/dd/yyyy HH:mm ZZZZ"));
+        log.info(dateTime.toString("EEEE dd MMMM, yyyy HH:mm:ssa"));
+        log.info(dateTime.toString("MM/dd/yyyy HH:mm Z"));
 
     }
 }

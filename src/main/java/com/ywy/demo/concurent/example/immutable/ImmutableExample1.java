@@ -1,6 +1,7 @@
 package com.ywy.demo.concurent.example.immutable;
 
 import com.google.common.collect.Maps;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import java.util.Map;
  * @author ve
  * @date 2020/3/12 22:28
  */
+@Slf4j
 public class ImmutableExample1 {
 
     private final static Integer a = 1;
@@ -25,7 +27,7 @@ public class ImmutableExample1 {
 //        b = "bb";
 //        map = Maps.newHashMap();
         map.put(1, 3);
-        System.out.println(map.get(1));
+        log.info("{}", map.get(1));
     }
 
     private void test(final int a) {

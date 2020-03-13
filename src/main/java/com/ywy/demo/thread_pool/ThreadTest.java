@@ -1,5 +1,7 @@
 package com.ywy.demo.thread_pool;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
 import java.util.concurrent.*;
 
@@ -7,6 +9,7 @@ import java.util.concurrent.*;
  * @author ve
  * @date 2019/7/3 17:27
  */
+@Slf4j
 public class ThreadTest {
     public static void main(String[] args) throws IOException {
         int corePoolSize = 2;
@@ -28,7 +31,7 @@ public class ThreadTest {
             executor.execute(new Runnable() {
                 @Override
                 public void run() {
-                    System.out.println("122222");
+                    log.info("122222");
                     try {
                         Thread.sleep(10000);
                     } catch (InterruptedException e) {

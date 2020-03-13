@@ -1,0 +1,12 @@
+### 线程不安全的写法
+
+先检查在执行两步走,下面例子中a为线程安全的类
+if(condition(a)) {handle(a);}
+
+### 代替写法
+1.加锁
+synchronized(this) {
+if(condition(a)) {handle(a);}
+}
+
+2.原子性,使用Atomic

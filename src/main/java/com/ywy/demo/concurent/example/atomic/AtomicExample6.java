@@ -1,6 +1,7 @@
 package com.ywy.demo.concurent.example.atomic;
 
 import com.ywy.demo.concurent.annotations.ThreadSafe;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -13,6 +14,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @date 2020/3/12 20:04
  */
 @ThreadSafe
+@Slf4j
 public class AtomicExample6 {
 
     // 请求总数
@@ -32,19 +34,19 @@ public class AtomicExample6 {
                     test();
                     semaphore.release();
                 } catch (Exception e) {
-                    System.out.println("e: " + e.getMessage());
+                    log.info("e: " + e.getMessage());
                 }
                 countDownLatch.countDown();
             });
         }
         countDownLatch.await();
         executorService.shutdown();
-        System.out.println("isHappened:{}" + isHappened.get());
+        log.info("isHappened:{}" + isHappened.get());
     }
 
     private static void test() {
         if (isHappened.compareAndSet(false, true)) {
-            System.out.println("execute");
+            log.info("execute");
         }
     }
 }

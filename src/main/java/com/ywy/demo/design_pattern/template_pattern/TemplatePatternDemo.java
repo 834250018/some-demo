@@ -1,16 +1,19 @@
 package com.ywy.demo.design_pattern.template_pattern;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author ve
  * @date 2019/9/19 11:02
  */
+@Slf4j
 public class TemplatePatternDemo {
     public static void main(String[] args) {
 
-        System.out.println("---------穷养------------");
+        log.info("---------穷养------------");
         new AbstractKeepPetCheaply().keepPet();
-        System.out.println();
-        System.out.println("---------富养------------");
+        log.info("");
+        log.info("---------富养------------");
         new AbstractKeepPetEutrophication().keepPet();
 
     }

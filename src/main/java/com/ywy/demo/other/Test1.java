@@ -1,5 +1,7 @@
 package com.ywy.demo.other;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 格式为
  * .(类名.java:行号)
@@ -9,16 +11,17 @@ package com.ywy.demo.other;
  * @author ve
  * @date 2019/7/3 16:24
  */
+@Slf4j
 public class Test1 {
 
     public static void main(String[] args) {
         // 此demo在StackTraceElement.toString找到,部分jar包加了.点号也不会生成链接,暂时没有找到原因
-        System.out.println("(StackTraceElement.java:171)");
+        log.info("(StackTraceElement.java:171)");
 
         // idea控制台不会有链接可以点击跳转
-        System.out.println("(Test1.java:18)");
+        log.info("(Test1.java:18)");
         // 只要有一个.点号,都会生成跳转链接
-        System.out.println("Test1.main(Test1.java:18)");
+        log.info("Test1.main(Test1.java:18)");
         System.err.println(".*(SwitchTest.java:18)");
         System.err.println(Thread.currentThread().getStackTrace()[0].toString());
         System.err.println(Thread.currentThread().getStackTrace()[1].toString());

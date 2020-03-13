@@ -1,5 +1,7 @@
 package com.ywy.demo.lambda;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -7,6 +9,7 @@ import java.util.Comparator;
  * @author ve
  * @date 2020/3/11 11:26
  */
+@Slf4j
 public class Demo {
     public static void main(String[] args) {
 
@@ -14,13 +17,13 @@ public class Demo {
         test(new Interf() {
             @Override
             public void lambda(String a, Integer b) {
-                System.out.println("1");
+                log.info("1");
             }
         });
         // lambda
         // 当且仅当参数为一个的时候,可以省略圆括号
         // 当且仅当代码块中仅有一行代码的时候,可以省略花括号
-        test((a,b) -> System.out.println("i3"));
+        test((a, b) -> log.info("i3"));
 
 
         test2();
@@ -35,7 +38,7 @@ public class Demo {
      */
     private static void test3() {
         Comparator.comparing(User::getName);
-        test4(a->a); // a->a 重写了lambda(a){return a;}
+        test4(a -> a); // a->a 重写了lambda(a){return a;}
         test4(String::toString);// a->a.toString()的eta写法
     }
 
@@ -44,7 +47,9 @@ public class Demo {
      */
     private static void test2() {
         // 上界
-        ArrayList<? extends User> list = new ArrayList<User>(){{add(new User());}};
+        ArrayList<? extends User> list = new ArrayList<User>() {{
+            add(new User());
+        }};
         // 可以使用
         list.get(0).userTest();
         list.get(0).peopleTest();
@@ -73,6 +78,6 @@ public class Demo {
 
     public static void test4(Interf2 interf2) {
         // do nothing
-        System.out.println(interf2.lambda("afasdjb"));
+        log.info(interf2.lambda("afasdjb"));
     }
 }

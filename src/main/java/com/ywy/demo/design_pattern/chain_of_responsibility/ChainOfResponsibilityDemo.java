@@ -4,6 +4,7 @@ package com.ywy.demo.design_pattern.chain_of_responsibility;
  * 责任链模式
  * 老王有两个儿子,小儿子勤快,大儿子有钱
  * 材米油盐这些琐事但是花钱数额较少的都是小儿子负责,电器或者生病,要花大价钱的事情,都是二儿子负责
+ *
  * @author ve
  * @date 2019/9/19 16:10
  */

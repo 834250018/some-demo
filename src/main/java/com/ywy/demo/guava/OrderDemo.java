@@ -2,8 +2,7 @@ package com.ywy.demo.guava;
 
 import com.google.common.collect.Ordering;
 import com.google.common.primitives.Ints;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.Comparator;
@@ -15,6 +14,7 @@ import java.util.stream.Stream;
  * @author ve
  * @date 2020/3/2 13:27
  */
+@Slf4j
 public class OrderDemo {
     public static void main(String[] args) {
 
@@ -32,20 +32,20 @@ public class OrderDemo {
             }
         };
         List<String> list = Stream.of("a", "bbb", "cc").collect(Collectors.toList());
-        System.out.println("naturalOrdering: " + naturalOrdering.sortedCopy(list)); // [a, bbb, cc]
-        System.out.println("toStringOrdering: " + toStringOrdering.sortedCopy(list)); // [a, bbb, cc]
-        System.out.println("arbitraryOrdering: " + arbitraryOrdering.sortedCopy(list)); // [bbb, a, cc]
-        System.out.println("自定义比较器byLengthOrdering: " + byLengthOrdering.sortedCopy(list)); // [a, cc, bbb]
+        log.info("naturalOrdering: " + naturalOrdering.sortedCopy(list)); // [a, bbb, cc]
+        log.info("toStringOrdering: " + toStringOrdering.sortedCopy(list)); // [a, bbb, cc]
+        log.info("arbitraryOrdering: " + arbitraryOrdering.sortedCopy(list)); // [bbb, a, cc]
+        log.info("自定义比较器byLengthOrdering: " + byLengthOrdering.sortedCopy(list)); // [a, cc, bbb]
 
         // 似乎是某种hashCode排序
         List<String> list1 = Stream.of("a", "bb", "ccc", "dddd", "eeeee", "ff").collect(Collectors.toList());
-        System.out.println("arbitraryOrdering: " + arbitraryOrdering.sortedCopy(list1)); // [bb, a, ccc, dddd, eeeee, ff]
+        log.info("arbitraryOrdering: " + arbitraryOrdering.sortedCopy(list1)); // [bb, a, ccc, dddd, eeeee, ff]
 
-        System.out.println("naturalOrdering.reverse: " + naturalOrdering.reverse().sortedCopy(list)); // [cc, bbb, a]
+        log.info("naturalOrdering.reverse: " + naturalOrdering.reverse().sortedCopy(list)); // [cc, bbb, a]
 
         // 空值前置
         List<String> list2 = Stream.of("a", "bb", null, "ccc", "dddd", "eeeee", "ff").collect(Collectors.toList());
-        System.out.println("naturalOrdering.nullsFirst: " + naturalOrdering.nullsFirst().sortedCopy(list2)); // [null, a, bb, ccc, dddd, eeeee, ff]
+        log.info("naturalOrdering.nullsFirst: " + naturalOrdering.nullsFirst().sortedCopy(list2)); // [null, a, bb, ccc, dddd, eeeee, ff]
 
 
         // 先年龄,后名字
@@ -62,21 +62,14 @@ public class OrderDemo {
                 new User(21, "b")
         ).collect(Collectors.toList());
         // compound多级排序,类似于管道
-        System.out.println("compound: " + byNameAndAge.compound(Comparator.comparing((User::getName))).sortedCopy(users));
+        log.info("compound: " + byNameAndAge.compound(Comparator.comparing((User::getName))).sortedCopy(users));
 
-        System.out.println("sortedCopy: " + byNameAndAge.sortedCopy(users)); // 返回排序中的所有元素
-        System.out.println("greatestOf: " + byNameAndAge.greatestOf(users, 2)); // 返回排序中最大的2个元素
-        System.out.println("leastOf: " + byNameAndAge.leastOf(users, 4)); // 返回排序中最小的4个元素
+        log.info("sortedCopy: " + byNameAndAge.sortedCopy(users)); // 返回排序中的所有元素
+        log.info("greatestOf: " + byNameAndAge.greatestOf(users, 2)); // 返回排序中最大的2个元素
+        log.info("leastOf: " + byNameAndAge.leastOf(users, 4)); // 返回排序中最小的4个元素
 
 
-        System.out.println("onResultOf: " + Ordering.natural().onResultOf(User::getName).sortedCopy(users)); // 依据对象里面的某个属性(如getName)进行自然排序
+        log.info("onResultOf: " + Ordering.natural().onResultOf(User::getName).sortedCopy(users)); // 依据对象里面的某个属性(如getName)进行自然排序
 
     }
-}
-
-@AllArgsConstructor
-@Data
-class User {
-    private Integer age;
-    private String name;
 }

@@ -1,5 +1,7 @@
 package com.ywy.demo.security;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -8,6 +10,7 @@ import javax.crypto.spec.SecretKeySpec;
  * @author ve
  * @date 2020/2/20 22:36
  */
+@Slf4j
 public class AESEncrypt {
 
     public static void main(String[] args) {
@@ -17,23 +20,23 @@ public class AESEncrypt {
         try {
             byte[] bytes = new AESEncrypt().cryption(Cipher.ENCRYPT_MODE, "ecb", str.getBytes(), secretKey, null);
             byte[] bytes1 = new AESEncrypt().cryption(Cipher.DECRYPT_MODE, "ecb", bytes, secretKey, null);
-            System.out.println(new String(bytes1));
+            log.info(new String(bytes1));
 
             byte[] bytes2 = new AESEncrypt().cryption(Cipher.ENCRYPT_MODE, "cbc", str.getBytes(), secretKey, padding);
             byte[] bytes3 = new AESEncrypt().cryption(Cipher.DECRYPT_MODE, "cbc", bytes2, secretKey, padding);
-            System.out.println(new String(bytes3));
+            log.info(new String(bytes3));
 
             byte[] bytes4 = new AESEncrypt().cryption(Cipher.ENCRYPT_MODE, "ctr", str.getBytes(), secretKey, padding);
             byte[] bytes5 = new AESEncrypt().cryption(Cipher.DECRYPT_MODE, "ctr", bytes4, secretKey, padding);
-            System.out.println(new String(bytes5));
+            log.info(new String(bytes5));
 
             byte[] bytes6 = new AESEncrypt().cryption(Cipher.ENCRYPT_MODE, "cfb", str.getBytes(), secretKey, padding);
             byte[] bytes7 = new AESEncrypt().cryption(Cipher.DECRYPT_MODE, "cfb", bytes6, secretKey, padding);
-            System.out.println(new String(bytes7));
+            log.info(new String(bytes7));
 
             byte[] bytes8 = new AESEncrypt().cryption(Cipher.ENCRYPT_MODE, "ofb", str.getBytes(), secretKey, padding);
             byte[] bytes9 = new AESEncrypt().cryption(Cipher.DECRYPT_MODE, "ofb", bytes8, secretKey, padding);
-            System.out.println(new String(bytes9));
+            log.info(new String(bytes9));
         } catch (Exception e) {
             e.printStackTrace();
         }

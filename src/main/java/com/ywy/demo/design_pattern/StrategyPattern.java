@@ -1,8 +1,6 @@
 package com.ywy.demo.design_pattern;
 
 import com.ywy.demo.design_pattern.builder_pattern.User;
-import com.ywy.demo.design_pattern.factory_pattern.Animal;
-import com.ywy.demo.design_pattern.factory_pattern.Test;
 
 import java.util.Arrays;
 
