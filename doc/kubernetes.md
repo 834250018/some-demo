@@ -80,15 +80,15 @@
 
 * **Cluster** 是计算、存储和网络资源的集合,K8S利用这些资源运行各种容器的应用,由Master和Node组成
   *  **Master** 主要职责是调度
-    * **apiserver** 提供了资源操作的统一入口,并提供认证、授权、访问控制、API注册和发现等机制
-    * **scheduler** 负责资源的调度,按照预定的调度策略将Pod调度到相应的机器上
-    * **Controller Manager** 自动化控制中心,管理资源
+    *  **etcd** 保存了cluster的配置信息和各种资源的状态信息,当数据发生变化时,etcd会快速通知k8s相关组件
+    *  **apiserver** 提供了资源操作的统一入口,并提供认证、授权、访问控制、API注册和发现等机制
+    *  **scheduler** 负责资源的调度,按照预定的调度策略将Pod调度到相应的机器上
+    *  **Controller Manager** 自动化控制中心,管理资源
       * replication controller管理Deployment、StatefulSet、DaemonSet的生命周期
       * endpoints controller
       * namespace controller管理Namespace资源
       * serviceaccounts controller
-    * **etcd** 保存了cluster的配置信息和各种资源的状态信息,当数据发生变化时,etcd会快速通知k8s相关组件
-    * **Pod网络** Pod要能够互相同学,必须部署Pod网络,flannel是其中一个可选方案
+    *  **Pod网络** Pod要能够互相同学,必须部署Pod网络,flannel是其中一个可选方案
   * **Node** 除了Master,k8s集群中的其他机器被称为Node节点 Node职责是运行容器运用,Node由Master管理,Node负责监控并汇报容器的状态,同时根据Master的要求管理容器的生命周期.
     * **kubelet** 负责Pod对应的容器的创建、启动等任务,同时与Master节点密切协作,实现集群管理的基本功能
     * **kube-proxy** 实现k8s Service的通信与负载均衡机制的重要组件
@@ -178,214 +178,310 @@
 
    4. kubectl get pods
 
-#### Kubernetes(k8s)集群
-1. 安装docker:
+# Kubernetes(k8s)集群
 
+### **master**(一台,安装etcd、kube-apiserver、kube-controller-manager、kube-scheduler)
+
+1. **etcd**
+
+   1. 下载https://github.com/etcd-io/etcd/releases
+
+   2. 解压`tar -zxvf  etcd-v3.3.9-linux-amd64.tar.gz`
+
+   3. 移动etcd和etcdctl到/usr/bin目录`cp etcd etcdctl /usr/bin`
+
+   4. 配置systemd服务文件 `vi /usr/lib/systemd/system/etcd.service`
+
+      ```
+      [Unit]
+      Description=Etcd Server
+      After=network.target
+      [Service]
+      Type=simple
+      EnvironmentFile=-/etc/etcd/etcd.conf
+      WorkingDirectory=/var/lib/etcd/
+      ExecStart=/usr/bin/etcd
+      Restart=on-failure
+      [Install]
+      WantedBy=multi-user.target
+      ```
+
+   5. 启动与测试etcd服务
+
+      1. `systemctl daemon-reload`
+      2. `systemctl enable etcd.service`
+      3. `mkdir -p /var/lib/etcd/`
+      4. `systemctl start etcd.service`
+      5. `etcdctl cluster-health`
+
+2. **kube-apiserver服务 (依赖于etcd服务)**
+
+   1. 解压`tar -zxvf kubernetes-server-linux-amd64.tar.gz`
+
+   2. 移动`cp kube-apiserver kube-controller-manager kube-scheduler kubectl /usr/bin/`
+
+   3. 配置systemd服务文件 `vi /usr/lib/systemd/system/kube-apiserver.service`
+
+      ```
+      [Unit]
+      Description=Kubernetes API Server
+      Documentation=https://github.com/kubernetes/kubernetes
+      After=etcd.service
+      Wants=etcd.service
+      [Service]
+      EnvironmentFile=/etc/kubernetes/apiserver
+      ExecStart=/usr/bin/kube-apiserver $KUBE_API_ARGS
+      Restart=on-failure
+      Type=notify
+      [Install]
+      WantedBy=multi-user.target
+      ```
+
+   4. 创建目录`mkdir /etc/kubenetes`
+
+   5. 创建apiserver配置文件`vi /etc/kubernetes/apiserver`(可以调整端口)
+
+      `KUBE_API_ARGS="--storage-backend=etcd3 --etcd-servers=http://127.0.0.1:2379 --insecure-bind-address=0.0.0.0 --insecure-port=8080 --service-cluster-ip-range=169.169.0.0/16 --service-node-port-range=1-65535 --admission-control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ServiceAccount,DefaultStorageClass,ResourceQuota --logtostderr=true --log-dir=/var/log/kubernetes --v=2"`
+
+3. **kube-controller-manager服务 (依赖于kube-apiserver服务)**
+
+   1. 配置systemd服务文件 `vi /usr/lib/systemd/system/kube-controller-manager.service`
+
+      ```
+      [Unit]
+      Description=Kubernetes Controller Manager
+      Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+      After=kube-apiserver.service
+      Requires=kube-apiserver.service
+      [Service]
+      EnvironmentFile=/etc/kubernetes/controller-manager
+      ExecStart=/usr/bin/kube-controller-manager $KUBE_CONTROLLER_MANAGER_ARGS
+      Restart=on-failure
+      LimitNOFILE=65536
+      [Install]
+      WantedBy=multi-user.target
+      ```
+
+   2. 配置文件 `vi /etc/kubernetes/controller-manager`(注意去掉换行,且修改ip)
+
+      1. `KUBE_CONTROLLER_MANAGER_ARGS="--master=http://192.168.1.5:8080 --logtostderr=true --log-dir=/var/log/kubernetes --v=2"`
+
+4. **kube-scheduler服务 (依赖于kube-apiserver服务)**
+
+   1. 配置systemd服务文件 `vi /usr/lib/systemd/system/kube-scheduler.service`
+
+      ```
+      [Unit]
+      Description=Kubernetes Scheduler
+      Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+      After=kube-apiserver.service
+      Requires=kube-apiserver.service
+      [Service]
+      EnvironmentFile=/etc/kubernetes/scheduler
+      ExecStart=/usr/bin/kube-scheduler $KUBE_SCHEDULER_ARGS
+      Restart=on-failure
+      LimitNOFILE=65536
+      [Install]
+      WantedBy=multi-user.target
+      ```
+
+   2. 配置文件 `vi /etc/kubernetes/scheduler`(注意去掉换行,且修改ip)
+
+      1. `KUBE_SCHEDULER_ARGS="--master=http://192.168.1.5:8080 --logtostderr=true --log-dir=/var/log/kubernetes --v=2"`
+
+5. **顺序启动Master服务**
+
+   1. systemctl daemon-reload
+   2. systemctl enable kube-apiserver.service
+   3. systemctl start kube-apiserver.service
+   4. systemctl enable kube-controller-manager.service
+   5. systemctl start kube-controller-manager.service
+   6. systemctl enable kube-scheduler.service
+   7. systemctl start kube-scheduler.service
+
+### **Node**(两台,kube-proxy、kubelet、docker)
+
+1. **Docker**:
    1. 设置镜像仓库 `curl https://download.docker.com/linux/centos/docker-ce.repo -o /etc/yum.repos.d/docker-ce.repo`
    2. 安装依赖 `yum install https://download.docker.com/linux/fedora/30/x86_64/stable/Packages/containerd.io-1.2.6-3.3.fc30.x86_64.rpm`
    3. 安装docker `yum install docker-ce`
    4. 启动docker `systemctl start docker`
 
-2. master(一台,安装etcd、kube-apiserver、kube-controller-manager、kube-scheduler、docker)
+1. **拷贝程序**`cp kubelet kube-proxy /usr/bin/`
 
-   1. etcd
+2. **kubelet服务 (依赖于docker)**
 
-      1. 下载https://github.com/etcd-io/etcd/releases
+   1. 配置systemd服务文件`vi /usr/lib/systemd/system/kubelet.service`
 
-      2. 解压`tar -zxvf  etcd-v3.3.9-linux-amd64.tar.gz`
+      ```
+      [Unit]
+      Description=Kubernetes Kubelet Server
+      Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+      After=docker.service
+      Requires=docker.service
+      [Service]
+      WorkingDirectory=/var/lib/kubelet
+      EnvironmentFile=/etc/kubernetes/kubelet
+      ExecStart=/usr/bin/kubelet $KUBELET_ARGS
+      Restart=on-failure
+      KillMode=process
+      [Install]
+      WantedBy=multi-user.target
+      ```
 
-      3. 移动etcd和etcdctl到/usr/bin目录`cp etcd etcdctl /usr/bin`
+   2. 创建工作空间 `mkdir -p /var/lib/kubelet`
 
-      4. 配置systemd服务文件 `vi /usr/lib/systemd/system/etcd.service`
+   3. 配置文件`vi /etc/kubernetes/kubelet`(注意修改星号处的ip地址,同时注意此处有指定一个配置文件,用于kubelet连接Master Apiserver)
 
-         ```
-         [Unit]
-         Description=Etcd Server
-         After=network.target
-         [Service]
-         Type=simple
-         EnvironmentFile=-/etc/etcd/etcd.conf
-         WorkingDirectory=/var/lib/etcd/
-         ExecStart=/usr/bin/etcd
-         Restart=on-failure
-         [Install]
-         WantedBy=multi-user.target
-         ```
+      `KUBELET_ARGS="--kubeconfig=/etc/kubernetes/kubeconfig --hostname-override=192.168.1.* --logtostderr=false --log-dir=/var/log/kubernetes --v=2 --fail-swap-on=false"`
 
-      5. 启动与测试etcd服务
+   4. 连接apiserver的配置文件`vi /etc/kubernetes/kubeconfig`(注意yaml格式)
 
-         1. `systemctl daemon-reload`
-         2. `systemctl enable etcd.service`
-         3. `mkdir -p /var/lib/etcd/`
-         4. `systemctl start etcd.service`
-         5. `etcdctl cluster-health`
+      ```
+      apiVersion: v1
+      kind: Config
+      clusters:
+      - cluster:
+          server: http://192.168.1.5:8080
+        name: local
+      contexts:
+      - context:
+          cluster: local
+        name: mycontext
+      current-context: mycontext
+      ```
 
-   2. kube-apiserver
+3. **kube-proxy服务**
 
-      1. 解压`tar -zxvf kubernetes-server-linux-amd64.tar.gz`
+   1. 配置systemd服务文件`vi /usr/lib/systemd/system/kube-proxy.service`
 
-      2. 移动`cp kube-apiserver kube-controller-manager kube-scheduler kubectl /usr/bin/`
+      ```
+      [Unit]
+      Description=Kubernetes Kube-proxy Server
+      Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+      After=network.service
+      Requires=network.service(centos8似乎没有network,把这行删掉)
+      [Service]
+      EnvironmentFile=/etc/kubernetes/proxy
+      ExecStart=/usr/bin/kube-proxy $KUBE_PROXY_ARGS
+      Restart=on-failure
+      LimitNOFILE=65536
+      KillMode=process
+      [Install]
+      WantedBy=multi-user.target
+      ```
 
-      3. 配置systemd服务文件 `vi /usr/lib/systemd/system/kube-apiserver.service`
+   2. 配置文件`vi /etc/kubernetes/proxy`(注意修改两个ip)
 
-         ```
-         [Unit]
-         Description=Kubernetes API Server
-         Documentation=https://github.com/kubernetes/kubernetes
-         After=etcd.service
-         Wants=etcd.service
-         [Service]
-         EnvironmentFile=/etc/kubernetes/apiserver
-         ExecStart=/usr/bin/kube-apiserver $KUBE_API_ARGS
-         Restart=on-failure
-         Type=notify
-         [Install]
-         WantedBy=multi-user.target
-         ```
+      `KUBE_PROXY_ARGS="--master=http://192.168.1.5:8080 --hostname-override=192.168.1.* --logtostderr=true --log-dir=/var/log/kubernetes --v=2"`
 
-      4. 创建目录`mkdir /etc/kubenetes`
+4. **顺序启动Node服务**
 
-      5. 创建apiserver配置文件`vi /etc/kubernetes/apiserver`(可以调整端口)
+   1. systemctl daemon-reload
+   2. systemctl enable kubelet
+   3. systemctl start kubelet
+   5. systemctl enable kube-proxy
+   6. systemctl start kube-proxy
+   
+5. **第二个(虚拟机)Node节点**
 
-         `KUBE_API_ARGS="--storage-backend=etcd3 --etcd-servers=http://127.0.0.1:2379 --insecure-bind-address=0.0.0.0 --insecure-port=8080 --service-cluster-ip-range=169.169.0.0/16 --service-node-port-range=1-65535 --admission-control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ServiceAccount,DefaultStorageClass,ResourceQuota --logtostderr=true --log-dir=/var/log/kubernetes --v=2"`
+   1. 创建Node1的副本
+   2. 修改`vi /etc/kubernetes/kubelet`中的本机ip
+   3. 重启kubelet `systemctl restart kubelet`
+   4. 修改`vi /etc/kubernetes/proxy`中的本机ip
+   5. 重启kube-proxy`systemctl restart kube-proxy`
+   6. 如果有配置docker虚拟仓库
+      1. 需要修改docker本地仓库配置
+      2. 重启docker
+      3. 调整相应镜像ip
+      4. 修改kubelet配置并重启
 
-   3. kube-controller-manager服务(依赖于kube-apiserver服务)
+### **集群服务测试**
 
-      1. 配置systemd服务文件 `vi /usr/lib/systemd/system/kube-controller-manager.service`
+注意:如果完成了所有步骤还是请求不到,检查所有服务是否正常启动
 
-         ```
-         [Unit]
-         Description=Kubernetes Controller Manager
-         Documentation=https://github.com/GoogleCloudPlatform/kubernetes
-         After=kube-apiserver.service
-         Requires=kube-apiserver.service
-         [Service]
-         EnvironmentFile=/etc/kubernetes/controller-manager
-         ExecStart=/usr/bin/kube-controller-manager $KUBE_CONTROLLER_MANAGER_ARGS
-         Restart=on-failure
-         LimitNOFILE=65536
-         [Install]
-         WantedBy=multi-user.target
-         ```
+[K8S service调试doc](https://kubernetes.io/zh/docs/tasks/debug-application-cluster/debug-service/)
 
-      2. 配置文件 `vi /etc/kubernetes/controller-manager`(注意去掉换行,且修改ip)
+1. 进入Master 自定义的k8s文件夹`cd /usr/local/k8s/`
 
-         1. `KUBE_CONTROLLER_MANAGER_ARGS="--master=http://192.168.1.5:8080 --logtostderr=true --log-dir=/var/log/kubernetes --v=2"`
+2. 创建nginx-rc.yaml
 
-   4. kube-scheduler服务(依赖于kube-apiserver服务)
+   ```
+   apiVersion: v1
+   kind: ReplicationController
+   metadata:
+     name: nginx
+   spec:
+     replicas: 3
+     selector:
+       app: nginx
+     template:
+       metadata:
+         labels:
+           app: nginx
+       spec:
+         containers:
+         - name: nginx
+           image: nginx
+           ports:
+           - containerPort: 80
+   ```
 
-      1. 配置systemd服务文件 `vi /usr/lib/systemd/system/kube-scheduler.service`
+3. 创建nginx-svc.yaml
 
-         ```
-         [Unit]
-         Description=Kubernetes Scheduler
-         Documentation=https://github.com/GoogleCloudPlatform/kubernetes
-         After=kube-apiserver.service
-         Requires=kube-apiserver.service
-         [Service]
-         EnvironmentFile=/etc/kubernetes/scheduler
-         ExecStart=/usr/bin/kube-scheduler $KUBE_SCHEDULER_ARGS
-         Restart=on-failure
-         LimitNOFILE=65536
-         [Install]
-         WantedBy=multi-user.target
-         ```
+   ```
+   apiVersion: v1
+   kind: Service
+   metadata:
+     name: nginx
+   spec:
+     type: NodePort
+     ports:
+     - port: 80
+       nodePort: 33333
+     selector:
+       app: nginx
+   ```
 
-      2. 配置文件 `vi /etc/kubernetes/scheduler`(注意去掉换行,且修改ip)
+4. 创建nginx replication `kubectl create -f nginx-rc.yaml`
 
-         1. `KUBE_SCHEDULER_ARGS="--master=http://192.168.1.5:8080 --logtostderr=true --log-dir=/var/log/kubernetes --v=2"`
+5. 创建nginx service `kubectl create -f nginx-svc.yaml`
 
-   5. 启动上述几项服务
+6. 查看pods `kubectl get pods` (如果6返回`No resources found`,完成下面两项操作)
 
-      1. systemctl daemon-reload
-      2. systemctl enable kube-apiserver.service
-      3. systemctl start kube-apiserver.service
-      4. systemctl enable kube-controller-manager.service
-      5. systemctl start kube-controller-manager.service
-      6. systemctl enable kube-scheduler.service
-      7. systemctl start kube-scheduler.service
+7. 操作一
 
-3. node节点配置(两台,kube-proxy、kubelet、docker 拷贝出来)
+   1. 修改apiserver配置文件`vi /etc/kubernetes/apiserver`
+   2. 删除参数Adminssion_control中的ServiceAccount
+   3. 重启apiserver `systemctl restart kube-apiserver`
 
-   1. 拷贝`cp kubelet kube-proxy /usr/bin/`
+8. 操作二(注意调整ip地址)
 
-   2. kubelet服务
+   1. 进入node节点(所有节点都需要)
 
-      1. 配置systemd服务文件`vi /usr/lib/systemd/system/kubelet.service`
+   2. 拉取私有仓库`docker pull registry`
 
-         ```
-         [Unit]
-         Description=Kubernetes Kubelet Server
-         Documentation=https://github.com/GoogleCloudPlatform/kubernetes
-         After=docker.service
-         Requires=docker.service
-         [Service]
-         WorkingDirectory=/var/lib/kubelet
-         EnvironmentFile=/etc/kubernetes/kubelet
-         ExecStart=/usr/bin/kubelet $KUBELET_ARGS
-         Restart=on-failure
-         KillMode=process
-         [Install]
-         WantedBy=multi-user.target
-         ```
+   3. 运行私有仓库`docker run --restart=always -id --name registry -p 5000:5000 registry`
 
-      2. 创建工作空间 `mkdir -p /var/lib/kubelet`
+   4. docker指定私有仓库`vi /etc/docker/daemon.json`(没有就创建)
 
-      3. 配置文件`vi /etc/kubernetes/kubelet`(注意修改ip,同时注意此处有指定一个配置文件,用于kubelet连接Master Apiserver)
+      ```
+      {
+              "insecure-registries": ["192.168.1.6:5000"]
+      }
+      ```
 
-         `KUBELET_ARGS="--kubeconfig=/etc/kubernetes/kubeconfig --hostname-override=192.168.1.* --logtostderr=false --log-dir=/var/log/kubernetes --v=2 --fail-swap-on=false"`
+   5. 重启docker `systemctl restart docker`
 
-      4. 连接apiserver的配置文件`vi /etc/kubernetes/kubeconfig`(注意yaml格式)
+   6. 拉取pause `docker pull kubernetes/pause `
 
-         ```
-         apiVersion: v1
-         kind: Config
-         clusters:
-         - cluster:
-             server: http://192.168.1.5:8080
-           name: local
-         contexts:
-         - context:
-             cluster: local
-           name: mycontext
-         current-context: mycontext
-         ```
+   7. 打标签为当前私有仓库地址 `docker tag kubernetes/pause 192.168.1.6:5000/pause`
 
-   3. kube-proxy服务(依赖于network服务)
+   8. 推送到私有仓库 `docker push 192.168.1.6:5000/pause`
 
-      1. 配置systemd服务文件`vi /usr/lib/systemd/system/kube-proxy.service`
+   9. 配置kubelet `vi /etc/kubernetes/kubelet` 在参数中间加上参数`--pod_infra_container_image=192.168.1.6:5000/pause` 注意与其他参数有空格隔开
 
-         ```
-         [Unit]
-         Description=Kubernetes Kube-proxy Server
-         Documentation=https://github.com/GoogleCloudPlatform/kubernetes
-         After=network.service
-         Requires=network.service(centos8似乎没有network,把这行删掉)
-         [Service]
-         EnvironmentFile=/etc/kubernetes/proxy
-         ExecStart=/usr/bin/kube-proxy $KUBE_PROXY_ARGS
-         Restart=on-failure
-         LimitNOFILE=65536
-         KillMode=process
-         [Install]
-         WantedBy=multi-user.target
-         ```
-
-      2. 配置文件`vi /etc/kubernetes/proxy`(注意修改两个ip)
-
-         `KUBE_PROXY_ARGS="--master=http://192.168.1.5:8080 --hostname-override=192.168.1.* --logtostderr=true --log-dir=/var/log/kubernetes --v=2"`
-
-   4. 启动上述服务
-
-      1. systemctl daemon-reload
-      2. systemctl enable kubelet
-      3. systemctl start kubelet
-      4. systemctl status kubelet
-      5. systemctl enable kube-proxy
-      6. systemctl start kube-proxy
-      7. systemctl status kube-proxy
-
-   5. 第二个Node节点,通过拷贝的方式直接创建,然后调整对应ip即可
+   10. 重启kuberlet `systemctl restart kubelet`
 
 
 
