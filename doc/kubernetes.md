@@ -1,4 +1,4 @@
-## hyper-v使用(win10专业版以上才有)
+## hyper-v使用(部分windows版本有)
 
 1. 开启Hyper-V功能
 
@@ -483,12 +483,39 @@
 
    10. 重启kuberlet `systemctl restart kubelet`
 
-
-
-### 注意,如果service启动不了,可以按以下流程测试一遍参数
+## 其他注意事项,如果service启动不了,可以按以下流程测试一遍参数
 
 1. 从服务文件中复制ExecStart的值 例如 `/usr/bin/kube-proxy`
 2. 从配置文件中获取双引号中间的参数 例如`--master=http://192.168.1.5:8080 --hostname-override=192.168.1.5 --logtostderr=true --log-dir=/var/log/kubernetes --v=2`
 3. 合并1跟2,执行一遍`/usr/bin/kube-proxy --master=http://192.168.1.5:8080 --hostname-override=192.168.1.5 --logtostderr=true --log-dir=/var/log/kubernetes --v=2`
 4. 执行成功说明参数没有问题
 5. 失败会提示相应错误
+
+### 设置centos8静态ip
+
+1. 修改网络配置 `vi /etc/sysconfig/network-scripts/ipcfg-*`
+
+   ```
+   TYPE=Ethernet
+   PROXY_METHOD=none
+   BROWSER_ONLY=no
+   BOOTPROTO=static #设置为静态的 #BOOTPROTO=dhcp
+   DEFROUTE=yes
+   IPV4_FAILURE_FATAL=no
+   IPV6INIT=yes
+   IPV6_AUTOCONF=yes
+   IPV6_DEFROUTE=yes
+   IPV6_FAILURE_FATAL=no
+   IPV6_ADDR_GEN_MODE=stable-privacy
+   NAME=eth0
+   UUID=0a9c996d-5c6a-4843-9693-d64a2152fd6b
+   DEVICE=eth0
+   ONBOOT=yes #设置为开机启用
+   
+   IPADDR=192.168.1.6 #静态ip
+   NETMASK=255.255.255.0 # 子关掩码
+   GATEWAY=192.168.1.1 # 默认网关
+   DNS1=223.5.5.5
+   ```
+
+   **其中子关掩码跟默认网站可以找出来,当前使用Hype-V,在win CMD下可以看到**
