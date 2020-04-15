@@ -62,3 +62,11 @@
 8. protoBuf-demo
 9. kubernetes介绍
 10. J.U.C部分demo
+
+**`vi ~/.bashrc`**
+```
+function dockerbash {
+        docker run -it --rm --volumes-from $1 ubuntu /bin/bash
+}
+```
+`dockerbash redis`

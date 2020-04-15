@@ -29,5 +29,5 @@ dependencies {
     compile group: 'com.google.guava', name: 'failureaccess', version: '1.0.1'
 // https://mvnrepository.com/artifact/com.google.guava/guava
     compile group: 'com.google.guava', name: 'guava', version: '28.2-jre'
-
+    compile 'com.netflix.hystrix:hystrix-core:1.5.11'
 }
