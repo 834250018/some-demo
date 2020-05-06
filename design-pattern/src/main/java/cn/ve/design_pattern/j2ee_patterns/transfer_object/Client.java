@@ -1,4 +1,4 @@
-package cn.ve.designpattern.j2ee_patterns.TransferObjectPattern;
+package cn.ve.design_pattern.j2ee_patterns.transfer_object;
 
 /**
  * @author ve
