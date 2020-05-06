@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
  * 格式为
  * .(类名.java:行号)
  * 这类打印,idea跟eclipse会识别出跳转链接,部分jar包不会
- * 注意左括号前面有至少一个点号,点号与左括号之间可以存在其他字符如.*(Test.java:1)或Test.main(Test.java:1)等等
+ * 注意左括号前面有至少一个点号,点号与左括号之间可以存在其他字符如.*(StaticBlockTest.java:1)或Test.main(StaticBlockTest.java:1)等等
  *
  * @author ve
  * @date 2019/7/3 16:24

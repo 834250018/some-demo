@@ -1,6 +1,6 @@
 package com.ywy.demo.equals;
 
-import com.ywy.demo.design_pattern.builder_pattern.User;
+import com.ywy.demo.User;
 import lombok.extern.slf4j.Slf4j;
 
 /**
