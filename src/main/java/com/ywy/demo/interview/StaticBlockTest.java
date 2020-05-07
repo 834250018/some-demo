@@ -3,15 +3,21 @@ package com.ywy.demo.interview;
 /**
  * 今天面试遇到这道题,挂了,故列出来研究一下
  * 通过反编译可以看出两个重点
- * 1.Person person2 = new Person("newPerson2");被放入构造函数,且前置于构造函数
+ * 1.编译后的构造函数,按顺序分别包含
+ * (1)如果有父类,首先是父类的构造函数
+ * (2)成员变量的赋值与构造代码块,谁写在上面编译后也在上面
+ * (2)源码中的构造函数代码
  * 2.如果静态代码块有多个,被编译成一个并从上往下按顺序执行
  * <p>
- * 下面的文字可能总结得有点乱
- * 整体顺序是
- * 1.先执行入口类的静态代码块
- * 1.如果遇到new操作,先加载类(即执行静态代码块),然后如果有父类,执行父类的构造方法,再执行子类的构造方法
- * 2.后执行main函数
+ * 有以下几个规则
+ * 1.静态代码块先于main函数执行
+ * 3.new一个对象
+ * (1)如果有父类且未加载过,首先加载父类
+ * (2)如果子类未加载过,加载子类
+ * (3)执行父类的构造方法
+ * (4)执行子类的构造方法
  *
+ * 下面的文字可能总结得有点乱
  * @author ve
  * @date 2020/5/6
  */
@@ -31,7 +37,8 @@ public class StaticBlockTest extends Parent {
 
     public static void main(String[] args) {
         System.out.println("开始执行主函数,在第二个static后面");
-        new MyStaticBlockTest().print();
+        MyStaticBlockTest myStaticBlockTest = new MyStaticBlockTest();
+        myStaticBlockTest.print();
     }
 
     static {
@@ -64,8 +71,17 @@ class MyStaticBlockTest extends StaticBlockTest {
         System.out.println("这里加载MyStaticBlockTest类,加载完了后面跟着父类两个构造函数的打印,最后才打印final");
     }
 
+    {
+        System.out.println("beee");
+    }
+//    private MyStaticBlockTest1 myStaticBlockTest1 = new MyStaticBlockTest1();
+
     public void print() {
         System.out.println("final");
+    }
+
+    {
+        System.out.println("eeeb");
     }
 }
 
