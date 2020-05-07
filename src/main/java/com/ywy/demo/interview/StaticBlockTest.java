@@ -15,39 +15,40 @@ package com.ywy.demo.interview;
  * (1)如果有父类且未加载过,首先加载父类
  * (2)如果子类未加载过,加载子类
  * (4)执行子类(编译后)的构造方法
- *
+ * <p>
  * 下面的文字可能总结得有点乱
+ *
  * @author ve
  * @date 2020/5/6
  */
 public class StaticBlockTest extends Parent {
-    Person person = new Person("因为执行了new操作,所以执行父类的构造函数(第一行是Person person = new Person(),加载Person),所以这一行打印在Person的static后面");
+    Person person = new Person("5");
 
     public StaticBlockTest() {
-        System.out.println("这行打印在newPerson2后面执行");
+        System.out.println("7");
     }
 
-    Person person2 = new Person("newPerson2");
+    Person person2 = new Person("6");
 
     static {
-        System.out.println("第一个先执行入口类的static块");
+        System.out.println("2");
         new MyStaticBlockTest1().print();
     }
 
     public static void main(String[] args) {
-        System.out.println("开始执行主函数,在第二个static后面");
+        System.out.println("10");
         MyStaticBlockTest myStaticBlockTest = new MyStaticBlockTest();
         myStaticBlockTest.print();
     }
 
     static {
-        System.out.println("这里是第二个static,在第一个static执行完了之后执行");
+        System.out.println("9");
     }
 }
 
 class Person {
     static {
-        System.out.println("Person的static");
+        System.out.println("4");
     }
 
     public Person(String a) {
@@ -57,36 +58,36 @@ class Person {
 
 class MyStaticBlockTest1 extends StaticBlockTest {
     static {
-        System.out.println("因为入口static加载了MyStaticBlockTest1,所以第二行打印MyStaticBlockTest1的static");
+        System.out.println("3");
     }
 
     public void print() {
-        System.out.println("MyStaticBlockTest1#print()");
+        System.out.println("8");
     }
 }
 
 class MyStaticBlockTest extends StaticBlockTest {
     static {
-        System.out.println("这里加载MyStaticBlockTest类,加载完了后面跟着父类两个构造函数的打印,最后才打印final");
+        System.out.println("11");
     }
 
     {
-        System.out.println("beee");
+        System.out.println("12");
     }
 //    private MyStaticBlockTest1 myStaticBlockTest1 = new MyStaticBlockTest1();
 
     public void print() {
-        System.out.println("final");
+        System.out.println("14");
     }
 
     {
-        System.out.println("eeeb");
+        System.out.println("13");
     }
 }
 
 class Parent {
     static {
-        System.out.println("父类的静态代码块最先执行");
+        System.out.println("1");
     }
 
 }
