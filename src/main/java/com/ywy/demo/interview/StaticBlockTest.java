@@ -91,73 +91,59 @@ class Parent {
 }
 
 
-/*public class com.ywy.demo.interview.StaticBlockTest {
-        com.ywy.demo.interview.Person person;
+/*
+Compiled from "StaticBlockTest.java"
+public class com.ywy.demo.interview.StaticBlockTest extends com.ywy.demo.interview.Parent {
+  com.ywy.demo.interview.Person person;
 
- public com.ywy.demo.interview.StaticBlockTest();
+  com.ywy.demo.interview.Person person2;
+
+  public com.ywy.demo.interview.StaticBlockTest();
     Code:
        0: aload_0
-       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       1: invokespecial #1                  // Method com/ywy/demo/interview/Parent."<init>":()V
        4: aload_0
        5: new           #2                  // class com/ywy/demo/interview/Person
        8: dup
-       9: ldc           #3                  // String newPerson
+       9: ldc           #3                  // String 5
       11: invokespecial #4                  // Method com/ywy/demo/interview/Person."<init>":(Ljava/lang/String;)V
       14: putfield      #5                  // Field person:Lcom/ywy/demo/interview/Person;
       17: aload_0
       18: new           #2                  // class com/ywy/demo/interview/Person
       21: dup
-      22: ldc           #6                  // String newPerson2
+      22: ldc           #6                  // String 6
       24: invokespecial #4                  // Method com/ywy/demo/interview/Person."<init>":(Ljava/lang/String;)V
       27: putfield      #7                  // Field person2:Lcom/ywy/demo/interview/Person;
       30: getstatic     #8                  // Field java/lang/System.out:Ljava/io/PrintStream;
-      33: ldc           #9                  // String aabb
+      33: ldc           #9                  // String 7
       35: invokevirtual #10                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
       38: return
-    LineNumberTable:
-      line 13: 0
-      line 11: 4
-      line 16: 17
-      line 14: 30
-      line 15: 38
-    LocalVariableTable:
-      Start  Length  Slot  Name   Signature
-          0      39     0  this   Lcom/ywy/demo/interview/StaticBlockTest;
 
-public static void main(java.lang.String[]);
-        Code:
-        0: getstatic     #6                  // Field java/lang/System.out:Ljava/io/PrintStream;
-        3: ldc           #9                  // String ccdd
-        5: invokevirtual #8                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
-        8: new           #10                 // class com/ywy/demo/interview/MyStaticBlockTest
-        11: dup
-        12: invokespecial #11                 // Method com/ywy/demo/interview/MyStaticBlockTest."<init>":()V
-        15: invokevirtual #12                 // Method com/ywy/demo/interview/MyStaticBlockTest.print:()V
-        18: return
-        LineNumberTable:
-        line 22: 0
-        line 23: 8
-        line 24: 18
-        LocalVariableTable:
-        Start  Length  Slot  Name   Signature
-        0      19     0  args   [Ljava/lang/String;
+  public static void main(java.lang.String[]);
+    Code:
+       0: getstatic     #8                  // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: ldc           #11                 // String 10
+       5: invokevirtual #10                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+       8: new           #12                 // class com/ywy/demo/interview/MyStaticBlockTest
+      11: dup
+      12: invokespecial #13                 // Method com/ywy/demo/interview/MyStaticBlockTest."<init>":()V
+      15: astore_1
+      16: aload_1
+      17: invokevirtual #14                 // Method com/ywy/demo/interview/MyStaticBlockTest.print:()V
+      20: return
 
-static {};
-        Code:
-        0: getstatic     #6                  // Field java/lang/System.out:Ljava/io/PrintStream;
-        3: ldc           #13                 // String mainStatic
-        5: invokevirtual #8                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
-        8: new           #14                 // class com/ywy/demo/interview/MyStaticBlockTest1
-        11: dup
-        12: invokespecial #15                 // Method com/ywy/demo/interview/MyStaticBlockTest1."<init>":()V
-        15: invokevirtual #16                 // Method com/ywy/demo/interview/MyStaticBlockTest1.print:()V
-        18: getstatic     #6                  // Field java/lang/System.out:Ljava/io/PrintStream;
-        21: ldc           #17                 // String 1.5
-        23: invokevirtual #8                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
-        26: return
-        LineNumberTable:
-        line 17: 0
-        line 18: 8
-        line 27: 18
-        line 28: 26
-        }*/
+  static {};
+    Code:
+       0: getstatic     #8                  // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: ldc           #15                 // String 2
+       5: invokevirtual #10                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+       8: new           #16                 // class com/ywy/demo/interview/MyStaticBlockTest1
+      11: dup
+      12: invokespecial #17                 // Method com/ywy/demo/interview/MyStaticBlockTest1."<init>":()V
+      15: invokevirtual #18                 // Method com/ywy/demo/interview/MyStaticBlockTest1.print:()V
+      18: getstatic     #8                  // Field java/lang/System.out:Ljava/io/PrintStream;
+      21: ldc           #19                 // String 9
+      23: invokevirtual #10                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+      26: return
+}
+*/
