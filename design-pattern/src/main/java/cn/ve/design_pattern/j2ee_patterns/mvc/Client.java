@@ -12,4 +12,9 @@ public class Client {
     public static void main(String[] args) {
         System.out.println(Controller.getView());;
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

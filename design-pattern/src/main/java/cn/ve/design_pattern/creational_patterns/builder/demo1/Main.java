@@ -1,4 +1,4 @@
-package cn.ve.design_pattern.creational_patterns.builder;
+package cn.ve.design_pattern.creational_patterns.builder.demo1;
 
 /**
  * 建造者模式,内置一个builder类通过链式调用的方式赋值并生成User对象

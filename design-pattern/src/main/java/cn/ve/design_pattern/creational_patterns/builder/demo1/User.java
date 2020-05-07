@@ -1,4 +1,4 @@
-package cn.ve.design_pattern.creational_patterns.builder;
+package cn.ve.design_pattern.creational_patterns.builder.demo1;
 
 /**
  * @author ve
