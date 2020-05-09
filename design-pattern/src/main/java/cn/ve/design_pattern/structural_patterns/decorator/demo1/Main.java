@@ -1,4 +1,4 @@
-package cn.ve.design_pattern.structural_patterns.decorator;
+package cn.ve.design_pattern.structural_patterns.decorator.demo1;
 
 /**
  * 装饰器模式
