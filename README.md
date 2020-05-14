@@ -62,3 +62,11 @@ function dockerbash {
 }
 ```
 `dockerbash redis`
+
+webm转mp4
+1. 先转成规范的webm
+
+    `ffmpeg -fflags +genpts -i .\京汉母亲节.webm  -r 24 1.webm`
+2. 再转成mp4
+
+    `ffmpeg -i 1.webm 1.mp4`
