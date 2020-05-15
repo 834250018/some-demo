@@ -1,4 +1,4 @@
-package com.ywy.demo.lambda;
+package com.ywy.demo.lambda_stream;
 
 import lombok.extern.slf4j.Slf4j;
 

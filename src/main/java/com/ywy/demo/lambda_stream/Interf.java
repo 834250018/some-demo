@@ -1,4 +1,4 @@
-package com.ywy.demo.lambda;
+package com.ywy.demo.lambda_stream;
 
 /**
  * @author ve

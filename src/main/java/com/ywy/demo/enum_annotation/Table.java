@@ -1,4 +1,4 @@
-package com.ywy.demo.annotation;
+package com.ywy.demo.enum_annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

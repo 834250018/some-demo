@@ -1,4 +1,4 @@
-package com.ywy.demo;
+package com.ywy.demo.algorithm;
 
 /**
  * 简单遗传算法实现(明天再看看)
