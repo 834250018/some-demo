@@ -29,7 +29,7 @@ public class GeneticAlgorithm {
     // 初始个体数量
     public static final int INIT_CHROMOSOME_SIZE = 4;
     // 进化次数
-    public static final int ITERATION_NUM = 50;
+    public static final int ITERATION_NUM = 30;
     public static List<Chromosome> chromosomes;
     public static Map<String, Double> scaleMap = new HashMap<>(); // 基因型对应的概率
     public static Map<String, Double> scoreMap = new HashMap<>(); // 基因型对应的分数
@@ -70,7 +70,7 @@ public class GeneticAlgorithm {
      * 与基因型的整体数量无关
      */
     private static void compute() {
-        Map<String, List<Chromosome>> collect = GeneticAlgorithm.chromosomes.stream().collect(Collectors.groupingBy(o -> o.getGene_bi()));
+        Map<String, List<Chromosome>> collect = GeneticAlgorithm.chromosomes.stream().collect(Collectors.groupingBy(Chromosome::getGene_bi));
         collect.forEach((s, chromosomes1) -> {
             countMap.put(s, chromosomes1.size());
         });
@@ -83,13 +83,16 @@ public class GeneticAlgorithm {
 
     /**
      * 选择操作
+     * 为保证程序的正常进行,在个体数量较小的时候提高存活率,个体数量较大的时候降低存活率
      */
     private static void select() {
         List<Chromosome> chromosomes = new ArrayList<>();
         for (Chromosome chromosome : GeneticAlgorithm.chromosomes) {
-            if (ThreadLocalRandom.current().nextDouble() < scaleMap.get(chromosome.getGene_bi()) + Math.pow(0.3, countMap.get(chromosome.getGene_bi()))) {
+            boolean b = ThreadLocalRandom.current().nextDouble() < scaleMap.get(chromosome.getGene_bi()) + Math.pow(0.3, countMap.get(chromosome.getGene_bi()));
+            if (b) {
                 chromosomes.add(chromosome);
             }
+
         }
         GeneticAlgorithm.chromosomes = chromosomes;
     }
@@ -128,15 +131,14 @@ public class GeneticAlgorithm {
     }
 
     /**
-     *
+     * 打印种群构成
      */
     private static void print() {
         System.out.println("种群数量: " + GeneticAlgorithm.chromosomes.size());
-        Map<String, List<Chromosome>> collect = GeneticAlgorithm.chromosomes.stream().collect(Collectors.groupingBy((Chromosome o) -> o.getGene_bi()));
+        Map<String, List<Chromosome>> collect = GeneticAlgorithm.chromosomes.stream().collect(Collectors.groupingBy(Chromosome::getGene_bi));
         for (Map.Entry<String, List<Chromosome>> stringListEntry : collect.entrySet()) {
             System.out.println(stringListEntry.getKey() + ": " + stringListEntry.getValue().size());
         }
-        System.out.println();
         System.out.println();
     }
 
