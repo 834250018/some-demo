@@ -29,7 +29,7 @@ public class GeneticAlgorithm {
     // 初始个体数量
     public static final int INIT_CHROMOSOME_SIZE = 4;
     // 进化次数
-    public static final int ITERATION_NUM = 1000;
+    public static final int ITERATION_NUM = 50;
     public static List<Chromosome> chromosomes;
     public static Map<String, Double> scaleMap = new HashMap<>(); // 基因型对应的概率
     public static Map<String, Double> scoreMap = new HashMap<>(); // 基因型对应的分数
@@ -46,6 +46,7 @@ public class GeneticAlgorithm {
         System.out.println();
         GeneticAlgorithm.chromosomes = chromosomes;
 
+        double max = 0d;
         for (int i = 0; i < NUM; i++) {
             String s = Integer.toBinaryString(i);
             String str = String.format("%" + GENE_LENGTH + "s", s);
@@ -54,13 +55,12 @@ public class GeneticAlgorithm {
             double y = Integer.parseUnsignedInt(str.substring(3, 5), 2);
 
             scoreMap.put(str, Math.pow(x, 2) + Math.pow(y, 2)); // 存入当前得分
-        }
-        double sum = 0d;
-        for (Double aDouble : scoreMap.values()) {
-            sum += aDouble;
+            if (max < scoreMap.get(str)) {
+                max = scoreMap.get(str);
+            }
         }
         for (Map.Entry<String, Double> stringDoubleEntry : scoreMap.entrySet()) {
-            scaleMap.put(stringDoubleEntry.getKey(), stringDoubleEntry.getValue() / sum);
+            scaleMap.put(stringDoubleEntry.getKey(), stringDoubleEntry.getValue() / max);
         }
         System.out.println();
     }
@@ -85,10 +85,9 @@ public class GeneticAlgorithm {
      * 选择操作
      */
     private static void select() {
-        // fixme 没写好
         List<Chromosome> chromosomes = new ArrayList<>();
         for (Chromosome chromosome : GeneticAlgorithm.chromosomes) {
-            if (ThreadLocalRandom.current().nextDouble() > scaleMap.get(chromosome.getGene_bi()) * countMap.get(chromosome.getGene_bi())) {
+            if (ThreadLocalRandom.current().nextDouble() < scaleMap.get(chromosome.getGene_bi()) + Math.pow(0.3, countMap.get(chromosome.getGene_bi()))) {
                 chromosomes.add(chromosome);
             }
         }
@@ -151,6 +150,7 @@ public class GeneticAlgorithm {
             select();
             overlapping();
             variation();
+            System.out.println("第${}代: " + i);
             print();
         }
     }
