@@ -279,4 +279,6 @@ class Chromosome {
     public void setScore_scale(double score_scale) {
         this.score_scale = score_scale;
     }
+
+
 }
