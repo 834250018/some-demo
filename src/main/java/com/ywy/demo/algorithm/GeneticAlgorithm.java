@@ -70,14 +70,16 @@ public class GeneticAlgorithm {
      * 与基因型的整体数量无关
      */
     private static void compute() {
-        Map<String, List<Chromosome>> collect = GeneticAlgorithm.chromosomes.stream().collect(Collectors.groupingBy(Chromosome::getGene_bi));
+        Map<String, List<Chromosome>> collect =
+            GeneticAlgorithm.chromosomes.stream().collect(Collectors.groupingBy(Chromosome::getGene_bi));
         collect.forEach((s, chromosomes1) -> {
             countMap.put(s, chromosomes1.size());
         });
         // 计算每个个体的当代得分
         for (Chromosome chromosome : GeneticAlgorithm.chromosomes) {
             // 向上取两位小数
-            chromosome.setScore_scale(new BigDecimal(chromosome.getScore_scale()).setScale(2, RoundingMode.UP).doubleValue());
+            chromosome
+                .setScore_scale(new BigDecimal(chromosome.getScore_scale()).setScale(2, RoundingMode.UP).doubleValue());
         }
     }
 
@@ -88,7 +90,8 @@ public class GeneticAlgorithm {
     private static void select() {
         List<Chromosome> chromosomes = new ArrayList<>();
         for (Chromosome chromosome : GeneticAlgorithm.chromosomes) {
-            boolean b = ThreadLocalRandom.current().nextDouble() < scaleMap.get(chromosome.getGene_bi()) + Math.pow(0.3, countMap.get(chromosome.getGene_bi()));
+            boolean b = ThreadLocalRandom.current().nextDouble() < scaleMap.get(chromosome.getGene_bi()) + Math
+                .pow(0.3, countMap.get(chromosome.getGene_bi()));
             if (b) {
                 chromosomes.add(chromosome);
             }
@@ -135,7 +138,8 @@ public class GeneticAlgorithm {
      */
     private static void print() {
         System.out.println("种群数量: " + GeneticAlgorithm.chromosomes.size());
-        Map<String, List<Chromosome>> collect = GeneticAlgorithm.chromosomes.stream().collect(Collectors.groupingBy(Chromosome::getGene_bi));
+        Map<String, List<Chromosome>> collect =
+            GeneticAlgorithm.chromosomes.stream().collect(Collectors.groupingBy(Chromosome::getGene_bi));
         for (Map.Entry<String, List<Chromosome>> stringListEntry : collect.entrySet()) {
             System.out.println(stringListEntry.getKey() + ": " + stringListEntry.getValue().size());
         }
@@ -247,8 +251,7 @@ class Chromosome {
         return new Chromosome(booleans);
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         return super.toString();
     }
 
@@ -279,6 +282,5 @@ class Chromosome {
     public void setScore_scale(double score_scale) {
         this.score_scale = score_scale;
     }
-
 
 }
