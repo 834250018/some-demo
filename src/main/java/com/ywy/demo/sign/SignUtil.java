@@ -25,11 +25,8 @@ import java.util.Calendar;
  */
 public class SignUtil {
 
-    public static void sign(byte[] bb, byte[] sign) {
-    }
-
     public static void main(String[] args) throws Exception {
-        Security.addProvider(new BouncyCastleProvider());
+        Security.insertProviderAt(new BouncyCastleProvider(), 1);
         File pdf = new File("D:\\1.pdf");
         File result = new File("D:\\result.pdf");
         if (result.exists()) {
@@ -63,9 +60,6 @@ public class SignUtil {
         appearance.setRenderingMode(PdfSignatureAppearance.RenderingMode.GRAPHIC);
         //        appearance.setCertificate(keyStore.getCertificate(alias));
         // 进行签名
-        //        MakeSignature.signDetached(appearance, new BouncyCastleDigest(), new MyExternalSignature(caPrivateKey) {
-        //        }, keyStore.getCertificateChain("ca"), null, null, null, 8192, MakeSignature.CryptoStandard.CMS);
-
         MakeSignature.signExternalContainer(appearance,
             new MyExternalSignatureContainer(CertificateDemo1.getCertPrivateKeyByFirstAlias(keyStore, null),
                 keyStore.getCertificateChain(CertificateDemo1.getFirstAlias(keyStore))), 81920);

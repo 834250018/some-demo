@@ -3,6 +3,7 @@ package com.ywy.demo.sign;
 import com.google.common.io.ByteStreams;
 import com.itextpdf.text.pdf.PdfDictionary;
 import com.itextpdf.text.pdf.PdfName;
+import com.itextpdf.text.pdf.codec.Base64;
 import com.itextpdf.text.pdf.security.BouncyCastleDigest;
 import com.itextpdf.text.pdf.security.ExternalSignatureContainer;
 import com.itextpdf.text.pdf.security.MakeSignature;
@@ -36,32 +37,44 @@ import java.security.cert.Certificate;
     @Override public byte[] sign(InputStream data) throws GeneralSecurityException {
         try {
             // 对数据进行sha256
-            byte[] hash = MessageDigest.getInstance("SHA-1").digest(ByteStreams.toByteArray(data));
+            //            byte[] sha256s = DigestAlgorithms.digest(data, "SHA256", null);
+            byte[] hash = MessageDigest.getInstance("SHA1", "BC").digest(ByteStreams.toByteArray(data));
+
+            System.out.println();
+            System.out.println("hash" + "\n" + Base64.encodeBytes(hash));
             // 创建一个p7容器,此处不传私钥
-            PdfPKCS7 p7 = new PdfPKCS7(null, chain, "SHA256", null, new BouncyCastleDigest(), false);
+            PdfPKCS7 p7 = new PdfPKCS7(null, chain, "SHA256", "BC", new BouncyCastleDigest(), false);
             // 使用p7规范对hash值进行签名
             byte[] authenticatedAttributeBytes =
                 p7.getAuthenticatedAttributeBytes(hash, null, null, MakeSignature.CryptoStandard.CMS);
-            // 使用私钥对sh进行签署
+            System.out.println();
+            System.out.println("authenticatedAttributeBytes" + "\n" + Base64.encodeBytes(authenticatedAttributeBytes));
+            // 使用私钥对auth进行签署
             byte[] encryptData = sign(authenticatedAttributeBytes);
+            System.out.println();
+            System.out.println("encryptData" + "\n" + Base64.encodeBytes(encryptData));
             // 签名值密文写入p7容器
             p7.setExternalDigest(encryptData, null, "RSA");
             // todo 加入数字时间戳
-            // 将p7容器转化成数字证书
-            return p7.getEncodedPKCS7(hash, null, null, null, MakeSignature.CryptoStandard.CMS);
+            // 将p7容器转化成p7证书
+            byte[] encodedPKCS7 = p7.getEncodedPKCS7(hash, null, null, null, MakeSignature.CryptoStandard.CMS);
+            System.out.println();
+            System.out.println("encodedPKCS7" + "\n" + Base64.encodeBytes(encodedPKCS7));
+            return encodedPKCS7;
+            // fixme 签名后的pdf显示签名已失效,文档被修改或损坏,暂时没什么思路在这里记一下
+            // fixme 试一下通过itextpdf读取签名信息,看看有什么问题
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
     }
 
     private byte[] sign(byte[] input) throws Exception {
-        byte[] digest = MessageDigest.getInstance("SHA-256").digest(input);
-        byte[] encrypt = AsymetricEncryptionDemo.encrypt(digest, privateKey);
-        return encrypt;
+        byte[] digest = MessageDigest.getInstance("SHA1", "BC").digest(input);
+        return AsymetricEncryptionDemo.encrypt(digest, privateKey);
     }
 
     @Override public void modifySigningDictionary(PdfDictionary signDic) {
-//        signDic.put(PdfName.FILTER, PdfName.ADOBE_PPKLITE);
+        signDic.put(PdfName.FILTER, PdfName.ADOBE_PPKLITE);
         signDic.put(PdfName.SUBFILTER, PdfName.ADBE_PKCS7_DETACHED);
     }
 
