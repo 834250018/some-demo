@@ -30,4 +30,8 @@ dependencies {
 // https://mvnrepository.com/artifact/com.google.guava/guava
     compile group: 'com.google.guava', name: 'guava', version: '28.2-jre'
     compile 'com.netflix.hystrix:hystrix-core:1.5.11'
+    // https://mvnrepository.com/artifact/com.itextpdf/itextpdf
+    compile group: 'com.itextpdf', name: 'itextpdf', version: '5.5.13'
+
+
 }

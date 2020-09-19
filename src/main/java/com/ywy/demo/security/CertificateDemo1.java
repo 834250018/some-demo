@@ -204,7 +204,7 @@ public class CertificateDemo1 {
         return keyStore.getCertificate(alias);
     }
 
-    private static String getFirstAlias(KeyStore keyStore) throws KeyStoreException {
+    public static String getFirstAlias(KeyStore keyStore) throws KeyStoreException {
         Enumeration aliases = keyStore.aliases();
         String alias = null;
         if (aliases.hasMoreElements()) {
