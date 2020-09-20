@@ -26,7 +26,7 @@ public class CertificateDemo2 {
         // 生成csr
         PKCS10 pkcs10 = CertificateDemo1.generatePKCS10("ve", "ve", "ve", "ve", "ve", "ve", keyPair.getPublic(), keyPair.getPrivate());
         // 获取ca的私钥跟证书(即demo1中生成的自签名证书)
-        KeyStore keyStore = CertificateDemo1.getKeyStore("pkcs12", "", "d://b.pfx");
+        KeyStore keyStore = CertificateDemo1.getKeyStore("pkcs12", "", "d://3.pfx");
         PrivateKey caPrivateKey = CertificateDemo1.getCertPrivateKeyByFirstAlias(keyStore, null);
         Certificate caCert = CertificateDemo1.getCertByFirstAlias(keyStore);
 

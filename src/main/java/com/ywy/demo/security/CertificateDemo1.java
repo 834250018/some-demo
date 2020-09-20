@@ -36,7 +36,7 @@ public class CertificateDemo1 {
         genSelfSignedCertificate();
         genSelfSignedCertificate1();
         // 有私钥的证书
-        KeyStore keyStore = getKeyStore("pkcs12", "", "d://b.pfx");
+        KeyStore keyStore = getKeyStore("pkcs12", "", "d://3.pfx");
         KeyStore keyStore1 = getKeyStore("jks", "", "d://a.jks");
         // 无私钥的证书
         getCert("d://rootCa.cer");
@@ -59,7 +59,7 @@ public class CertificateDemo1 {
         saveCER(x509Certificate, "d://rootCa.cer");
         savePEM(x509Certificate, "d://rootCa.pem");
         X509Certificate[] certs = {x509Certificate};
-        saveKeyStore("pkcs12", "ca", cak.getPrivateKey(), null, null, certs, "d://b.pfx");
+        saveKeyStore("pkcs12", "ca", cak.getPrivateKey(), null, null, certs, "d://3.pfx");
     }
 
     private static void saveCER(X509Certificate x509Certificate, String filepath) throws Exception {
