@@ -12,21 +12,19 @@ repositories {
 }
 
 dependencies {
-    compile group: 'junit', name: 'junit', version: '4.12'
     compile 'org.slf4j:slf4j-log4j12:1.8.0-beta2'
-    compile 'com.google.protobuf:protobuf-java:3.11.1'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile 'org.projectlombok:lombok:1.18.2'
+    annotationProcessor 'org.projectlombok:lombok:1.18.2'
+    // https://mvnrepository.com/artifact/com.itextpdf/itextpdf
+    compile group: 'com.itextpdf', name: 'itextpdf', version: '5.5.13'
 
     // https://mvnrepository.com/artifact/com.google.guava/failureaccess
     compile group: 'com.google.guava', name: 'failureaccess', version: '1.0.1'
 // https://mvnrepository.com/artifact/com.google.guava/guava
     compile group: 'com.google.guava', name: 'guava', version: '28.2-jre'
 
-    compile 'org.projectlombok:lombok:1.18.2'
-    annotationProcessor 'org.projectlombok:lombok:1.18.2'
-
-// https://mvnrepository.com/artifact/joda-time/joda-time
-    compile group: 'joda-time', name: 'joda-time', version: '2.10.5'
-    compile 'com.netflix.hystrix:hystrix-core:1.5.11'
-
-
+    // https://mvnrepository.com/artifact/org.bouncycastle/bcpkix-jdk15on
+    compile group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: '1.64'
 }
