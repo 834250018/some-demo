@@ -13,11 +13,11 @@ import java.util.Arrays;
  * 某个节点下标为x ,则它的左子节点下标为 2x+1 , 右子节点下标为 2x+2
  * 深度为k ,最大节点数为2^k - 1
  * 以下面这个树为例子
- * a
- * ↙ ↘
- * b      c
- * ↙ ↘    ↙ ↘
- * d   e
+ *            a
+ *          ↙ ↘
+ *        b      c
+ *       ↙ ↘    ↙ ↘
+ *           d   e
  * 1,3,7,15
  */
 @Slf4j @Data public class BinaryTreeByArray {
