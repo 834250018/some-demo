@@ -19,6 +19,8 @@ import lombok.Data;
     private String data;
     private BinaryTreeElement leftElement;
     private BinaryTreeElement rightElement;
+    // 是否第二次访问 // 以栈方式进行后序遍历,需要使用此标识符
+    private boolean secound;
 
     public BinaryTreeElement(String data) {
         this.data = data;

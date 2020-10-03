@@ -6,7 +6,7 @@ import java.util.Stack;
  * @author ve
  * @date 2020/10/1
  * @motto 这火我不传了!!!
- * @description 树的中序遍历
+ * @description 树的前序遍历
  */
 public class LDR {
     public static void main(String[] args) {
