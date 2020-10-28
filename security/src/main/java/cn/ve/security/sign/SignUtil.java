@@ -20,7 +20,6 @@ import java.util.Calendar;
 /**
  * @author ve
  * @date 2020/9/19
- * @motto 这火我不传了!!!
  * @description
  */
 public class SignUtil {

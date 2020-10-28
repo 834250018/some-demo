@@ -3,7 +3,6 @@ package cn.ve.algorithm.bubblesort;
 /**
  * @author ve
  * @date 2020/10/1
- * @motto 这火我不传了!!!
  * @description
  */
 public class Common {

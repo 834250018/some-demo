@@ -5,7 +5,6 @@ import lombok.Data;
 /**
  * @author ve
  * @date 2020/10/1
- * @motto 这火我不传了!!!
  * @description 链式存储结构的二叉树, 一个节点下面有不大于2个节点
  * 以下面这个树为例子
  *      a

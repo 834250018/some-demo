@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * @author ve
  * @date 2020/10/1
- * @motto 这火我不传了!!!
  * @description 鸡尾酒排序(双向冒泡排序 、 鸡尾酒搅拌排序 、 搅拌排序 、 涟漪排序 、 来回排序或快乐小时排序), 升序
  */
 @Slf4j public class Demo4 {

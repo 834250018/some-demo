@@ -6,7 +6,6 @@ import java.util.Queue;
 /**
  * @author ve
  * @date 2020/10/4
- * @motto 这火我不传了!!!
  * @description 层序遍历(广度优先搜索)
  */
 public class BFS {

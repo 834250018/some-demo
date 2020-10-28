@@ -8,7 +8,6 @@ import java.util.Arrays;
 /**
  * @author ve
  * @date 2020/10/1
- * @motto 这火我不传了!!!
  * @description 数组存储结构的二叉树
  * 某个节点下标为x ,则它的左子节点下标为 2x+1 , 右子节点下标为 2x+2
  * 深度为k ,最大节点数为2^k - 1

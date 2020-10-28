@@ -20,7 +20,6 @@ import java.security.cert.Certificate;
 /**
  * @author ve
  * @date 2020/9/19
- * @motto 这火我不传了!!!
  * @description
  */
 @Data @AllArgsConstructor public class MyExternalSignatureContainer implements ExternalSignatureContainer {

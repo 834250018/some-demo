@@ -1,7 +1,6 @@
 /**
  * @author ve
  * @date 2020/9/30
- * @motto 这火我不传了!!!
  * @description
  */
 public class TestRemote {

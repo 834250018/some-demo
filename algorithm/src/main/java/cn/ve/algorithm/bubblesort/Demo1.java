@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * @author ve
  * @date 2020/10/1
- * @motto 这火我不传了!!!
  * @description 冒泡排序, 升序
  */
 @Slf4j public class Demo1 {
@@ -15,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
     }
 
     /**
-     * 最简单的冒泡 时间复杂度 O(n²)
+     * 冒泡排序
      *
      * @param ints
      */
@@ -30,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
                 }
             }
         }
-        log.info("循环次数:{}次", count);
-        log.info("结果:{}", ints);
+        log.info("count：{}", count);
+        log.info("result: {}", ints);
     }
 }

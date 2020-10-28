@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * @author ve
  * @date 2020/10/1
- * @motto 这火我不传了!!!
  * @description 冒泡排序, 升序
  */
 @Slf4j public class Demo3 {
