@@ -1,8 +1,5 @@
 # some-demo about everything
-### 排序算法
-1. 插入排序
-2. 冒泡排序
-3. 快速排序
+### 数据结构与算法
 ### 设计模式
 ### 整理的一些文档(doc文件夹)
 ### 线程
@@ -42,6 +39,7 @@
     compile group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: '1.64'
     X.509 CRL v2
     ```
+9. 电子签章
     
 ### 其他内容
 1. 注解及注解上属性值的获取
