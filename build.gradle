@@ -28,5 +28,7 @@ dependencies {
     compile group: 'joda-time', name: 'joda-time', version: '2.10.5'
     compile 'com.netflix.hystrix:hystrix-core:1.5.11'
 
+    compile 'com.qiniu:qiniu-java-sdk:7.3.0'
+
 
 }
