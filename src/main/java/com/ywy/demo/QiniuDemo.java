@@ -35,8 +35,6 @@ public class QiniuDemo {
     public static void main(String[] args) throws Exception {
         while (true) {
             test();
-            // 隔开10秒
-            Thread.sleep(10000L);
         }
     }
 
@@ -45,8 +43,8 @@ public class QiniuDemo {
         String filePath = "ffmpeg/delete_" + DateTime.now().toString(pattern) + ".mp4";
         // 流媒体地址
         String url = "http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8";
-        // 覆盖模式 持续10秒 来源 输出目录
-        String command = "ffmpeg -y -t 0:10 -i " + url + " " + filePath;
+        // 覆盖模式 持续60秒 来源 输出目录
+        String command = "ffmpeg -y -t 60 -i " + url + " " + filePath;
         // 执行命令
         ProcessBuilder builder = new ProcessBuilder();
         builder.command(command.split(" "));
