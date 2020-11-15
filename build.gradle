@@ -2,12 +2,18 @@ plugins {
     id 'java'
 }
 
+allprojects {
+    repositories {
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    }
+}
+
 group 'com.ywy'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
-
 repositories {
+    maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
     mavenCentral()
 }
 
@@ -29,6 +35,8 @@ dependencies {
     compile 'com.netflix.hystrix:hystrix-core:1.5.11'
 
     compile 'com.qiniu:qiniu-java-sdk:7.3.0'
+
+    compile 'com.typesafe.akka:akka-actor_2.11:2.4.7'
 
 
 }
