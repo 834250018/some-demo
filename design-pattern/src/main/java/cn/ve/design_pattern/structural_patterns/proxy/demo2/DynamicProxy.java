@@ -17,8 +17,7 @@ public class DynamicProxy implements InvocationHandler {
         this.targetObj = targetObj;
     }
 
-    @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+    @Override public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("动态代理执行之前:" + method.getName());
         Object result = method.invoke(targetObj, args);
         System.out.println("执行完之后增加业务逻辑");

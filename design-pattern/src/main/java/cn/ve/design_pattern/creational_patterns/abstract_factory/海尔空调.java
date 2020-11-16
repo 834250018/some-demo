@@ -6,6 +6,6 @@ package cn.ve.design_pattern.creational_patterns.abstract_factory;
  */
 public class 海尔空调 implements 空调 {
     public void 制冷() {
-        
+
     }
 }

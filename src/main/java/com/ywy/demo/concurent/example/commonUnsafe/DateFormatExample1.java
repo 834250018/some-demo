@@ -14,9 +14,7 @@ import java.util.concurrent.Semaphore;
  * @author ve
  * @date 2020/3/12 19:19
  */
-@ThreadNotSafe
-@Slf4j
-public class DateFormatExample1 {
+@ThreadNotSafe @Slf4j public class DateFormatExample1 {
 
     // 请求总数
     public static int clientTotal = 5000;
@@ -44,7 +42,7 @@ public class DateFormatExample1 {
         }
         countDownLatch.await();
         executorService.shutdown();
-//        log.info("count:{}" + count);
+        //        log.info("count:{}" + count);
     }
 
     private static void format() throws ParseException {

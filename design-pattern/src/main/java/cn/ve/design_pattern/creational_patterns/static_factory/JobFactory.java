@@ -2,6 +2,7 @@ package cn.ve.design_pattern.creational_patterns.static_factory;
 
 /**
  * 通过硬性编码直接比对入参是否符合特定字符串,然后返回具体的工作
+ *
  * @author ve
  * @date 2020/4/30 22:46
  */

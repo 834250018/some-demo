@@ -8,8 +8,7 @@ import java.math.BigDecimal;
  * @author ve
  * @date 2019/7/3 15:40
  */
-@Slf4j
-public class FloatTest {
+@Slf4j public class FloatTest {
     public static void main(String[] args) {
         float f1 = 1.0f - 0.9f;
         float f2 = 0.9f - 0.8f;

@@ -14,8 +14,7 @@ import java.util.stream.Stream;
  * @author ve
  * @date 2020/3/2 13:27
  */
-@Slf4j
-public class OrderDemo {
+@Slf4j public class OrderDemo {
     public static void main(String[] args) {
 
         // Comparable类型的自然排序,整数从小到大,字符串字典顺序
@@ -26,8 +25,7 @@ public class OrderDemo {
         Ordering<Object> arbitraryOrdering = Ordering.arbitrary();
 
         Ordering<String> byLengthOrdering = new Ordering<String>() {
-            @Override
-            public int compare(@Nullable String left, @Nullable String right) {
+            @Override public int compare(@Nullable String left, @Nullable String right) {
                 return Ints.compare(left.length(), right.length());
             }
         };
@@ -45,22 +43,18 @@ public class OrderDemo {
 
         // 空值前置
         List<String> list2 = Stream.of("a", "bb", null, "ccc", "dddd", "eeeee", "ff").collect(Collectors.toList());
-        log.info("naturalOrdering.nullsFirst: " + naturalOrdering.nullsFirst().sortedCopy(list2)); // [null, a, bb, ccc, dddd, eeeee, ff]
-
+        log.info("naturalOrdering.nullsFirst: " + naturalOrdering.nullsFirst()
+            .sortedCopy(list2)); // [null, a, bb, ccc, dddd, eeeee, ff]
 
         // 先年龄,后名字
         Ordering<User> byNameAndAge = new Ordering<User>() {
-            @Override
-            public int compare(@Nullable User left, @Nullable User right) {
+            @Override public int compare(@Nullable User left, @Nullable User right) {
                 return left.getAge() - right.getAge();
             }
         };
-        List<User> users = Stream.of(
-                new User(20, "欧阳娜娜"),
-                new User(20, "张三"),
-                new User(21, "aaaaaaa"),
-                new User(21, "b")
-        ).collect(Collectors.toList());
+        List<User> users =
+            Stream.of(new User(20, "欧阳娜娜"), new User(20, "张三"), new User(21, "aaaaaaa"), new User(21, "b"))
+                .collect(Collectors.toList());
         // compound多级排序,类似于管道
         log.info("compound: " + byNameAndAge.compound(Comparator.comparing((User::getName))).sortedCopy(users));
 
@@ -68,8 +62,8 @@ public class OrderDemo {
         log.info("greatestOf: " + byNameAndAge.greatestOf(users, 2)); // 返回排序中最大的2个元素
         log.info("leastOf: " + byNameAndAge.leastOf(users, 4)); // 返回排序中最小的4个元素
 
-
-        log.info("onResultOf: " + Ordering.natural().onResultOf(User::getName).sortedCopy(users)); // 依据对象里面的某个属性(如getName)进行自然排序
+        log.info("onResultOf: " + Ordering.natural().onResultOf(User::getName)
+            .sortedCopy(users)); // 依据对象里面的某个属性(如getName)进行自然排序
 
     }
 }

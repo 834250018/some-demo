@@ -13,19 +13,14 @@ import java.util.concurrent.locks.StampedLock;
  * @author ve
  * @date 2020/3/13 16:32
  */
-@Slf4j
-@ThreadSafe
-public class LockExample5 {
-
-    // 请求总数
-    public static int clientTotal = 5000;
-
-    // 同时并发请求数
-    public static int threadTotal = 200;
-
-    public static int count = 0;
+@Slf4j @ThreadSafe public class LockExample5 {
 
     private final static StampedLock lock = new StampedLock();
+    // 请求总数
+    public static int clientTotal = 5000;
+    // 同时并发请求数
+    public static int threadTotal = 200;
+    public static int count = 0;
 
     public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newCachedThreadPool();

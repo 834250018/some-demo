@@ -9,8 +9,7 @@ import java.util.Vector;
  * @author ve
  * @date 2020/3/13 12:01
  */
-@Slf4j
-public class VectorExample3 {
+@Slf4j public class VectorExample3 {
 
     private static Vector<Integer> vector = new Vector<>();
 
@@ -28,7 +27,7 @@ public class VectorExample3 {
             Integer i = iterator.next();
             if (i.equals(3) || i.equals(4)) {
                 iterator.remove(); // right result
-//                v1.remove(i); // ConcurrentModificationException
+                //                v1.remove(i); // ConcurrentModificationException
             }
         }
         log.info("" + v1);
@@ -50,9 +49,9 @@ public class VectorExample3 {
         vector.add(3);
         vector.add(4);
         vector.add(5);
-//        test1(vector); // ConcurrentModificationException
+        //        test1(vector); // ConcurrentModificationException
         test2(vector); // right result or ConcurrentModificationException
-//        test3(vector); // error result
+        //        test3(vector); // error result
     }
 
 }

@@ -25,8 +25,7 @@ import java.util.Random;
  * @author ve
  * @date 2020/2/17 16:04
  */
-@Slf4j
-public class CertificateDemo1 {
+@Slf4j public class CertificateDemo1 {
 
     public static final String BEGIN_CERT = "-----BEGIN CERTIFICATE-----";
     public static final String END_CERT = "-----END CERTIFICATE-----";
@@ -54,7 +53,8 @@ public class CertificateDemo1 {
         CertAndKeyGen cak = new CertAndKeyGen("RSA", "SHA256withRSA", null);
         cak.setRandom(new SecureRandom());
         cak.generate(1024);
-        X509Certificate x509Certificate = cak.getSelfCertificate(new X500Name("aa", "bb", "cc", "dd", "ee", "ff"), 50 * 365 * 24 * 60 * 60L);
+        X509Certificate x509Certificate =
+            cak.getSelfCertificate(new X500Name("aa", "bb", "cc", "dd", "ee", "ff"), 50 * 365 * 24 * 60 * 60L);
         saveCRT(x509Certificate, "d://rootCa.crt");
         saveCER(x509Certificate, "d://rootCa.cer");
         savePEM(x509Certificate, "d://rootCa.pem");
@@ -104,11 +104,13 @@ public class CertificateDemo1 {
         // 自签名证书:3.颁发证书
 
         // 设置有效期
-        CertificateValidity certificateValidity = new CertificateValidity(new Date(), new Date(new Date().getTime() + 100 * 365 * 24 * 60 * 60 * 1000L));
+        CertificateValidity certificateValidity =
+            new CertificateValidity(new Date(), new Date(new Date().getTime() + 100 * 365 * 24 * 60 * 60 * 1000L));
         // 设置证书信息
         X509CertInfo x509CertInfo = new X509CertInfo();
         x509CertInfo.set(X509CertInfo.VERSION, new CertificateVersion(CertificateVersion.V3));
-        x509CertInfo.set(X509CertInfo.SERIAL_NUMBER, new CertificateSerialNumber((new Random()).nextInt() & 2147483647));
+        x509CertInfo
+            .set(X509CertInfo.SERIAL_NUMBER, new CertificateSerialNumber((new Random()).nextInt() & 2147483647));
         AlgorithmId algorithmId = AlgorithmId.get("SHA256withRSA");
         x509CertInfo.set(X509CertInfo.ALGORITHM_ID, new CertificateAlgorithmId(algorithmId));
         x509CertInfo.set(X509CertInfo.SUBJECT, x500Name);
@@ -137,7 +139,8 @@ public class CertificateDemo1 {
      * @param filepath   输出文件
      * @throws Exception
      */
-    private static void saveKeyStore(String type, String alias, PrivateKey privateKey, String certPass, String storePwd, X509Certificate[] certChain, String filepath) throws Exception {
+    private static void saveKeyStore(String type, String alias, PrivateKey privateKey, String certPass, String storePwd,
+        X509Certificate[] certChain, String filepath) throws Exception {
         if (storePwd == null) {
             storePwd = "";
         }
@@ -189,7 +192,7 @@ public class CertificateDemo1 {
         }
         String alias = getFirstAlias(keyStore);
 
-        PrivateKey privateKey = (PrivateKey) keyStore.getKey(alias, certPass.toCharArray());
+        PrivateKey privateKey = (PrivateKey)keyStore.getKey(alias, certPass.toCharArray());
         return privateKey;
     }
 
@@ -208,7 +211,7 @@ public class CertificateDemo1 {
         Enumeration aliases = keyStore.aliases();
         String alias = null;
         if (aliases.hasMoreElements()) {
-            alias = (String) aliases.nextElement();
+            alias = (String)aliases.nextElement();
         }
         return alias;
     }
@@ -225,10 +228,8 @@ public class CertificateDemo1 {
      * @return
      * @throws Exception
      */
-    public static PKCS10 generatePKCS10(String cn, String ou,
-                                        String o, String location,
-                                        String state, String country,
-                                        PublicKey publicKey, PrivateKey privateKey) throws Exception {
+    public static PKCS10 generatePKCS10(String cn, String ou, String o, String location, String state, String country,
+        PublicKey publicKey, PrivateKey privateKey) throws Exception {
         PKCS10 pkcs10 = new PKCS10(publicKey);
         Signature signature = Signature.getInstance("SHA256withRSA");
         signature.initSign(privateKey);
@@ -237,10 +238,8 @@ public class CertificateDemo1 {
         return pkcs10;
     }
 
-    public static byte[] generatePKCS10Bytes(String cn, String ou,
-                                             String o, String location,
-                                             String state, String country,
-                                             PublicKey publicKey, PrivateKey privateKey) throws Exception {
+    public static byte[] generatePKCS10Bytes(String cn, String ou, String o, String location, String state,
+        String country, PublicKey publicKey, PrivateKey privateKey) throws Exception {
         PKCS10 pkcs10 = new PKCS10(publicKey);
         Signature signature = Signature.getInstance("SHA256withRSA");
         signature.initSign(privateKey);
@@ -258,11 +257,10 @@ public class CertificateDemo1 {
 
     public static X509Certificate getCert(String filepath) throws Exception {
         CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
-        X509Certificate cert = (X509Certificate) certificateFactory.generateCertificate(new FileInputStream(filepath));
-//      获取公钥
-//        PublicKey publicKey = cert.getPublicKey();
+        X509Certificate cert = (X509Certificate)certificateFactory.generateCertificate(new FileInputStream(filepath));
+        //      获取公钥
+        //        PublicKey publicKey = cert.getPublicKey();
         return cert;
-
 
     }
 

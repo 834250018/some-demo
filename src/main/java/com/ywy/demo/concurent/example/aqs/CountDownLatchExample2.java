@@ -11,8 +11,7 @@ import java.util.concurrent.TimeUnit;
  * @author ve
  * @date 2020/3/13 14:39
  */
-@Slf4j
-public class CountDownLatchExample2 {
+@Slf4j public class CountDownLatchExample2 {
     private final static int threadCount = 200;
 
     public static void main(String[] args) throws InterruptedException {
@@ -40,7 +39,7 @@ public class CountDownLatchExample2 {
     public static void test(int threadNum) throws Exception {
         Thread.sleep(100);
         log.info("{}" + threadNum);
-//        Thread.sleep(100);
+        //        Thread.sleep(100);
     }
 
 }

@@ -11,8 +11,7 @@ import java.util.concurrent.Semaphore;
  * @author ve
  * @date 2020/3/12 19:19
  */
-@Slf4j
-public class ConcurrencyTest {
+@Slf4j public class ConcurrencyTest {
 
     // 请求总数
     public static int clientTotal = 5000;

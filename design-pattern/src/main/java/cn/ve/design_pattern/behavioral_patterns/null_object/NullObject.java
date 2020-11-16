@@ -5,8 +5,7 @@ package cn.ve.design_pattern.behavioral_patterns.null_object;
  * @date 2020/5/2 10:53
  */
 public class NullObject implements IBook {
-    @Override
-    public void show() {
+    @Override public void show() {
         // do nothing
     }
 }

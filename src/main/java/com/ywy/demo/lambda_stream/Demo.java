@@ -9,14 +9,12 @@ import java.util.Comparator;
  * @author ve
  * @date 2020/3/11 11:26
  */
-@Slf4j
-public class Demo {
+@Slf4j public class Demo {
     public static void main(String[] args) {
 
         // 匿名内部类写法
         test(new Interf() {
-            @Override
-            public void lambda(String a, Integer b) {
+            @Override public void lambda(String a, Integer b) {
                 log.info("1");
             }
         });
@@ -24,7 +22,6 @@ public class Demo {
         // 当且仅当参数为一个的时候,可以省略圆括号
         // 当且仅当代码块中仅有一行代码的时候,可以省略花括号
         test((a, b) -> log.info("i3"));
-
 
         test2();
 
@@ -53,22 +50,22 @@ public class Demo {
         // 可以使用
         list.get(0).userTest();
         list.get(0).peopleTest();
-//        list.get(0).gUserTest(); // 编译错误,父类不能使用子类方法
+        //        list.get(0).gUserTest(); // 编译错误,父类不能使用子类方法
         // 不可以存任何类型
-//        list.add(new User());
-//        list.add(new People());
-//        list.add(new GeneralUser());
+        //        list.add(new User());
+        //        list.add(new People());
+        //        list.add(new GeneralUser());
 
         // 下界
         ArrayList<? super User> list2 = new ArrayList<>();
         // 可以存子类,但是不确定会向上转成什么类型,可能是User,People,Object任意一种
         list2.add(new User());
         list2.add(new GeneralUser());
-//        list2.add(new People());// 编译错误,不能确定是哪种父类,所以不能添加父类
+        //        list2.add(new People());// 编译错误,不能确定是哪种父类,所以不能添加父类
         // 编译错误
-//        list2.get(0).userTest();
-//        list2.get(0).peopleTest();
-//        list2.get(0).gUserTest();
+        //        list2.get(0).userTest();
+        //        list2.get(0).peopleTest();
+        //        list2.get(0).gUserTest();
     }
 
     public static void test(Interf interf) {

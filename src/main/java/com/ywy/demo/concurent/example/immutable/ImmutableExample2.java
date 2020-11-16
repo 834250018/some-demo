@@ -13,9 +13,7 @@ import java.util.Map;
  * @author ve
  * @date 2020/3/12 22:28
  */
-@ThreadSafe
-@Slf4j
-public class ImmutableExample2 {
+@ThreadSafe @Slf4j public class ImmutableExample2 {
 
     private static Map<Integer, Integer> map;
 
@@ -25,11 +23,11 @@ public class ImmutableExample2 {
         map.put(3, 4);
         map.put(5, 6);
         map = Collections.unmodifiableMap(map);
-//        map.put(5, 6); UnsupportedOperationException
+        //        map.put(5, 6); UnsupportedOperationException
     }
 
     public static void main(String[] args) {
-//        Collections.unmodifiableXXX
+        //        Collections.unmodifiableXXX
         // java
         Collections.unmodifiableCollection(new HashSet<>());
         // guava

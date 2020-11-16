@@ -11,8 +11,7 @@ import java.security.*;
  * @author ve
  * @date 2020/2/17 14:44
  */
-@Slf4j
-public class AsymetricEncryptionDemo {
+@Slf4j public class AsymetricEncryptionDemo {
     /** todo
      * RSA
      * EC
@@ -29,7 +28,6 @@ public class AsymetricEncryptionDemo {
      * 密钥长度，用来初始化
      */
     private static final int KEYSIZE = 1024;
-
 
     public static byte[] encrypt(byte[] bytes, Key key) throws Exception {
         Cipher cipher = Cipher.getInstance(ALGORITHM);

@@ -9,9 +9,7 @@ import java.util.Arrays;
  * @author ve
  * @date 2020/3/12 21:24
  */
-@ThreadNotSafe
-@Slf4j
-public class UnsafePublish {
+@ThreadNotSafe @Slf4j public class UnsafePublish {
     private String[] states = {"a", "b", "c"};
 
     public static void main(String[] args) {

@@ -9,8 +9,7 @@ import java.util.Map;
  * @author ve
  * @date 2020/3/12 22:28
  */
-@Slf4j
-public class ImmutableExample1 {
+@Slf4j public class ImmutableExample1 {
 
     private final static Integer a = 1;
     private final static String b = "2";
@@ -23,14 +22,14 @@ public class ImmutableExample1 {
     }
 
     public static void main(String[] args) {
-//        a = 3;
-//        b = "bb";
-//        map = Maps.newHashMap();
+        //        a = 3;
+        //        b = "bb";
+        //        map = Maps.newHashMap();
         map.put(1, 3);
         log.info("{}", map.get(1));
     }
 
     private void test(final int a) {
-//        a = 1;
+        //        a = 1;
     }
 }

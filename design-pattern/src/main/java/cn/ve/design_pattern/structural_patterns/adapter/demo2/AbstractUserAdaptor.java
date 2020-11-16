@@ -8,8 +8,7 @@ package cn.ve.design_pattern.structural_patterns.adapter.demo2;
  * @date 2020/5/1 14:05
  */
 public abstract class AbstractUserAdaptor implements IUser {
-    @Override
-    public void registry(String username, String password) {
+    @Override public void registry(String username, String password) {
         newRegistry(username, password, "默认地址", 18, 0);
     }
 

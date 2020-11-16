@@ -6,8 +6,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author ve
  * @date 2019/7/3 22:17
  */
-@Slf4j
-public class SwitchTest {
+@Slf4j public class SwitchTest {
     public static void main(String[] args) {
         method(null); // NPE
     }

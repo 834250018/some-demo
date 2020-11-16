@@ -12,11 +12,11 @@ public class PropsDemoActor extends UntypedActor {
         return Props.create((Creator<Actor>)PropsDemoActor::new);
     }
 
-    @Override public void onReceive(Object message) throws Exception {
-
-    }
-
     public static void main(String[] args) {
         ActorRef actorRef = ActorSystem.create().actorOf(PropsDemoActor.createProps());
+    }
+
+    @Override public void onReceive(Object message) throws Exception {
+
     }
 }

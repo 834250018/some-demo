@@ -8,8 +8,7 @@ public class Kourou implements Command {
 
     private Paoding1 paoding1 = new Paoding1();
 
-    @Override
-    public void call() {
+    @Override public void call() {
         paoding1.action();
     }
 }

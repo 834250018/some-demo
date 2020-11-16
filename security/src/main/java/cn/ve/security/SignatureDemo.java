@@ -13,8 +13,7 @@ import java.util.Arrays;
  * @author ve
  * @date 2020/2/17 15:19
  */
-@Slf4j
-public class SignatureDemo {
+@Slf4j public class SignatureDemo {
 
     // todo Ed25519, Ed448
 

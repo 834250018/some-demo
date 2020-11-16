@@ -10,18 +10,6 @@ import akka.actor.UntypedActor;
  * @date 2020/11/15 16:26
  */
 public class ActorDemo extends UntypedActor {
-    @Override public void onReceive(Object message) throws Exception {
-        if (message instanceof String) {
-            // 通过context创建子actor
-            ActorRef actorRef = getContext().actorOf(Props.create(ChildActor.class));
-            System.out.println(message);
-            System.out.println("发送者是:" + getSender());
-            getSender().tell("copy that", getSelf());
-        } else {
-            unhandled(message);
-        }
-    }
-
     public static void main(String[] args) {
 
         // exception
@@ -38,6 +26,18 @@ public class ActorDemo extends UntypedActor {
         Props.create(ActorDemo.class);
         Props.create(ActorDemo.class);
 
+    }
+
+    @Override public void onReceive(Object message) throws Exception {
+        if (message instanceof String) {
+            // 通过context创建子actor
+            ActorRef actorRef = getContext().actorOf(Props.create(ChildActor.class));
+            System.out.println(message);
+            System.out.println("发送者是:" + getSender());
+            getSender().tell("copy that", getSelf());
+        } else {
+            unhandled(message);
+        }
     }
 
 }

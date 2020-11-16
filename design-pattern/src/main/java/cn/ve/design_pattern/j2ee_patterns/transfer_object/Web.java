@@ -24,5 +24,4 @@ public class Web {
         return new UserCreateVO(user.getId());
     }
 
-
 }

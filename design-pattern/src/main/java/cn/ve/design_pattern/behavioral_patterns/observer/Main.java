@@ -2,6 +2,7 @@ package cn.ve.design_pattern.behavioral_patterns.observer;
 
 /**
  * 这里用一个模拟数据源表示被观察者,用一个展示牌表示观察者
+ *
  * @author ve
  * @date 2020/5/2 17:38
  */

@@ -9,10 +9,12 @@ import java.lang.reflect.Proxy;
 public class Main {
     public static void main(String[] args) {
 
-        Auction dynamicProxy = (Auction) Proxy.newProxyInstance(
-                Auction.class.getClassLoader(),
-                new Class[]{Auction.class},
+        Auction dynamicProxy = (Auction)Proxy
+            .newProxyInstance(Auction.class.getClassLoader(), new Class[] {Auction.class},
                 new DynamicProxy(new Human()));
         dynamicProxy.doSomething();
+
+        Auction o = (Auction)Proxy.newProxyInstance(Auction.class.getClassLoader(), new Class[] {Auction.class},
+            new DynamicProxy(new Human()));
     }
 }

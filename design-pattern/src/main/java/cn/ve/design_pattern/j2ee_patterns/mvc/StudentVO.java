@@ -19,10 +19,7 @@ public class StudentVO {
         this.stuNo = stuNo;
     }
 
-    @Override
-    public String toString() {
-        return "StudentVO{" +
-                "stuNo='" + stuNo + '\'' +
-                '}';
+    @Override public String toString() {
+        return "StudentVO{" + "stuNo='" + stuNo + '\'' + '}';
     }
 }

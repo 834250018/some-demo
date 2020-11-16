@@ -17,14 +17,12 @@ public class MyErrorHashSet extends HashSet {
         return addCount;
     }
 
-    @Override
-    public boolean add(Object o) {
+    @Override public boolean add(Object o) {
         addCount++;
         return super.add(o);
     }
 
-    @Override
-    public boolean addAll(Collection c) {
+    @Override public boolean addAll(Collection c) {
         addCount += c.size();
         return super.addAll(c);
     }

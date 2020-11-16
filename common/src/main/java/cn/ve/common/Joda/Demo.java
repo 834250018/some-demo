@@ -8,13 +8,12 @@ import org.joda.time.format.ISODateTimeFormat;
  * @author ve
  * @date 2020/3/2 0:56
  */
-@Slf4j
-public class Demo {
+@Slf4j public class Demo {
     public static void main(String[] args) {
         // 创建某个特定日期的时间2020/3/2 01:02
         DateTime dateTime = new DateTime(2020, 3, 2, 1, 2);
         log.info("{}", dateTime.getMillis());
-//        log.info(System.currentTimeMillis());
+        //        log.info(System.currentTimeMillis());
         log.info("{}", dateTime);
         // 当前时间的毫秒值
         log.info("当前时间的毫秒值: " + new DateTime().getMillis());

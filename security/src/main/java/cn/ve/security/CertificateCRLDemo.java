@@ -29,12 +29,9 @@ import java.util.Date;
 public class CertificateCRLDemo {
     public static void main(String[] args) throws Exception {
         String dirName = new sun.security.x509.X500Name("aa", "bb", "cc", "dd", "ee", "ff").getName();
-        genV2CRL(
-                new BigInteger[]{new BigInteger("1994359749")},
-                new Date[]{new Date()},
-                new int[]{CRLReason.affiliationChanged},
-                dirName, AsymetricEncryptionDemo.generateKeyPair().getPrivate(),
-                "d://result.crl");
+        genV2CRL(new BigInteger[] {new BigInteger("1994359749")}, new Date[] {new Date()},
+            new int[] {CRLReason.affiliationChanged}, dirName, AsymetricEncryptionDemo.generateKeyPair().getPrivate(),
+            "d://result.crl");
     }
 
     /**
@@ -48,7 +45,7 @@ public class CertificateCRLDemo {
      * @throws Exception
      */
     public static CertificateList genV2CRL(BigInteger[] revokedCerts, Date[] revokedDates, int[] crlReasons,
-                                           String dirName, PrivateKey privateKey, String outputPath) throws Exception {
+        String dirName, PrivateKey privateKey, String outputPath) throws Exception {
         Security.addProvider(new BouncyCastleProvider());
         X509v2CRLBuilder builder = new X509v2CRLBuilder(new X500Name(dirName), new Date());
 
@@ -56,24 +53,21 @@ public class CertificateCRLDemo {
             builder.addCRLEntry(revokedCerts[i], revokedDates[i], crlReasons[i]);
 
         }
-        BcRSAContentSignerBuilder bcRSAContentSignerBuilder = new BcRSAContentSignerBuilder(
-                new DefaultSignatureAlgorithmIdentifierFinder().find("SHA256withRSA"),
+        BcRSAContentSignerBuilder bcRSAContentSignerBuilder =
+            new BcRSAContentSignerBuilder(new DefaultSignatureAlgorithmIdentifierFinder().find("SHA256withRSA"),
                 new DefaultDigestAlgorithmIdentifierFinder().find("SHA256"));
         bcRSAContentSignerBuilder.setSecureRandom(new SecureRandom());
         // 此处使用的私钥必须是ca的私钥
         AsymmetricKeyParameter foo = PrivateKeyFactory.createKey(privateKey.getEncoded());
 
         ContentSigner signer = bcRSAContentSignerBuilder.build(foo);
-        X509CRLHolder x509CRLHolder = builder.build(
-                signer
-        );
+        X509CRLHolder x509CRLHolder = builder.build(signer);
         byte[] bytes = x509CRLHolder.getEncoded();
         FileOutputStream fos = new FileOutputStream(outputPath);
         fos.write(bytes);
         fos.close();
 
-
-//        return (X509CRL) crl;
+        //        return (X509CRL) crl;
 
         return x509CRLHolder.toASN1Structure();
     }

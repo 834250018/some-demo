@@ -8,8 +8,7 @@ public class Jiding implements Command {
 
     private Paoding2 paoding2 = new Paoding2();
 
-    @Override
-    public void call() {
+    @Override public void call() {
         paoding2.action();
     }
 }

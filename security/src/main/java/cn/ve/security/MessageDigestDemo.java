@@ -14,8 +14,7 @@ import java.security.MessageDigest;
  * @author ve
  * @date 2020/2/17 13:56
  */
-@Slf4j
-public class MessageDigestDemo {
+@Slf4j public class MessageDigestDemo {
 
     /**
      * sha3

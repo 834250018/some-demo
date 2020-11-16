@@ -20,25 +20,22 @@ public class AMan implements State {
 
     /**
      * 从语境来说,下面这几个方法都不需要入参,我这里这样写是贪快,后续要调整
+     *
      * @param aMan
      */
-    @Override
-    public void costAllMoney(AMan aMan) {
+    @Override public void costAllMoney(AMan aMan) {
         state.costAllMoney(this);
     }
 
-    @Override
-    public void costLittleMoney(AMan aMan) {
+    @Override public void costLittleMoney(AMan aMan) {
         state.costLittleMoney(this);
     }
 
-    @Override
-    public void earnLostOfMoney(AMan aMan) {
+    @Override public void earnLostOfMoney(AMan aMan) {
         state.earnLostOfMoney(this);
     }
 
-    @Override
-    public void earnLittleMoney(AMan aMan) {
+    @Override public void earnLittleMoney(AMan aMan) {
         state.earnLittleMoney(this);
     }
 }

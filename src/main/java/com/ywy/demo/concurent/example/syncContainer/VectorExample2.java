@@ -8,8 +8,7 @@ import java.util.Vector;
  * @author ve
  * @date 2020/3/13 12:01
  */
-@ThreadNotSafe
-public class VectorExample2 {
+@ThreadNotSafe public class VectorExample2 {
 
     // 请求总数
     public static int clientTotal = 5000;

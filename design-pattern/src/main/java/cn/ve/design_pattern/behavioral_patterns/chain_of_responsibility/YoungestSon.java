@@ -12,13 +12,11 @@ public class YoungestSon extends MoneyResponsibility {
         super(level);
     }
 
-    @Override
-    protected void takeMoney() {
+    @Override protected void takeMoney() {
         System.out.println("小儿子掏出了钱");
     }
 
-    @Override
-    protected void noMoney() {
+    @Override protected void noMoney() {
         System.out.println("小儿子掏不出钱");
     }
 }

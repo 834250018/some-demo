@@ -9,8 +9,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author ve
  * @date 2020/3/2 21:17
  */
-@Slf4j
-public class ImmutableCollections {
+@Slf4j public class ImmutableCollections {
     public static void main(String[] args) {
         log.info("");
         ImmutableList.of("abc");

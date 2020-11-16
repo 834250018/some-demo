@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         ElectricSource electricSource = new ElectricSource();// 创建一个电源
         PS4 ps4 = new PS4(); // 创建一个两针插头的ps4
-//        electricSource.powerSupply(ps4); // 无法供电
+        //        electricSource.powerSupply(ps4); // 无法供电
 
         // 增加一个适配器
         ThreePinAdaptor threePinAdaptor = new ThreePinAdaptor();

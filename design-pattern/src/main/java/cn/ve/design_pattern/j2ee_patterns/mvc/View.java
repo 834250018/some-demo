@@ -15,8 +15,7 @@ public class View {
         this.studentVO = studentVO;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         return studentVO.toString();
     }
 }

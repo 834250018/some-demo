@@ -8,10 +8,9 @@ import lombok.extern.slf4j.Slf4j;
  * @author ve
  * @date 2019/6/19 13:27
  */
-@Slf4j
-public class SortDemo {
+@Slf4j public class SortDemo {
     public static void main(String[] args) {
-        int[] arr = new int[]{5, 7, 9, 2, 5, 4, 3, 6};
+        int[] arr = new int[] {5, 7, 9, 2, 5, 4, 3, 6};
         quickSort(arr, 0, arr.length - 1);
         log.info("");
     }

@@ -6,6 +6,8 @@ package cn.ve.design_pattern.behavioral_patterns.observer;
  */
 public interface Subject {
     void registerObserver(Observer observer);
+
     void removeObserver(Observer observer);
+
     void notifyObserver();
 }

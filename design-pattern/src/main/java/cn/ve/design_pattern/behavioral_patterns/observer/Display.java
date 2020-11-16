@@ -13,8 +13,7 @@ public class Display implements Observer {
         subject.registerObserver(this);
     }
 
-    @Override
-    public void update() {
+    @Override public void update() {
         System.out.println("收到订阅消息");
         System.out.println("拉取最新数据: " + subject);
     }

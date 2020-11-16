@@ -24,6 +24,9 @@ import java.security.cert.Certificate;
  */
 @Data @AllArgsConstructor public class MyExternalSignatureContainer implements ExternalSignatureContainer {
 
+    private final static String PROVIDER = "BC";
+    private final static String SIG_ALGORITHM = "RSA";
+    private final static String DIGEST_ALGORITHM = "SHA256";
     /**
      * 私钥
      */
@@ -32,9 +35,6 @@ import java.security.cert.Certificate;
      * 证书链
      */
     protected Certificate[] chain;
-    private final static String PROVIDER = "BC";
-    private final static String SIG_ALGORITHM = "RSA";
-    private final static String DIGEST_ALGORITHM = "SHA256";
 
     /**
      * @param data 要签名的数据,比如pdf,会截取一段摘要

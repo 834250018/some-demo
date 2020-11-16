@@ -17,14 +17,14 @@ import java.util.Random;
  * @author ve
  * @date 2020/2/18 11:56
  */
-@Slf4j
-public class CertificateDemo2 {
+@Slf4j public class CertificateDemo2 {
 
     public static void main(String[] args) throws Exception {
         // 生成用户自己的非对称密钥对
         KeyPair keyPair = AsymetricEncryptionDemo.generateKeyPair();
         // 生成csr
-        PKCS10 pkcs10 = CertificateDemo1.generatePKCS10("ve", "ve", "ve", "ve", "ve", "ve", keyPair.getPublic(), keyPair.getPrivate());
+        PKCS10 pkcs10 = CertificateDemo1
+            .generatePKCS10("ve", "ve", "ve", "ve", "ve", "ve", keyPair.getPublic(), keyPair.getPrivate());
         // 获取ca的私钥跟证书(即demo1中生成的自签名证书)
         KeyStore keyStore = CertificateDemo1.getKeyStore("pkcs12", "", "d://3.pfx");
         PrivateKey caPrivateKey = CertificateDemo1.getCertPrivateKeyByFirstAlias(keyStore, null);
@@ -33,17 +33,19 @@ public class CertificateDemo2 {
         // 自签名证书:3.颁发证书
 
         // 设置有效期
-        CertificateValidity certificateValidity = new CertificateValidity(new Date(), new Date(new Date().getTime() + 365 * 24 * 60 * 60 * 1000L));
+        CertificateValidity certificateValidity =
+            new CertificateValidity(new Date(), new Date(new Date().getTime() + 365 * 24 * 60 * 60 * 1000L));
         // 设置证书信息
         X509CertInfo x509CertInfo = new X509CertInfo();
         x509CertInfo.set(X509CertInfo.VERSION, new CertificateVersion(CertificateVersion.V3));
-        x509CertInfo.set(X509CertInfo.SERIAL_NUMBER, new CertificateSerialNumber((new Random()).nextInt() & 2147483647));
+        x509CertInfo
+            .set(X509CertInfo.SERIAL_NUMBER, new CertificateSerialNumber((new Random()).nextInt() & 2147483647));
         AlgorithmId algorithmId = AlgorithmId.get("SHA256withRSA");
         x509CertInfo.set(X509CertInfo.ALGORITHM_ID, new CertificateAlgorithmId(algorithmId));
         x509CertInfo.set(X509CertInfo.SUBJECT, pkcs10.getSubjectName());
         x509CertInfo.set(X509CertInfo.KEY, new CertificateX509Key(keyPair.getPublic()));
         x509CertInfo.set(X509CertInfo.VALIDITY, certificateValidity);
-        x509CertInfo.set(X509CertInfo.ISSUER, ((X509CertImpl) caCert).getSubjectDN());
+        x509CertInfo.set(X509CertInfo.ISSUER, ((X509CertImpl)caCert).getSubjectDN());
 
         X509CertImpl x509Cert = new X509CertImpl(x509CertInfo);
         // 使用ca私钥对证书信息进行签名(包含摘要跟加密)

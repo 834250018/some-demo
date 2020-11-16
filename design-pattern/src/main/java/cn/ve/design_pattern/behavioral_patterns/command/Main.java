@@ -2,6 +2,7 @@ package cn.ve.design_pattern.behavioral_patterns.command;
 
 /**
  * 命令模式
+ *
  * @author ve
  * @date 2020/5/2 18:04
  */

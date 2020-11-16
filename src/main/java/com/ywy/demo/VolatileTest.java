@@ -2,6 +2,7 @@ package com.ywy.demo;
 
 /**
  * volatile一种使用场景,确保静态变量的可见性
+ *
  * @author ve
  * @date 2020/4/21 15:31
  */

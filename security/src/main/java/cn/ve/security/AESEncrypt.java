@@ -10,8 +10,7 @@ import javax.crypto.spec.SecretKeySpec;
  * @author ve
  * @date 2020/2/20 22:36
  */
-@Slf4j
-public class AESEncrypt {
+@Slf4j public class AESEncrypt {
 
     public static void main(String[] args) {
         String str = "Hello World!";
@@ -51,7 +50,8 @@ public class AESEncrypt {
      * @return
      * @throws Exception
      */
-    public byte[] cryption(int cipherMode, String workMode, byte[] data, String secretKey, String padding) throws Exception {
+    public byte[] cryption(int cipherMode, String workMode, byte[] data, String secretKey, String padding)
+        throws Exception {
         Cipher cipher = Cipher.getInstance("AES/" + workMode + "/PKCS5Padding");
         byte[] raw = secretKey.getBytes();
         SecretKeySpec secretKeySpec = new SecretKeySpec(raw, "AES");
@@ -63,6 +63,5 @@ public class AESEncrypt {
         }
         return cipher.doFinal(data);
     }
-
 
 }

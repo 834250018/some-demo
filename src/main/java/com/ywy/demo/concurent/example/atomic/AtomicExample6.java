@@ -13,9 +13,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @author ve
  * @date 2020/3/12 20:04
  */
-@ThreadSafe
-@Slf4j
-public class AtomicExample6 {
+@ThreadSafe @Slf4j public class AtomicExample6 {
 
     // 请求总数
     public static int clientTotal = 5000;

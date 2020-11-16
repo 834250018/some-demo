@@ -22,11 +22,8 @@ package cn.ve.design_pattern.creational_patterns.builder.demo2;
  */
 public class Main {
     public static void main(String[] args) {
-        User user =
-                new User.UserBuilder(20, "小强") // 两个必选参数
-                        .address("广州") // 三个可选参数
-                        .remark("美男子")
-                        .hometown("澳大利亚")
-                        .build();
+        User user = new User.UserBuilder(20, "小强") // 两个必选参数
+            .address("广州") // 三个可选参数
+            .remark("美男子").hometown("澳大利亚").build();
     }
 }

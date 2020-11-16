@@ -11,8 +11,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author ve
  * @date 2019/7/3 16:24
  */
-@Slf4j
-public class Test1 {
+@Slf4j public class Test1 {
 
     public static void main(String[] args) {
         // 此demo在StackTraceElement.toString找到,部分jar包加了.点号也不会生成链接,暂时没有找到原因

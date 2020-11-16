@@ -2,12 +2,13 @@ package com.ywy.demo;
 
 /**
  * 空间局部性原则
+ *
  * @author ve
  * @date 2020/4/21 15:31
  */
 public class JMMTest {
 
-    public final static int LEN1 = 1024*1024;
+    public final static int LEN1 = 1024 * 1024;
     public final static int LEN2 = 6;
     public static long[][] l1 = new long[LEN1][LEN2];
     public static long[][] l2 = new long[LEN1][LEN2];
@@ -44,7 +45,7 @@ public class JMMTest {
                 }
             }
             long end = System.nanoTime();
-            System.out.println("比较:" + (middle - begin)/1000000 + " : " + (end - middle1)/1000000);
+            System.out.println("比较:" + (middle - begin) / 1000000 + " : " + (end - middle1) / 1000000);
         }
 
     }

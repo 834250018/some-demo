@@ -8,8 +8,7 @@ import java.util.concurrent.FutureTask;
  * @author ve
  * @date 2020/3/13 19:35
  */
-@Slf4j
-public class FutureTaskExample {
+@Slf4j public class FutureTaskExample {
     public static void main(String[] args) throws Exception {
         FutureTask<String> futureTask = new FutureTask<>(() -> {
             log.info("do something in callable");

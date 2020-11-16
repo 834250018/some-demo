@@ -10,8 +10,7 @@ public class ThreePinAdaptor implements ThreePinPlug, TwoPinSocket {
 
     public boolean powerStatus = false; // 为了更形象,增加一个电源通电状态,当插入电源时,则通电
 
-    @Override
-    public void powerSupply(TwoPinPlug twoPinPlug) {
+    @Override public void powerSupply(TwoPinPlug twoPinPlug) {
         if (powerStatus) {
             System.out.println("适配器正在给两针插头的设备供电");
         } else {
@@ -19,8 +18,7 @@ public class ThreePinAdaptor implements ThreePinPlug, TwoPinSocket {
         }
     }
 
-    @Override
-    public void supply() {
+    @Override public void supply() {
         this.powerStatus = true;
     }
 }

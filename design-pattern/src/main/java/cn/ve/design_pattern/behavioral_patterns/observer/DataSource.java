@@ -11,18 +11,15 @@ public class DataSource implements Subject {
     private List<Observer> observers = new ArrayList<>();
     private String data;
 
-    @Override
-    public void registerObserver(Observer observer) {
+    @Override public void registerObserver(Observer observer) {
         observers.add(observer);
     }
 
-    @Override
-    public void removeObserver(Observer observer) {
+    @Override public void removeObserver(Observer observer) {
         observers.remove(observer);
     }
 
-    @Override
-    public void notifyObserver() {
+    @Override public void notifyObserver() {
         for (Observer observer : observers) {
             observer.update();
         }
@@ -44,10 +41,7 @@ public class DataSource implements Subject {
         this.data = data;
     }
 
-    @Override
-    public String toString() {
-        return "DataSource{" +
-                "data='" + data + '\'' +
-                '}';
+    @Override public String toString() {
+        return "DataSource{" + "data='" + data + '\'' + '}';
     }
 }

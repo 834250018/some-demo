@@ -24,16 +24,11 @@ public class User implements Cloneable {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "IUser{" +
-                "age=" + age +
-                ", name='" + name + '\'' +
-                '}';
+    @Override public String toString() {
+        return "IUser{" + "age=" + age + ", name='" + name + '\'' + '}';
     }
 
-    @Override
-    protected Object clone() {
+    @Override protected Object clone() {
         try {
             return super.clone();
         } catch (CloneNotSupportedException e) {

@@ -4,7 +4,7 @@
  * @description
  */
 public class TestRemote {
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         while (true) {
             try {
                 Thread.sleep(1000L);

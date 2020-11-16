@@ -12,9 +12,7 @@ import java.util.concurrent.Semaphore;
  * @author ve
  * @date 2020/3/12 19:19
  */
-@Slf4j
-@ThreadNotSafe
-public class CountExample4 {
+@Slf4j @ThreadNotSafe public class CountExample4 {
 
     // 请求总数
     public static int clientTotal = 5000;

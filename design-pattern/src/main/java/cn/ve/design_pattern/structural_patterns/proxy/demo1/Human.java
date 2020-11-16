@@ -8,8 +8,7 @@ package cn.ve.design_pattern.structural_patterns.proxy.demo1;
  */
 public class Human implements Auction {
 
-    @Override
-    public void doSomething() {
+    @Override public void doSomething() {
         System.out.println("eating");
     }
 

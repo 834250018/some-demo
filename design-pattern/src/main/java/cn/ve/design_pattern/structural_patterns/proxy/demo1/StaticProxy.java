@@ -12,8 +12,7 @@ public class StaticProxy implements Auction {
         this.human = human;
     }
 
-    @Override
-    public void doSomething() {
+    @Override public void doSomething() {
         System.out.println("静态代理");
         human.doSomething();
     }

@@ -11,8 +11,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author ve
  * @date 2019/7/11 14:57
  */
-@Slf4j
-public class Shortcut {
+@Slf4j public class Shortcut {
 
     // ctrl + shift + u 选中并切换大小写
     public static final String ABCDEFG = "abcdefg";
@@ -36,8 +35,7 @@ public class Shortcut {
         // ctrl + alt + l 格式化代码
 
         // ctrl + p 方法参数提示, ctrl + q 当前方法的生命
-//        Proxy.newProxyInstance();
-
+        //        Proxy.newProxyInstance();
 
     }
     // ctrl + o 重写方法

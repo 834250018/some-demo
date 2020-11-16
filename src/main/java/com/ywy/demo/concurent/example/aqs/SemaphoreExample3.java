@@ -10,8 +10,7 @@ import java.util.concurrent.Semaphore;
  * @author ve
  * @date 2020/3/13 14:39
  */
-@Slf4j
-public class SemaphoreExample3 {
+@Slf4j public class SemaphoreExample3 {
     private final static int threadCount = 200;
 
     public static void main(String[] args) {
@@ -23,9 +22,9 @@ public class SemaphoreExample3 {
             final int threadNum = i;
             exec.execute(() -> {
                 try {
-//                    semaphore.tryAcquire(3);// 尝试获取3个许可
-//                    semaphore.tryAcquire(2, TimeUnit.SECONDS);// 尝试获取1个许可,最长等待2秒
-//                    semaphore.tryAcquire(3,2, TimeUnit.SECONDS);// 尝试获取3个许可,最长等待2秒
+                    //                    semaphore.tryAcquire(3);// 尝试获取3个许可
+                    //                    semaphore.tryAcquire(2, TimeUnit.SECONDS);// 尝试获取1个许可,最长等待2秒
+                    //                    semaphore.tryAcquire(3,2, TimeUnit.SECONDS);// 尝试获取3个许可,最长等待2秒
                     if (semaphore.tryAcquire()) { // 尝试获取许可
                         test(threadNum);
                         semaphore.release(); // 释放一个许可
@@ -43,7 +42,7 @@ public class SemaphoreExample3 {
     public static void test(int threadNum) throws Exception {
         Thread.sleep(1000);
         log.info("{}" + threadNum);
-//        Thread.sleep(100);
+        //        Thread.sleep(100);
     }
 
 }

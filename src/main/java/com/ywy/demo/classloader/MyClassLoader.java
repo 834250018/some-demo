@@ -21,8 +21,7 @@ public class MyClassLoader extends ClassLoader {
     public MyClassLoader() {
     }
 
-    @Override
-    protected Class<?> findClass(String name) throws ClassNotFoundException {
+    @Override protected Class<?> findClass(String name) throws ClassNotFoundException {
         File file = getClassFile(name);
         try {
             byte[] bytes = getClassBytes(file);
@@ -37,7 +36,8 @@ public class MyClassLoader extends ClassLoader {
 
     private File getClassFile(String name) {
         // 找到编译路径对应的.class文件
-        File file = new File(ClassLoader.getSystemClassLoader().getResource("").getPath() + name.replaceAll("\\.", "/") + ".class");
+        File file = new File(
+            ClassLoader.getSystemClassLoader().getResource("").getPath() + name.replaceAll("\\.", "/") + ".class");
         return file;
     }
 
@@ -65,13 +65,13 @@ public class MyClassLoader extends ClassLoader {
 
     /**
      * 如果需要打破双亲委托,重写此方法即可
+     *
      * @param name
      * @param resolve
      * @return
      * @throws ClassNotFoundException
      */
-    @Override
-    protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
+    @Override protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
         return super.loadClass(name, resolve);
     }
 }

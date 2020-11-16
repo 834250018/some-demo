@@ -8,6 +8,14 @@ public class User {
     private Integer age;
     private String name;
 
+    public User() {
+    }
+
+    public User(Integer age, String name) {
+        this.age = age;
+        this.name = name;
+    }
+
     public static User.UserBuilder builder() {
         return new User.UserBuilder();
     }
@@ -25,14 +33,6 @@ public class User {
     }
 
     public void setName(String name) {
-        this.name = name;
-    }
-
-    public User() {
-    }
-
-    public User(Integer age, String name) {
-        this.age = age;
         this.name = name;
     }
 

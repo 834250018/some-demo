@@ -11,8 +11,7 @@ import java.util.concurrent.Executors;
  * @author ve
  * @date 2020/3/12 20:29
  */
-@Slf4j
-public class SynchronizedExample1 {
+@Slf4j public class SynchronizedExample1 {
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newCachedThreadPool();
         SynchronizedExample1 example1 = new SynchronizedExample1();
@@ -25,9 +24,7 @@ public class SynchronizedExample1 {
             example2.test1(2);
         });
 
-
         executorService.shutdown();
-
 
     }
 

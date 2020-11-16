@@ -15,9 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author ve
  * @date 2020/3/12 19:19
  */
-@Slf4j
-@ThreadSafe
-public class AtomicExample1 {
+@Slf4j @ThreadSafe public class AtomicExample1 {
 
     // 请求总数
     public static int clientTotal = 5000;
@@ -50,7 +48,7 @@ public class AtomicExample1 {
 
     private static void add() {
         count.incrementAndGet();
-//        count .getAndIncrement();
+        //        count .getAndIncrement();
 
     }
 }

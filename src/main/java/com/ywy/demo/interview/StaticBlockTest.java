@@ -8,7 +8,7 @@ package com.ywy.demo.interview;
  * (2)成员变量的赋值与构造代码块,谁写在上面编译后也在上面
  * (2)源码中的构造函数代码
  * 2.如果静态代码块有多个,被编译成一个并从上往下按顺序执行
- *
+ * <p>
  * 执行顺序有以下几个规则
  * 1.静态代码块先于main函数执行
  * 2.new一个对象
@@ -20,27 +20,26 @@ package com.ywy.demo.interview;
  * @date 2020/5/6
  */
 public class StaticBlockTest extends Parent {
-    Person person = new Person("5");
-
-    public StaticBlockTest() {
-        System.out.println("7");
-    }
-
-    Person person2 = new Person("6");
-
     static {
         System.out.println("2");
         new MyStaticBlockTest1().print();
+    }
+
+    static {
+        System.out.println("9");
+    }
+
+    Person person = new Person("5");
+    Person person2 = new Person("6");
+
+    public StaticBlockTest() {
+        System.out.println("7");
     }
 
     public static void main(String[] args) {
         System.out.println("10");
         MyStaticBlockTest myStaticBlockTest = new MyStaticBlockTest();
         myStaticBlockTest.print();
-    }
-
-    static {
-        System.out.println("9");
     }
 }
 
@@ -72,14 +71,14 @@ class MyStaticBlockTest extends StaticBlockTest {
     {
         System.out.println("12");
     }
-//    private MyStaticBlockTest1 myStaticBlockTest1 = new MyStaticBlockTest1();
-
-    public void print() {
-        System.out.println("14");
-    }
+    //    private MyStaticBlockTest1 myStaticBlockTest1 = new MyStaticBlockTest1();
 
     {
         System.out.println("13");
+    }
+
+    public void print() {
+        System.out.println("14");
     }
 }
 

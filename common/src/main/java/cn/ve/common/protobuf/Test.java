@@ -12,16 +12,11 @@ import java.io.IOException;
  * @author ve
  * @date 2019/12/19 16:30
  */
-@Slf4j
-public class Test {
+@Slf4j public class Test {
     public static void main(String[] args) throws IOException {
         // 创建一个protoBuf-Java规范的Person
-        PersonMsg.Person.Builder personBuilder = PersonMsg.Person.newBuilder()
-                .setId(1)
-                .setName("aa")
-                .setEmail("xx")
-                .addFriends("f")
-                .addFriends("q");
+        PersonMsg.Person.Builder personBuilder =
+            PersonMsg.Person.newBuilder().setId(1).setName("aa").setEmail("xx").addFriends("f").addFriends("q");
         PersonMsg.Person person = personBuilder.build();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         // 转成输出流

@@ -10,8 +10,7 @@ import java.util.concurrent.Executors;
  * @author ve
  * @date 2020/3/13 16:06
  */
-@Slf4j
-public class CyclicBarrierExample1 {
+@Slf4j public class CyclicBarrierExample1 {
 
     private static CyclicBarrier cyclicBarrier = new CyclicBarrier(5);
 
@@ -21,7 +20,7 @@ public class CyclicBarrierExample1 {
         for (int i = 0; i < 10; i++) {
             final int threadNum = i;
             Thread.sleep(1000L);
-            exec.execute(()->{
+            exec.execute(() -> {
                 try {
                     race(threadNum);
                 } catch (Exception e) {
@@ -31,7 +30,8 @@ public class CyclicBarrierExample1 {
         }
         exec.shutdown();
     }
-    private static void race(int threadNum) throws Exception{
+
+    private static void race(int threadNum) throws Exception {
         Thread.sleep(1000L);
         log.info("{} is ready", threadNum);
         cyclicBarrier.await();

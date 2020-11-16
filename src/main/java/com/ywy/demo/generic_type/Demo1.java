@@ -11,16 +11,16 @@ import java.util.Set;
  */
 public class Demo1 {
     public static void main(String[] args) {
-//        List list = new ArrayList();// 不建议使用原生态类型
+        //        List list = new ArrayList();// 不建议使用原生态类型
         List<String> list = new ArrayList(); // ArrayList后面没有尖括号,非受检警告
         List<String> list1 = new ArrayList<>(); // 建议使用泛型,保证类型安全性,编译时发现类型异常
 
         unsafeAdd(list, 12);
 
-//        String str = list.get(0); // ClassCastException
-//        Integer i = list.get(0); // can`t compiler
+        //        String str = list.get(0); // ClassCastException
+        //        Integer i = list.get(0); // can`t compiler
 
-//        unsafeAdd2(list, 12); // can`t compiler 泛型可以传入原生态类型,但是不能向上转型
+        //        unsafeAdd2(list, 12); // can`t compiler 泛型可以传入原生态类型,但是不能向上转型
 
         Set<String> set1 = new HashSet<>();
         set1.add("abc");
@@ -28,7 +28,7 @@ public class Demo1 {
         set2.add(123);
         mergeSet(set1, set2);
         count(set1, set2);
-//        mergeSet2(set1, set2); // can`t compiler
+        //        mergeSet2(set1, set2); // can`t compiler
 
         //
         /* 上界与下界的区别,PECS即(producer-extends与consumer-super),生产者时使用上界通配符,消费者使用下界通配符
@@ -61,15 +61,15 @@ public class Demo1 {
     }
 
     static void canNotAdd(List<? extends String> list, Object o) {
-//        list.add(o); // can`t compiler
-//        list.add(null); // add null was ok
-//        list.add("dsf"); // can`t compiler
+        //        list.add(o); // can`t compiler
+        //        list.add(null); // add null was ok
+        //        list.add("dsf"); // can`t compiler
         list.get(0); // 警告
     }
 
     static void canNotGet(List<? super String> list, Object o) {
         list.add("ff");
-//        String aa = list.get(0); // can`t convert
+        //        String aa = list.get(0); // can`t convert
         Object bb = list.get(0);
     }
 

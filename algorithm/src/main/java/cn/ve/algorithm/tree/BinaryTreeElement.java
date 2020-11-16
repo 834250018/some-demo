@@ -7,11 +7,11 @@ import lombok.Data;
  * @date 2020/10/1
  * @description 链式存储结构的二叉树, 一个节点下面有不大于2个节点
  * 以下面这个树为例子
- *      a
- *    ↙ ↘
- *   b      c
+ * a
+ * ↙ ↘
+ * b      c
  * ↙ ↘    ↙ ↘
- *      d   e
+ * d   e
  * 1,3,7,15
  */
 @Data public class BinaryTreeElement {

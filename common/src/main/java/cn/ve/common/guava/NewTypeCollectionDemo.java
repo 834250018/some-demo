@@ -10,8 +10,7 @@ import java.util.Map;
  * @author ve
  * @date 2020/3/2 21:33
  */
-@Slf4j
-public class NewTypeCollectionDemo {
+@Slf4j public class NewTypeCollectionDemo {
     public static void main(String[] args) {
         // 传统map计数
         Map<String, Integer> map = new HashMap<>();

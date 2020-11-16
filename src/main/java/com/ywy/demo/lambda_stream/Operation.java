@@ -1,10 +1,10 @@
 package com.ywy.demo.lambda_stream;
 
 import java.util.function.DoubleBinaryOperator;
-import java.util.function.Function;
 
 /**
  * 方法引用跟lambda比较谁更简洁就用谁
+ *
  * @author ve
  * @date 2020/5/15
  */
@@ -22,8 +22,7 @@ public enum Operation {
         this.op = op;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         return symbol;
     }
 

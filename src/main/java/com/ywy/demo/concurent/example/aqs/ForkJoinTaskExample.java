@@ -12,8 +12,7 @@ import java.util.concurrent.RecursiveTask;
  * @author ve
  * @date 2020/3/13 19:46
  */
-@Slf4j
-public class ForkJoinTaskExample extends RecursiveTask<Integer> {
+@Slf4j public class ForkJoinTaskExample extends RecursiveTask<Integer> {
 
     public static final int threshold = 2;
     private int start;
@@ -24,8 +23,25 @@ public class ForkJoinTaskExample extends RecursiveTask<Integer> {
         this.end = end;
     }
 
-    @Override
-    protected Integer compute() {
+    public static void main(String[] args) {
+
+        // 生成一个计算任务,计算1+2+3+4
+        ForkJoinTaskExample task = new ForkJoinTaskExample(1, 100);
+
+        ForkJoinPool forkJoinPool = new ForkJoinPool();
+        // 执行一个任务
+        Future<Integer> result = forkJoinPool.submit(task);
+        try {
+            log.info("result:{}", result.get());
+            // 不使用ForkJoinPool
+            //            task.fork();
+            //            log.info("result:{}", task.join());
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+    }
+
+    @Override protected Integer compute() {
         int sum = 0;
         // 如果任务足够小就计算任务
         boolean canCompute = (end - start) <= threshold;
@@ -51,24 +67,6 @@ public class ForkJoinTaskExample extends RecursiveTask<Integer> {
             sum = leftResult + rightResult;
         }
         return sum;
-    }
-
-    public static void main(String[] args) {
-
-        // 生成一个计算任务,计算1+2+3+4
-        ForkJoinTaskExample task = new ForkJoinTaskExample(1, 100);
-
-        ForkJoinPool forkJoinPool = new ForkJoinPool();
-        // 执行一个任务
-        Future<Integer> result = forkJoinPool.submit(task);
-        try {
-            log.info("result:{}",result.get());
-            // 不使用ForkJoinPool
-//            task.fork();
-//            log.info("result:{}", task.join());
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-        }
     }
 
 }

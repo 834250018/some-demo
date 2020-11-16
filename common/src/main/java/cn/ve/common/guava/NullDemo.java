@@ -8,8 +8,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author ve
  * @date 2020/3/2 11:30
  */
-@Slf4j
-public class NullDemo {
+@Slf4j public class NullDemo {
     public static void main(String[] args) {
         // 空值处理
         Optional<Integer> possible = Optional.of(5);
@@ -22,7 +21,7 @@ public class NullDemo {
         // 可空入参
         log.info("{}", Optional.fromNullable(null).isPresent());
         // 不可空入参 NullPointerException
-//        log.info(Optional.of(null));
+        //        log.info(Optional.of(null));
 
         // 为空时返回默认值
         log.info("{}", Optional.fromNullable(null).or("1"));
@@ -35,7 +34,7 @@ public class NullDemo {
         MoreObjects.firstNonNull("a", "b"); // return "a"
         MoreObjects.firstNonNull(null, "b"); // return "b"
         MoreObjects.firstNonNull("a", null); // return "a"
-//        MoreObjects.firstNonNull(null, null); // NullPointerException
+        //        MoreObjects.firstNonNull(null, null); // NullPointerException
         log.info("");
     }
 }

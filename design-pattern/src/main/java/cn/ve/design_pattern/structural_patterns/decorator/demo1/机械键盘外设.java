@@ -17,8 +17,7 @@ public class 机械键盘外设 implements Player {
         System.out.println("放技能更快!");
     }
 
-    @Override
-    public void play() {
+    @Override public void play() {
         this.player.play();
     }
 }
