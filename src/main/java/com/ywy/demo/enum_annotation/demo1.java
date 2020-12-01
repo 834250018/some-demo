@@ -9,7 +9,9 @@ import java.util.stream.Collectors;
  * @author ve
  * @date 2020/5/15
  */
-@TestException(RuntimeException.class) @TestException(IOException.class) public class demo1 {
+@TestException(RuntimeException.class)
+@TestException(IOException.class)
+public class demo1 {
 
     public static void main(String[] args) {
 
@@ -18,7 +20,7 @@ import java.util.stream.Collectors;
         System.out.println(Arrays.stream(plants).collect(Collectors.groupingBy(p -> p.lifeCycle)));
 
         System.out.println(Arrays.stream(plants).collect(
-            Collectors.groupingBy(p -> p.lifeCycle, () -> new EnumMap<>(Plant.LifeCycle.class), Collectors.toSet())));
+                Collectors.groupingBy(p -> p.lifeCycle, () -> new EnumMap<>(Plant.LifeCycle.class), Collectors.toSet())));
 
         System.out.println(Phase.Transition.from(Phase.GAS, Phase.SOLID));
 
@@ -27,6 +29,6 @@ import java.util.stream.Collectors;
         System.out.println(demo1.class.isAnnotationPresent(TestExceptionContainer.class)); // true
         // 一般通过这种方式判断注解是否存在
         System.out.println(demo1.class.isAnnotationPresent(TestException.class) || demo1.class
-            .isAnnotationPresent(TestExceptionContainer.class)); // true
+                .isAnnotationPresent(TestExceptionContainer.class)); // true
     }
 }

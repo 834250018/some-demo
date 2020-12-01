@@ -9,7 +9,8 @@ import java.util.Vector;
  * @author ve
  * @date 2020/3/13 12:01
  */
-@Slf4j public class VectorExample3 {
+@Slf4j
+public class VectorExample3 {
 
     private static Vector<Integer> vector = new Vector<>();
 

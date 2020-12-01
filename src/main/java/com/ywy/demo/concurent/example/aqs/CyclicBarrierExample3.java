@@ -10,7 +10,8 @@ import java.util.concurrent.Executors;
  * @author ve
  * @date 2020/3/13 16:06
  */
-@Slf4j public class CyclicBarrierExample3 {
+@Slf4j
+public class CyclicBarrierExample3 {
 
     private static CyclicBarrier cyclicBarrier = new CyclicBarrier(5, () -> {
         log.info("callback is running"); // 当线程达到屏障的时候,优先执行此Runnable

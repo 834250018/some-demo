@@ -9,6 +9,8 @@ import java.lang.annotation.Target;
  * @author ve
  * @date 2020/5/15
  */
-@Retention(RetentionPolicy.RUNTIME) @Target(ElementType.TYPE) public @interface TestExceptionContainer {
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+public @interface TestExceptionContainer {
     TestException[] value();
 }

@@ -13,7 +13,8 @@ public class Plant {
         this.lifeCycle = lifeCycle;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         return name;
     }
 

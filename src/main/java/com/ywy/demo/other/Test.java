@@ -9,7 +9,8 @@ import java.util.List;
  * @author ve
  * @date 2019/7/3 16:24
  */
-@Slf4j public class Test {
+@Slf4j
+public class Test {
 
     volatile int i = 2;
 

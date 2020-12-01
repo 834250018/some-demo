@@ -9,7 +9,8 @@ import java.util.concurrent.*;
  * @author ve
  * @date 2019/7/3 17:27
  */
-@Slf4j public class ThreadTest {
+@Slf4j
+public class ThreadTest {
     public static void main(String[] args) throws IOException {
         int corePoolSize = 2;
         int maximumPoolSize = 4;
@@ -24,13 +25,14 @@ import java.util.concurrent.*;
         ThreadFactory threadFactory = new MyThreadFactory();
         RejectedExecutionHandler handler = new MyIgnorePolicy();
         ThreadPoolExecutor executor =
-            new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, arrayBlockingQueue,
-                threadFactory, handler);
+                new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, arrayBlockingQueue,
+                        threadFactory, handler);
 
         executor.prestartAllCoreThreads();
         for (int i = 0; i < 10; i++) {
             executor.execute(new Runnable() {
-                @Override public void run() {
+                @Override
+                public void run() {
                     log.info("122222");
                     try {
                         Thread.sleep(10000);

@@ -9,7 +9,8 @@ import java.util.Map;
  * @author ve
  * @date 2020/3/12 22:28
  */
-@Slf4j public class ImmutableExample1 {
+@Slf4j
+public class ImmutableExample1 {
 
     private final static Integer a = 1;
     private final static String b = "2";

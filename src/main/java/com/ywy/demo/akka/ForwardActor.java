@@ -11,7 +11,8 @@ import akka.actor.UntypedActor;
 public class ForwardActor extends UntypedActor {
     private ActorRef target = getContext().actorOf(Props.create(TargetActor.class), "targetActor");
 
-    @Override public void onReceive(Object message) throws Exception {
+    @Override
+    public void onReceive(Object message) throws Exception {
         target.forward(message, getContext());
     }
 }

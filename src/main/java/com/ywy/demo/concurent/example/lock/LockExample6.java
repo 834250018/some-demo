@@ -9,7 +9,8 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author ve
  * @date 2020/3/13 16:59
  */
-@Slf4j public class LockExample6 {
+@Slf4j
+public class LockExample6 {
     public static void main(String[] args) {
         ReentrantLock reentrantLock = new ReentrantLock();
         Condition condition = reentrantLock.newCondition();

@@ -12,7 +12,8 @@ import lombok.extern.slf4j.Slf4j;
  * @author ve
  * @date 2019/6/19 23:20
  */
-@Slf4j public class StringTest {
+@Slf4j
+public class StringTest {
     public static void main(String[] args) {
         String str = "abc";
         System.out.println(str);

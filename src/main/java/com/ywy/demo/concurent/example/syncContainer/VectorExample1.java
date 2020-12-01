@@ -14,7 +14,9 @@ import java.util.concurrent.Semaphore;
  * @author ve
  * @date 2020/3/13 12:01
  */
-@ThreadSafe @Slf4j public class VectorExample1 {
+@ThreadSafe
+@Slf4j
+public class VectorExample1 {
 
     // 请求总数
     public static int clientTotal = 5000;

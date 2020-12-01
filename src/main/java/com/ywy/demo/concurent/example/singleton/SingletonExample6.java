@@ -10,7 +10,9 @@ import lombok.extern.slf4j.Slf4j;
  * @author ve
  * @date 2020/3/12 21:37
  */
-@Slf4j @ThreadSafe public class SingletonExample6 {
+@Slf4j
+@ThreadSafe
+public class SingletonExample6 {
     private static SingletonExample6 instance = null; // 赋值操作会在静态域之后执行
 
     //    private static SingletonExample6 instance = null; // 这行代码放在这里是没有问题的

@@ -13,7 +13,9 @@ import java.util.concurrent.locks.StampedLock;
  * @author ve
  * @date 2020/3/13 16:32
  */
-@Slf4j @ThreadSafe public class LockExample5 {
+@Slf4j
+@ThreadSafe
+public class LockExample5 {
 
     private final static StampedLock lock = new StampedLock();
     // 请求总数

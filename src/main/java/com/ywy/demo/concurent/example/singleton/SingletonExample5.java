@@ -9,7 +9,8 @@ import com.ywy.demo.concurent.annotations.ThreadSafe;
  * @author ve
  * @date 2020/3/12 21:37
  */
-@ThreadSafe public class SingletonExample5 {
+@ThreadSafe
+public class SingletonExample5 {
     /**
      * 使用volatile+双重检测机制,限制指令重排
      */

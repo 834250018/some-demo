@@ -7,7 +7,8 @@ import akka.actor.UntypedActor;
  * @date 2020/11/15 17:36
  */
 public class AskActorDemo extends UntypedActor {
-    @Override public void onReceive(Object message) throws Exception {
+    @Override
+    public void onReceive(Object message) throws Exception {
         System.out.println("发送者是:" + getSender());
         getSender().tell("hhhhh", self());
     }

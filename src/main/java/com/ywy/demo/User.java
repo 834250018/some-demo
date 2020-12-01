@@ -8,8 +8,8 @@ import java.util.Comparator;
  */
 public class User {
     private static final Comparator<User> COMPARATOR = Comparator.comparing(User::getAge) // 第一次一定要指定类型
-        .thenComparing(user -> user.getName()) // 不需要指定类型
-        .thenComparing((User user) -> user.getName()); // 同上,展开的写法
+            .thenComparing(user -> user.getName()) // 不需要指定类型
+            .thenComparing((User user) -> user.getName()); // 同上,展开的写法
     private Integer age;
     private String name;
 

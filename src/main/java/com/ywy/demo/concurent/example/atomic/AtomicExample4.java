@@ -9,7 +9,9 @@ import java.util.concurrent.atomic.AtomicReference;
  * @author ve
  * @date 2020/3/12 20:04
  */
-@ThreadSafe @Slf4j public class AtomicExample4 {
+@ThreadSafe
+@Slf4j
+public class AtomicExample4 {
 
     private static AtomicReference<Integer> count = new AtomicReference<>(0);
 

@@ -28,7 +28,8 @@ public class ActorDemo extends UntypedActor {
 
     }
 
-    @Override public void onReceive(Object message) throws Exception {
+    @Override
+    public void onReceive(Object message) throws Exception {
         if (message instanceof String) {
             // 通过context创建子actor
             ActorRef actorRef = getContext().actorOf(Props.create(ChildActor.class));

@@ -22,7 +22,8 @@ public enum Operation {
         this.op = op;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         return symbol;
     }
 

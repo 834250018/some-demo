@@ -6,7 +6,8 @@ import lombok.extern.slf4j.Slf4j;
  * @author ve
  * @date 2019/7/3 15:24
  */
-@Slf4j public class IntegerTest {
+@Slf4j
+public class IntegerTest {
     public static void main(String[] args) {
         int i1 = 100;
         int i2 = 100;

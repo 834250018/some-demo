@@ -11,7 +11,8 @@ public class MyThreadFactory implements ThreadFactory {
 
     private final AtomicInteger mThreadNum = new AtomicInteger(1);
 
-    @Override public Thread newThread(Runnable r) {
+    @Override
+    public Thread newThread(Runnable r) {
         Thread t = new Thread(r, "my-thread-" + mThreadNum.getAndIncrement());
         return t;
     }

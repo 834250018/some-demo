@@ -8,7 +8,10 @@ import lombok.extern.slf4j.Slf4j;
  * @author ve
  * @date 2020/3/12 21:27
  */
-@ThreadNotSafe @NotRecommend @Slf4j public class Escape {
+@ThreadNotSafe
+@NotRecommend
+@Slf4j
+public class Escape {
     private int thisCanBeEscape = 0;
 
     public Escape() {

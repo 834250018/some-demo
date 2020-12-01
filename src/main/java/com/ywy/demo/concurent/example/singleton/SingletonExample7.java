@@ -10,7 +10,9 @@ import com.ywy.demo.concurent.annotations.ThreadSafe;
  * @author ve
  * @date 2020/3/12 21:37
  */
-@ThreadSafe @Recommend public class SingletonExample7 {
+@ThreadSafe
+@Recommend
+public class SingletonExample7 {
     private SingletonExample7() {
 
     }

@@ -14,7 +14,9 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author ve
  * @date 2020/3/13 16:32
  */
-@Slf4j @ThreadSafe public class LockExample1 {
+@Slf4j
+@ThreadSafe
+public class LockExample1 {
 
     private final static Lock lock = new ReentrantLock();
     // 请求总数

@@ -7,12 +7,14 @@ package com.ywy.demo.other;
 public class EnumTest {
     public static void main(String[] args) {
         new Thread(new Runnable() {
-            @Override public void run() {
+            @Override
+            public void run() {
                 CarTypeEnum.TYPE1.exec("测试1");
             }
         }).start();
         new Thread(new Runnable() {
-            @Override public void run() {
+            @Override
+            public void run() {
                 CarTypeEnum.TYPE1.exec("test2");
             }
         }).start();

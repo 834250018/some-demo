@@ -10,7 +10,8 @@ import java.util.concurrent.Executors;
  * @author ve
  * @date 2020/3/13 16:06
  */
-@Slf4j public class CyclicBarrierExample1 {
+@Slf4j
+public class CyclicBarrierExample1 {
 
     private static CyclicBarrier cyclicBarrier = new CyclicBarrier(5);
 

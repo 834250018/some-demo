@@ -9,7 +9,8 @@ import akka.actor.*;
 public class LookupActor extends UntypedActor {
     private ActorRef target = getContext().actorOf(Props.create(TargetActor.class), "targetActor");
 
-    @Override public void onReceive(Object message) throws Exception {
+    @Override
+    public void onReceive(Object message) throws Exception {
         if (message instanceof String) {
             if ("find".equals(message)) {
                 System.out.println(1111);
@@ -18,7 +19,7 @@ public class LookupActor extends UntypedActor {
             }
         } else if (message instanceof ActorIdentity) {
             System.out.println(2222);
-            ActorIdentity ai = (ActorIdentity)message;
+            ActorIdentity ai = (ActorIdentity) message;
             if (ai.correlationId().equals("A001")) {
                 ActorRef ref = ai.getRef();
                 if (ref != null) {

@@ -14,14 +14,16 @@ import java.util.Map;
  * @author ve
  * @date 2020/3/12 22:28
  */
-@ThreadSafe @Slf4j public class ImmutableExample3 {
+@ThreadSafe
+@Slf4j
+public class ImmutableExample3 {
 
     private final static ImmutableList list = ImmutableList.of(1, 2, 3);
     private final static List list2 = ImmutableList.of(1, 2, 3);
     private final static ImmutableSet set = ImmutableSet.copyOf(list);
     private final static ImmutableMap<Integer, Integer> map = ImmutableMap.of(1, 2);
     private final static Map<Integer, Integer> map2 =
-        ImmutableMap.<Integer, Integer>builder().put(1, 1).put(2, 2).build();
+            ImmutableMap.<Integer, Integer>builder().put(1, 1).put(2, 2).build();
 
     public static void main(String[] args) {
         log.info("{}", map2.get(2));

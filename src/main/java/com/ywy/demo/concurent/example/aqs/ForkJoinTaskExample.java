@@ -12,7 +12,8 @@ import java.util.concurrent.RecursiveTask;
  * @author ve
  * @date 2020/3/13 19:46
  */
-@Slf4j public class ForkJoinTaskExample extends RecursiveTask<Integer> {
+@Slf4j
+public class ForkJoinTaskExample extends RecursiveTask<Integer> {
 
     public static final int threshold = 2;
     private int start;
@@ -41,7 +42,8 @@ import java.util.concurrent.RecursiveTask;
         }
     }
 
-    @Override protected Integer compute() {
+    @Override
+    protected Integer compute() {
         int sum = 0;
         // 如果任务足够小就计算任务
         boolean canCompute = (end - start) <= threshold;

@@ -11,7 +11,9 @@ import java.lang.annotation.Target;
  * @author ve
  * @date 2020/3/3 0:13
  */
-@Target(ElementType.TYPE) @Retention(RetentionPolicy.SOURCE) public @interface ThreadSafe {
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.SOURCE)
+public @interface ThreadSafe {
 
     String value() default "";
 }

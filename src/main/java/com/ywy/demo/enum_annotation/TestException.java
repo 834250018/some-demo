@@ -6,7 +6,9 @@ import java.lang.annotation.*;
  * @author ve
  * @date 2020/5/15
  */
-@Retention(RetentionPolicy.RUNTIME) @Target(ElementType.TYPE) @Repeatable(TestExceptionContainer.class)
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+@Repeatable(TestExceptionContainer.class)
 // 可重入注解,需要一个容器进行存储
 public @interface TestException {
     Class<? extends Exception> value();

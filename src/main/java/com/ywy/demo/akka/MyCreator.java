@@ -9,7 +9,8 @@ import akka.japi.Creator;
  * @date 2020/11/15 17:08
  */
 public class MyCreator implements Creator {
-    @Override public Object create() throws Exception {
+    @Override
+    public Object create() throws Exception {
         return null;
     }
 }

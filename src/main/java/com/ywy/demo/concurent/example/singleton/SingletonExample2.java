@@ -9,7 +9,8 @@ import com.ywy.demo.concurent.annotations.ThreadSafe;
  * @author ve
  * @date 2020/3/12 21:37
  */
-@ThreadSafe public class SingletonExample2 {
+@ThreadSafe
+public class SingletonExample2 {
     private static SingletonExample2 instance = new SingletonExample2();
 
     private SingletonExample2() {

@@ -11,7 +11,8 @@ import java.util.concurrent.Executors;
  * @author ve
  * @date 2020/3/12 20:29
  */
-@Slf4j public class SynchronizedExample2 {
+@Slf4j
+public class SynchronizedExample2 {
     public static void test1(int j) {
         // 修饰一个类
         synchronized (SynchronizedExample2.class) {

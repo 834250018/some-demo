@@ -10,7 +10,8 @@ import java.util.concurrent.Semaphore;
  * @author ve
  * @date 2020/3/13 14:39
  */
-@Slf4j public class SemaphoreExample2 {
+@Slf4j
+public class SemaphoreExample2 {
     private final static int threadCount = 200;
 
     public static void main(String[] args) {

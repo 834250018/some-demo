@@ -15,7 +15,8 @@ import java.util.concurrent.TimeUnit;
  * @author ve
  * @date 2020/3/13 22:25
  */
-@Slf4j public class ThreadPoolExample {
+@Slf4j
+public class ThreadPoolExample {
     public static void main(String[] args) {
 
         ScheduledExecutorService exec = Executors.newScheduledThreadPool(5);
@@ -29,7 +30,8 @@ import java.util.concurrent.TimeUnit;
         //        exec.shutdown();
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
-            @Override public void run() {
+            @Override
+            public void run() {
                 log.warn("timer run");
             }
         }, new Date(), 5 * 1000L);

@@ -13,7 +13,9 @@ import java.util.Map;
  * @author ve
  * @date 2020/3/12 22:28
  */
-@ThreadSafe @Slf4j public class ImmutableExample2 {
+@ThreadSafe
+@Slf4j
+public class ImmutableExample2 {
 
     private static Map<Integer, Integer> map;
 

@@ -7,7 +7,8 @@ import akka.actor.UntypedActor;
  * @date 2020/11/15
  */
 public class ChildActor extends UntypedActor {
-    @Override public void onReceive(Object message) throws Exception {
+    @Override
+    public void onReceive(Object message) throws Exception {
 
     }
 }

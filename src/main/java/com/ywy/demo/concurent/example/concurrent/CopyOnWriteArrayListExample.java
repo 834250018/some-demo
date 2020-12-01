@@ -15,7 +15,9 @@ import java.util.concurrent.*;
  * @author ve
  * @date 2020/3/13 12:42
  */
-@Slf4j @ThreadSafe public class CopyOnWriteArrayListExample {
+@Slf4j
+@ThreadSafe
+public class CopyOnWriteArrayListExample {
 
     // 请求总数
     public static int clientTotal = 5000;

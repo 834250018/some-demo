@@ -1,5 +1,6 @@
 package cn.ve.security.sign;
 
+import cn.ve.security.CertificateDemo1;
 import com.google.common.io.ByteStreams;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Rectangle;
@@ -7,7 +8,6 @@ import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfSignatureAppearance;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.security.MakeSignature;
-import com.ywy.demo.security.CertificateDemo1;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import java.io.File;

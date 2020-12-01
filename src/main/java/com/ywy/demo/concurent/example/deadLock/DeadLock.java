@@ -6,7 +6,8 @@ import lombok.extern.slf4j.Slf4j;
  * @author ve
  * @date 2020/3/13 22:41
  */
-@Slf4j public class DeadLock implements Runnable {
+@Slf4j
+public class DeadLock implements Runnable {
 
     // 静态对象是类的所有对象共享的
     private static Object o1 = new Object(), o2 = new Object();
@@ -24,7 +25,8 @@ import lombok.extern.slf4j.Slf4j;
         new Thread(dl2).start();
     }
 
-    @Override public void run() {
+    @Override
+    public void run() {
         log.info("flag:{}", flag);
         if (flag == 1) {
             synchronized (o1) {

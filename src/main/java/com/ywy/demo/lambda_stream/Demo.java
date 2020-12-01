@@ -9,12 +9,14 @@ import java.util.Comparator;
  * @author ve
  * @date 2020/3/11 11:26
  */
-@Slf4j public class Demo {
+@Slf4j
+public class Demo {
     public static void main(String[] args) {
 
         // 匿名内部类写法
         test(new Interf() {
-            @Override public void lambda(String a, Integer b) {
+            @Override
+            public void lambda(String a, Integer b) {
                 log.info("1");
             }
         });

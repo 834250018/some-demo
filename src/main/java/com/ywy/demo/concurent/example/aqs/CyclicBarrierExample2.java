@@ -8,7 +8,8 @@ import java.util.concurrent.*;
  * @author ve
  * @date 2020/3/13 16:06
  */
-@Slf4j public class CyclicBarrierExample2 {
+@Slf4j
+public class CyclicBarrierExample2 {
 
     private static CyclicBarrier cyclicBarrier = new CyclicBarrier(5);
 
