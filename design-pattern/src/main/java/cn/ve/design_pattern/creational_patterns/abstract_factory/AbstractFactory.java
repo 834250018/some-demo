@@ -14,10 +14,10 @@ package cn.ve.design_pattern.creational_patterns.abstract_factory;
  * @author ve
  * @date 2020/4/30 23:59
  */
-public interface AbstractFactory {
-    冰箱 生产冰箱();
+public abstract class AbstractFactory {
+    abstract 冰箱 生产冰箱();
 
-    洗衣机 生产洗衣机();
+    abstract 洗衣机 生产洗衣机();
 
-    空调 生产空调();
+    abstract 空调 生产空调();
 }

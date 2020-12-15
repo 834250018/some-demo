@@ -1,4 +1,4 @@
-package cn.ve.design_pattern.creational_patterns.factory;
+package cn.ve.design_pattern.creational_patterns.factory_method;
 
 /**
  * @author ve

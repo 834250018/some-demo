@@ -4,7 +4,7 @@ package cn.ve.design_pattern.creational_patterns.abstract_factory;
  * @author ve
  * @date 2020/5/1 13:00
  */
-public class 美的工厂 implements AbstractFactory {
+public class 美的工厂 extends AbstractFactory {
     public 冰箱 生产冰箱() {
         return new 美的冰箱();
     }

@@ -1,7 +1,7 @@
 # 设计模式
 1. 创建型模式(creational_patterns)
     1. 简单工厂模式/静态工厂模式(StaticFactoryPattern)
-    2. 工厂模式(FactoryPattern)
+    2. 工厂方法模式(FactoryMethodPattern)
     3. 抽象工厂模式(AbstractFactoryPattern)
     4. 建造者模式(BuilderPattern)
     5. 单例模式(SingletonPattern)
