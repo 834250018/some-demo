@@ -37,6 +37,8 @@ dependencies {
     compile 'com.qiniu:qiniu-java-sdk:7.3.0'
 
     compile 'com.typesafe.akka:akka-actor_2.11:2.4.7'
+// https://mvnrepository.com/artifact/cglib/cglib
+    compile group: 'cglib', name: 'cglib', version: '3.3.0'
 
 
 }
